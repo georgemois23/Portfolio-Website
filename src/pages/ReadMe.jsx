@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 import { FiUserPlus } from 'react-icons/fi';
 
 const ReadMe = () => {
-  document.title = 'Readme | Moysiadis George Full Stack Developer';
+  document.title = 'ReadMe | Moysiadis George | Full-Stack Developer Portfolio';
   const navigate = useNavigate();
 
   const bg = 'transparent';

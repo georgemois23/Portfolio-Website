@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Error404 = () => {
+    document.title = "Page Not Found | Moysiadis George Full-Stack Developer Portfolio";
     const navigate = useNavigate(); 
     return (
         <Box
@@ -12,7 +13,7 @@ const Error404 = () => {
             minHeight={"90vh"}
             // ={{base: 20, lg: 20 }}
             px={{ base: 10, lg: 20 }}
-            pt={{ base: 30, lg: 30 }}
+            pt={{ base: '15vh', lg: '15vh' }}
             
         >
             <Heading

@@ -4,8 +4,20 @@ import { Divider } from '@chakra-ui/react'
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import Form from '../components/Form';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';    
 const Contact = () => {
-    document.title = "Contact - Moysiadis George | Full-Stack Developer Portfolio";
+    const location = useLocation();
+    useEffect(() => {
+    if (location.pathname === "/contact") {
+      document.title =
+        "Contact | Moysiadis George | Full-Stack Developer Portfolio";
+    } else {
+      document.title = "Moysiadis George | Full-Stack Developer Portfolio";
+    }
+  }, [location]);
+
+
     return (
         <Flex justify="center" minH="60vh"  pt={{ base: 4, lg: 10 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
            <Box textAlign={"center"}  marginInline={'auto'} >

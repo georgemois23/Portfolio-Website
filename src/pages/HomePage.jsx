@@ -81,7 +81,7 @@ export default function HomePage() {
   }
  
     return(
-    <Flex justify="start"  direction={"column"} pt={{ base: '3vh', lg: 15 }} height="fit-content" align={'center'}  >
+    <Flex justify="start"  direction={"column"} pt={{ base: '15vh', lg: '10vh' }} height="fit-content" align={'center'}  >
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="10vh"  display="flex" justifyContent="center" flexDirection="column" >
