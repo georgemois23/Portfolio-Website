@@ -41,6 +41,9 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
         isActive
           ? "brand.dark.background" 
           : "brand.dark.text"
+        // isActive
+        //   ? "brand.dark.background" 
+        //   : "brand.dark.text"
         
       // isMobile
       //   ? isActive
@@ -61,12 +64,12 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
           ? "brand.dark.secondary" 
           : "brand.dark.secondary"
         : !isActive
-        ? "brand.dark.secondary"
-        : "brand.dark.secondary",
+        ? "brand.dark.text"
+        : "brand.dark.background",
         // : "white",
       transform: isMobile ? "none" : !isActive ? "translateY(-2px) scale(1.02)" : "none",
       textDecoration: "none",
-      cursor: "pointer",
+      cursor: isActive ? "default" : "pointer"
     }}
     _active={{
       transform: isMobile ? "none" : "scale(0.98)",

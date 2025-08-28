@@ -43,20 +43,20 @@ const location = useLocation();
   }, []);
 
   return (
-    <Box>
+    <Box as="section" mb={{ base: 12, md: 16 }} mt={0}>
       <Flex
         as="header"
-        position="sticky"
-        // top="10rem"  
-        // left="50%"
-        // transform="translateX(-50%)"
+        position="fixed"
+        top="0"
+        left="50%"
+        transform="translateX(-50%)"
         borderRadius={"9999px"}
         w={{ base: "80%", md: "70%" }}
         maxW={"800px"}
         align="center"
         margin={"2rem auto .25rem"}
         justify={{md:"center",lg:"space-between"}}
-        paddingX="2rem"
+        paddingX={{xs:'1rem',sm:"2rem"}}
         // paddingY="1rem"
         zIndex="999"
         // backgroundColor='rgba(0, 10, 38, 0.98)'
@@ -65,7 +65,7 @@ const location = useLocation();
         // backgroundColor={"rgba(237, 233, 222, 0.5)"}
         // backgroundColor={"rgba(0, 10, 38, 0.93)"}
         // backgroundColor= 'rgba(15, 31, 47, 0.8)'
-        backgroundColor= 'rgba(167, 139, 250, 0.6)'
+        backgroundColor= 'rgba(167, 139, 250, 0.5)'
         backdropFilter= 'blur(8px)'
         border={`1px solid brand.dark.secondary`}
 
@@ -83,6 +83,7 @@ const location = useLocation();
             fontFamily="'Sedgwick Ave Display', cursive"
             userSelect={'none'}
             onClick={goToHomePage}
+            cursor={'pointer'}
           >
             
             Moysiadis George

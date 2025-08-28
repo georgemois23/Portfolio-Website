@@ -11,6 +11,8 @@ import { FiUsers } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from '../Moysiadis.png'
 
+import Contact from './Contact';
+
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
   const navigate = useNavigate();
@@ -18,7 +20,8 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-
+  const aboutRef = useRef(null);  
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry], observerInstance) => {
@@ -225,7 +228,7 @@ One of my ongoing projects is constantly improving this personal website. As I w
 
     <Image draggable="false" src={logo} alt="Moysiadis logo" width={{ base: '550px', lg: '550px' }} height='auto' />
 
-    
+    <Contact /> 
 
     </Flex>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage, Flex,Image, Box } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage, Flex,Image, Box, Text } from '@chakra-ui/react';
 import emailjs from 'emailjs-com';
 import { IoMdSend } from "react-icons/io";
 import Imagesent from "../../src/assets/images/sent-mail1.gif"
@@ -53,7 +53,7 @@ const ContactForm = () => {
   };
 
   return (
-    <>
+    <Flex w="100%" maxW="250px" minH="350px" justifyContent={'center'}> 
       {!submitted ? (
         <form onSubmit={handleSubmit}>
           <FormControl isInvalid={errors.name} mb={4}>
@@ -89,13 +89,12 @@ const ContactForm = () => {
         </form>
       ) : (
         <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'}>
-        <p style={{ marginTop: "1rem", color: "brand.dark.secondary" }}>Your message has been sent successfully!</p>
-        timeout {
-        <Image src={Imagesent} alt="Success" width={{base:'100px'}} />
-}
+        <Text style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: "bold" }}>Your message has been sent successfully!</Text>
+
+        <Image src={Imagesent} alt="Success" draggable="false" width={{base:'150px'}} />
         </Flex>
       )}
-    </>
+    </Flex>
   );
 };
 

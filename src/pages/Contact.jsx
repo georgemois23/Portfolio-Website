@@ -38,10 +38,6 @@ const Contact = () => {
                 py={4}
                >
 
-
-                {/* <Form/> */}
-
-                
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                                   
                  <Form />
@@ -56,13 +52,13 @@ const Contact = () => {
                 justify={'center'}
                 borderRadius="12px" 
                 gap={4}
-                boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+                // boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
                 // bg="rgba(0, 12, 45, 0.98)" 
                 // bg='brand.dark.secondary'
-                backgroundColor= 'rgba(167, 139, 250, 0.6)'
+                // backgroundColor= 'rgba(167, 139, 250, 0.6)'
                 // backdropFilter="blur(14px)"
-                border="1px solid rgba(167, 139, 250, 0.4)"
-                my={{ sm: 21, lg: 10 }} 
+                // border="1px solid rgba(167, 139, 250, 0.4)"
+                // my={{ sm: 21, lg: 10 }} 
                 marginInline={'auto'}
                 textAlign={'center'}
                 px={2}
@@ -74,10 +70,10 @@ const Contact = () => {
 
                 
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
-                <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
-                    Send me an email</Text>                   
+                {/* <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}> */}
+                    {/* Send me an email</Text>                    */}
                 <Button  as="a" 
-  href="mailto:moisiadisgeorge23@gmail.com"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={1}/> <Text> moisiadisgeorge23@gmail.com</Text></Button>
+  href="mailto:moisiadisgeorge23@gmail.com"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={2} mt={0.5}/> <Text>Send me an email</Text></Button>
                
                 </Flex>
                
