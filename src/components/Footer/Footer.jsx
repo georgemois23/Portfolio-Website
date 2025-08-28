@@ -1,9 +1,10 @@
 import React from 'react';
 import { Flex, Box, Text, Image, useBreakpointValue } from '@chakra-ui/react';
 import { EmailIcon } from "@chakra-ui/icons";
-import { FaInstagram, FaFacebook, FaLinkedin, FaMapMarkerAlt,FaDiscord } from 'react-icons/fa';
+import { FaInstagram, FaGithub , FaLinkedin, FaMapMarkerAlt,FaDiscord } from 'react-icons/fa';
 import SocialMediaLink from './FooterSocial';
 import { useEffect, useState } from 'react';
+import logo from '../../'
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,7 +24,8 @@ const Footer = () => {
       align="center"
       py={8}
       px={{ base: 4, md: 8 }}
-      bg="rgba(0, 10, 38, 0.93)"
+      // bg="rgba(0, 10, 38, 0.93)"
+      bg='brand.dark.secondary'
       width="100%"
       gap={6}
       minH="fit-content"
@@ -40,14 +42,18 @@ const Footer = () => {
       >
         
         <Box flexShrink={0}>
-          <Image
-            alt='Open Source UoM Logo'
-            draggable={false}
-            src="/logo.png"
-            loading="lazy"
-            height="auto"
-            w={{ base: "40px", md: "60px" }}
-          />
+          <Text
+            fontSize={{ base: "1.5rem", lg: "2rem" }}
+            fontWeight="bold"
+            // color="brand.dark.text"
+            color="brand.dark.background"
+            // _hover={{ color: "brand.dark.secondary" }}
+            transition="color 0.3s ease"
+            fontFamily="'Sedgwick Ave Display', cursive"
+          >
+            
+            Moysiadis George
+              </Text>
         </Box>
         
         <Flex 
@@ -58,57 +64,49 @@ const Footer = () => {
         >
           
           <Box flex="1" minW="160px">
-            <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}>
-              ΕΠΙΚΟΙΝΩΝΙΑ
+            {/* <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}> */}
+            <Text fontSize="sm" color="brand.dark.background" fontWeight="bold" mb={3} userSelect={'none'}>
+              CONTACT
             </Text>
             <Flex direction="column" gap={2}>
-              <Flex align="center" gap={2}>
+              <Flex align="center" gap={2} color="brand.dark.background">
                 <EmailIcon boxSize={4} />
-                <Text as="a" href="mailto:opensource@uom.edu.gr" fontSize="sm" color="gray.400" wordBreak="break-word">
-                  opensource@uom.edu.gr
+                <Text as="a" href="mailto:moisiadisgeorge23@gmail.com" fontSize="sm" color="brand.dark.background" wordBreak="break-word">
+                  moisiadisgeorge23@gmail.com
                 </Text>
               </Flex>
-              <Flex align="center" gap={2}>
-                <EmailIcon boxSize={4} />
-                <Text as="a" href="mailto:linux-team@uom.edu.gr"  fontSize="sm" color="gray.400" wordBreak="break-word">
-                  linux-team@uom.edu.gr
-                </Text>
-              </Flex>
+              
             </Flex>
           </Box>
 
 
           <Box flex="1" minW="200px">
-            <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}>
+            <Text fontSize="sm" color="brand.dark.background" fontWeight="bold" mb={3} userSelect={'none'}>
               SOCIAL MEDIA
             </Text>
-            <Flex direction="column" gap={3}>
+            <Flex direction="column" gap={3} color="brand.dark.background">
+             <SocialMediaLink
+                icon={<FaLinkedin size="16px" />}
+                url="https://www.linkedin.com/in/george-moysiadis"
+                label='george-moysiadis'
+              />
               <SocialMediaLink
+                icon={<FaGithub size="16px" />}
+                url="https://github.com/georgemois23"
+                label="georgemois23"
+              />
+               <SocialMediaLink
                 icon={<FaInstagram size="16px" />}
                 url="https://www.instagram.com/opensourceuom/"
-                label="opensourceuom"
+                label="moisiadis.george"
               />
-              <SocialMediaLink
-                icon={<FaLinkedin size="16px" />}
-                url="https://www.linkedin.com/company/opensourceuom"
-                label='company/opensourceuom'
-              />
-              <SocialMediaLink
-                icon={<FaFacebook size="16px" />}
-                url="https://www.facebook.com/opensourceuom"
-                label="opensourceuom"
-              />
-              <SocialMediaLink
-                icon={<FaDiscord size="16px" />}
-                url="https://discord.gg/nzMJpRYxp6"
-                label="discord"
-              />
+            
             </Flex>
           </Box>
         </Flex>
 
 
-        <Box flex="1" minW={{ base: "100%", md: "160px" }}>
+        {/* <Box flex="1" minW={{ base: "100%", md: "160px" }}>
           <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}>
             ΒΡΕΙΤΕ ΜΑΣ
           </Text>
@@ -126,12 +124,12 @@ const Footer = () => {
               Πανεπιστήμιο Μακεδονίας, Αίθουσα 10
             </Text>
           </Flex>
-        </Box>
+        </Box> */}
       </Flex>
 
-      <Text fontSize="xs" color="gray.500" textAlign="center" mt={4} userSelect={'none'}>
+      <Text fontSize="xs" color="brand.dark.background" textAlign="center" mt={4} userSelect={'none'}>
        
-        Open Source UoM I  © All rights reserved {new Date().getFullYear()} 
+        Moysiadis George I  © All rights reserved {new Date().getFullYear()} 
       </Text>
     </Flex>
   );

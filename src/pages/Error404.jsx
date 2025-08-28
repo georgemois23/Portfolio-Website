@@ -12,20 +12,20 @@ const Error404 = () => {
             minHeight={"90vh"}
             // ={{base: 20, lg: 20 }}
             px={{ base: 10, lg: 20 }}
-            pt={{ base: 40, lg: 40 }}
+            pt={{ base: 30, lg: 30 }}
             
         >
             <Heading
                 fontSize={{ sm:'6xl',base: '5xl', lg: '8xl' }}
-                color={'brand.dark.secondary'}
+                color={'brand.dark.text'}
             >
                 404
             </Heading>
             <Text fontSize={{ sm:'1xl',base: '2xl', lg: '3xl' }} mt={3} mb={2}>
-               Δεν βρέθηκε η σελίδα
+               Page Not Found
             </Text>
             <Text color={'gray.500'} mb={6}>
-                Η σελίδα που αναζητάτε δεν υπάρχει ή έχει μετακινηθεί.
+                The page you are looking for does not exist or has been moved.
             </Text>
 
             <Button
@@ -35,7 +35,7 @@ const Error404 = () => {
                 // color="white"
                 variant="solid"
             >
-                Μετάβαση στην αρχική σελίδα
+                Go to Home Page
             </Button>
         </Box>
     );

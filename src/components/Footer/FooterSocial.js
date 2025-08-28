@@ -8,7 +8,7 @@ const SocialMediaLink = ({ icon: Icon, url, label }) => {
   return (
     <Flex align="center" gap={1} onClick={handleClick} cursor="pointer">
       {Icon}
-      <Text fontSize="sm" color="gray.400" lineHeight="normal">
+      <Text fontSize="sm" color="brand.dark.background" lineHeight="normal">
         {label}
       </Text>
     </Flex>

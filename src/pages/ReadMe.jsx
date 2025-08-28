@@ -14,7 +14,7 @@ import { motion } from 'framer-motion';
 import { FiUserPlus } from 'react-icons/fi';
 
 const ReadMe = () => {
-  document.title = 'Readme - Open Source UoM';
+  document.title = 'Readme | Moysiadis George Full Stack Developer';
   const navigate = useNavigate();
 
   const bg = 'transparent';
@@ -25,19 +25,19 @@ const ReadMe = () => {
 
   const sections = [
     {
-      title: 'Ποιοι είμαστε',
+      title: 'Who am I',
       content:
-        'Η Κοινότητα Ανοιχτού Λογισμικού του Πανεπιστημίου Μακεδονίας είναι μια ζωντανή και δραστήρια ομάδα, που δημιουργήθηκε από φοιτητές και φοιτήτριες του ΠΑ.ΜΑΚ. Στόχος μας είναι η ανάδειξη, η διάδοση και η πρακτική αξιοποίηση του Ελεύθερου Λογισμικού, του Λογισμικού Ανοιχτού Κώδικα (ΕΛ/ΛΑΚ) και των τεχνολογιών Open Source Hardware. Μέσα από συλλογική δουλειά και δημιουργική συνεργασία, ενισχύουμε τον ρόλο της τεχνολογίας ως ένα ανοιχτό και συμμετοχικό πεδίο μάθησης, εξέλιξης και προσφοράς.'
+        "I'm a full stack developer specializing in React and TypeScript for backend development. I have strong knowledge of HTML, CSS, JavaScript, SQL, and APIs. I'm a passionate and enthusiastic developer, always eager to learn and build exciting projects.",
     },
     {
-      title: 'Πώς λειτουργούμε',
+      title: 'How I work',
       content:
-        'Η συμμετοχή στην κοινότητα είναι απολύτως εθελοντική και δεν συνεπάγεται καμία οικονομική υποχρέωση. Κάθε συνεισφορά είναι ευπρόσδεκτη — από την ενεργή συμμετοχή σε δράσεις και έργα, μέχρι την υποστήριξη σε πρακτικά ζητήματα ή και την ενίσχυση του εξοπλισμού και της υποδομής μας. Όποτε προκύπτουν ανάγκες (π.χ. για τη διοργάνωση ενός workshop ή την αγορά υλικού), δίνεται η δυνατότητα στους συμμετέχοντες να βοηθήσουν προαιρετικά. Για οποιαδήποτε πληροφορία ή ενδιαφέρον για ένταξη, η ομάδα μας είναι πάντα διαθέσιμη για επικοινωνία.',
+        "I enjoy collaborating with others, sharing ideas, and working on challenging problems. My workflow includes writing clean, maintainable code, following best practices, and continuously improving my skills. I value open communication and teamwork in every project.",
     },
     {
-      title: 'Ποιος μπορεί να συμμετέχει',
+      title: 'Who can connect',
       content:
-        'Η κοινότητα είναι ανοιχτή σε όλα τα μέλη της πανεπιστημιακής κοινότητας, ανεξαρτήτως σχολής ή γνωστικού αντικειμένου. Δεν απαιτείται προηγούμενη εμπειρία στον προγραμματισμό ή στις τεχνολογίες πληροφορικής — αρκεί το ενδιαφέρον και η διάθεση για συμμετοχή. Είτε σε ενδιαφέρουν τεχνικά ζητήματα, είτε η επικοινωνία, η οργάνωση ή ο σχεδιασμός, υπάρχει πάντα τρόπος να συνεισφέρεις. Στόχος μας είναι να ενθαρρύνουμε τη συνεργασία και τη μεταφορά γνώσης σε ένα περιβάλλον όπου όλοι μπορούν να μάθουν και να προσφέρουν.',
+        "Anyone interested in technology, programming, or creative collaboration is welcome to connect with me. Whether you're experienced or just starting out, I believe in sharing knowledge and helping each other grow as developers.",
     },
   ];
 
@@ -50,7 +50,7 @@ const ReadMe = () => {
         color={textColor}
         textAlign="center"
       >
-        ReadMe - Περισσότερα για εμάς
+        ReadMe - About Me
       </Heading>
 
       <Flex
@@ -94,14 +94,14 @@ const ReadMe = () => {
        <Center mt={16}>
       <VStack spacing={4}>
         <Text fontSize={{sm:"xl",md:"2xl"}} fontWeight="semibold">
-          Μήπως σε πείσαμε;
+          Are you interested in connecting?
         </Text>
         <Button
           size={'md'}
           leftIcon={<FiUserPlus />}
-          onClick={() => navigate('/register')}
+          onClick={() => navigate('/contact')}
         >
-          Γίνε μέλος
+          Contact me
         </Button>
       </VStack>
     </Center>

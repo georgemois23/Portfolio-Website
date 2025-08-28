@@ -1,11 +1,11 @@
 import { useState,useEffect,useRef} from "react";
 import { Outlet, useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { Box, Flex, Image, IconButton, useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Image, IconButton, useDisclosure, Text } from "@chakra-ui/react";
 import { HamburgerIcon, ChevronDownIcon,ChevronUpIcon } from "@chakra-ui/icons";
 import { MenuDrawer } from "./MenuDrawer";  
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react';
-import { NAV_ITEMS, SOURCES_MENU_ITEMS } from "../../config/navigationConfig";
+import { NAV_ITEMS } from "../../config/navigationConfig";
 import  { ToolTipUnderConstruction } from "../ToolTipUnderConstruction";
 import { NavItem } from "./NavItem";
 import Footer from "../Footer/Footer";
@@ -46,47 +46,56 @@ const location = useLocation();
     <Box>
       <Flex
         as="header"
-        position="fixed"
-        top="0"
-        w="100%"
+        position="sticky"
+        // top="10rem"  
+        // left="50%"
+        // transform="translateX(-50%)"
+        borderRadius={"9999px"}
+        w={{ base: "80%", md: "70%" }}
+        maxW={"800px"}
         align="center"
-        justify="center"
+        margin={"2rem auto .25rem"}
+        justify={{md:"center",lg:"space-between"}}
         paddingX="2rem"
-        paddingY="1rem"
+        // paddingY="1rem"
         zIndex="999"
         // backgroundColor='rgba(0, 10, 38, 0.98)'
-         backgroundColor={scrolled ? "rgba(0, 10, 38, 0.65)" : "rgba(0, 10, 38, 0.98)"}
-        backdropFilter={scrolled ? "blur(9px)" : "none"}
+        
+        // backgroundColor={scrolled ? "rgba(237, 233, 222, 0.5)" : "rgba(0, 12, 45, 0.98)"}
+        // backgroundColor={"rgba(237, 233, 222, 0.5)"}
+        // backgroundColor={"rgba(0, 10, 38, 0.93)"}
+        // backgroundColor= 'rgba(15, 31, 47, 0.8)'
+        backgroundColor= 'rgba(167, 139, 250, 0.6)'
+        backdropFilter= 'blur(8px)'
+        border={`1px solid brand.dark.secondary`}
+
+        // backdropFilter={scrolled ? "blur(9px)" : "none"}
         transition="background-color 0.3s ease, backdrop-filter 0.3s ease"
         height={{base:"70px", lg:"80px"}}
         fontFamily="Arial"
       >
-        {/* Left Navigation (Desktop) */}
-        <NavSection items={NAV_ITEMS.slice(0, 4)} />
-
-        {/* Logo */}
-        <Flex
-          align="center"
-          justify="center"
-          flex="0 0 auto"
-          cursor="pointer"
-          onClick={goToHomePage}
-        >
-          <Image
-            draggable={false}
-            src={'/logo.png'}
-            w={{ base: "40px", md: "60px" }}
-            _hover={{ transform: "scale(1.05)" }}
-            transition="transform 0.3s ease-in-out"
+         <Text
+            fontSize={{ base: "1.2rem", lg: "2rem" }}
+            fontWeight="bold"
+            color="brand.dark.text"
+            // _hover={{ color: "brand.dark.secondary" }}
+            transition="color 0.3s ease"
+            fontFamily="'Sedgwick Ave Display', cursive"
             userSelect={'none'}
-          />
-        </Flex>
-
-        {/* Right Navigation (Desktop) */}
-        <NavSection 
-          items={NAV_ITEMS.slice(4)} 
-          sourcesItems={SOURCES_MENU_ITEMS} 
-        />
+            onClick={goToHomePage}
+          >
+            
+            Moysiadis George
+              </Text>
+        {/* Left Navigation (Desktop) */}
+        <Flex
+        justify={{ base: "center", lg: "flex-end" }}
+        
+        >
+        <NavSection items={NAV_ITEMS.slice(0, 3)}  />
+</Flex>
+       
+       
 
         {/* Mobile Menu Button */}
         <IconButton
@@ -150,67 +159,6 @@ const handleMouseEnter = () => {
       <NavItem key={item.path} item={item} icon={item.icon} />  
     ))}
     
-    {sourcesItems && (
-      <Menu borderRadius={8} isOpen={isOpen} isLazy autoSelect={false} placement="bottom"  closeOnSelect={true} delay={2} 
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      >
-        {({ isOpen }) => (
-          <>
-            <MenuButton isActive={isOpen} as={Box} cursor="pointer" 
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        rightIcon={<ChevronDownIcon />} _hover={{color:'brand.dark.secondary'}} position="relative"
-        fontWeight={600}
-        >
-              ΠΗΓΕΣ 
-               <AnimatePresence mode="wait" initial={false}>
-                                    <motion.span
-                                      key={isOpen ? "open" : "closed"}
-                                      initial={{ opacity: 0, rotate: -90, scale: 0.6 }}
-                                      animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                      exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
-                                      transition={{ duration: 0.1, ease: "easeOut" }}
-                                      style={{ display: "inline-block", marginLeft: "0.1rem",pointerEvents: "none"  }}
-                                    >
-                                      {isOpen ? <ChevronUpIcon  boxSize={5} /> : <ChevronDownIcon boxSize={5} />}
-                                    </motion.span>
-                                  </AnimatePresence>
-              {/* <ChevronDownIcon /> */}
-            </MenuButton>
-            <MenuList  
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-             borderRadius={8} bg='rgba(0, 10, 38, 1)' boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)" border="1px solid rgba(255, 255, 255, 0.15)">
-              {sourcesItems.map((item) => (
-                <MenuItem 
-                  key={item.label}
-                  bg='rgba(0, 10, 38, 0.6)' 
-                  color={(location.pathname === item.path) ? "brand.dark.secondary" : "brand.dark.text"}
-                  boxShadow="0 8px 32px rgba(0, 0, 0, 0.3)"
-                  onClick={() => {
-                    if (item.underConstruction) return;
-                    if (item.type === "external") {
-                      window.open(item.path, '_blank', 'noopener,noreferrer');
-                    } else {
-                      navigate(item.path);
-                    }
-                  }}
-                  _hover={{ color: "brand.dark.secondary" }}
-                >
-                  {item.underConstruction ? (
-                    <ToolTipUnderConstruction where={item.label} />
-                  ) : (
-                    <>
-                      {item.label} {item.icon}
-                    </>
-                  )}
-                </MenuItem>
-              ))}
-            </MenuList>
-          </>
-        )}
-      </Menu>
-    )}
+  
   </Flex>
 );}

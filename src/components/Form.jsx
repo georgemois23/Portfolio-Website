@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage } from '@chakra-ui/react';
+import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage, Flex,Image, Box } from '@chakra-ui/react';
 import emailjs from 'emailjs-com';
-
+import { IoMdSend } from "react-icons/io";
+import Imagesent from "../../src/assets/images/sent-mail1.gif"
+import { scale } from 'framer-motion';
 const ContactForm = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validate = () => {
     const newErrors = {};
-    if (!form.name) newErrors.name = 'Το όνομα είναι υποχρεωτικό.';
-    if (!form.email) newErrors.email = 'Το email είναι υποχρεωτικό.';
-    if (!form.message) newErrors.message = 'Το μήνυμα είναι υποχρεωτικό.';
+    if (!form.name) newErrors.name = 'Name is required.';
+    if (!form.email) newErrors.email = 'Email is required.';
+    if (!form.message) newErrors.message = 'Message is required.';
     return newErrors;
   };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => {setForm({ ...form, [e.target.name]: e.target.value }); setErrors({ ...errors, [e.target.name]: '', [e.target.email]: '', [e.target.message]: ''});};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,22 +28,26 @@ const ContactForm = () => {
     if (Object.keys(newErrors).length === 0) {
       // Send email using EmailJS
       try {
+        setLoading(true);
         const response = await emailjs.send(
-          'service_f6fg6ke',  // Replace with your EmailJS service ID
-          'template_i0080hv', // Replace with your EmailJS template ID
-          form,               // The form data to send
-          '9L9g9Y4bs-UoKKYy1'      // Replace with your EmailJS user ID
+          process.env.REACT_APP_EMAILJS_SERVICE_ID,
+          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          form,
+          process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         );
 
         if (response.status === 200) {
           setSubmitted(true);
           setForm({ name: '', email: '', message: '' });
+          setLoading(false);
         } else {
-          alert("Η αποστολή απέτυχε. Δοκιμάστε ξανά.");
+          alert("The submission failed. Please try again.");
+          setLoading(false);
         }
       } catch (error) {
-        alert("Η αποστολή απέτυχε. Δοκιμάστε ξανά.");
+        alert("The submission failed. Please try again.");
         console.error(error);
+        setLoading(false);
       }
     }
   };
@@ -50,7 +57,7 @@ const ContactForm = () => {
       {!submitted ? (
         <form onSubmit={handleSubmit}>
           <FormControl isInvalid={errors.name} mb={4}>
-            <FormLabel>Όνομα</FormLabel>
+            <FormLabel>Name</FormLabel>
             <Input name="name" value={form.name} onChange={handleChange} />
             <FormErrorMessage>{errors.name}</FormErrorMessage>
           </FormControl>
@@ -62,17 +69,31 @@ const ContactForm = () => {
           </FormControl>
 
           <FormControl isInvalid={errors.message} mb={4}>
-            <FormLabel>Μήνυμα</FormLabel>
+            <FormLabel>Message</FormLabel>
             <Textarea name="message" value={form.message} onChange={handleChange} />
             <FormErrorMessage>{errors.message}</FormErrorMessage>
           </FormControl>
 
-          <Button type="submit" colorScheme="blue" width="100%">
-            Υποβολή
+            <Button 
+            type="submit" 
+            bg="rgba(0, 10, 38, 0.95)" 
+            color="brand.dark.text" 
+            _hover={{ transform: "scale(1.05)" }} 
+            width="100%"
+          >
+            <Flex alignItems="center" gap={2} justifyContent="center">
+              {loading ? 'Sending...' : 'Send  '} <IoMdSend size={14} />
+            </Flex>
           </Button>
+          
         </form>
       ) : (
-        <p style={{ marginTop: "1rem", color: "brand.dark.secondary" }}>Το μήνυμά σου στάλθηκε με επιτυχία!</p>
+        <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'}>
+        <p style={{ marginTop: "1rem", color: "brand.dark.secondary" }}>Your message has been sent successfully!</p>
+        timeout {
+        <Image src={Imagesent} alt="Success" width={{base:'100px'}} />
+}
+        </Flex>
       )}
     </>
   );

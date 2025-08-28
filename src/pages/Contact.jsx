@@ -4,18 +4,20 @@ import { Divider } from '@chakra-ui/react'
 import { EmailIcon } from "@chakra-ui/icons";
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import Form from '../components/Form';
-const Register = () => {
-    document.title = "Επικοινωνία - Open Source UoM";
+const Contact = () => {
+    document.title = "Contact - Moysiadis George | Full-Stack Developer Portfolio";
     return (
-        <Flex justify="center"   pt={{ base: 10, lg: 20 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
+        <Flex justify="center" minH="60vh"  pt={{ base: 4, lg: 10 }} height="fit-content" px={{ sm: 5, lg: 20 }} mb={{base: 20, lg: 20 }}>
            <Box textAlign={"center"}  marginInline={'auto'} >
                 <Text fontSize={{ base: 'xl', lg: '4xl' }} fontWeight="bold" mb={4}>
-                    Θέλεις να επικοινωνήσεις μαζί μας;
+                    Do you want to get in touch with me?
                 </Text>
                 <Text fontSize={{ base: 'md', lg: 'lg' }} mb={8} color={'gray.500'}>
-                Εδώ θα βρεις όλες τις πληροφορίες!
+                Find all my contact information below.
                 </Text>
 
+                <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" >
+                    Write me!</Text> 
                 <Flex 
                 direction={'column'} 
                 width={'fit-content'} 
@@ -24,59 +26,61 @@ const Register = () => {
                 borderRadius="12px" 
                 gap={4}
                 boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
-                bg="rgba(0, 12, 45, 0.98)" 
+                // bg="rgba(0, 12, 45, 0.98)" 
+                // bg='brand.dark.secondary'
+                backgroundColor= 'rgba(167, 139, 250, 0.6)'
                 // backdropFilter="blur(14px)"
-                border="1px solid rgba(0, 46, 102, 0.96)"
-                my={{ sm: 21, lg: 20 }} 
+                border="1px solid rgba(167, 139, 250, 0.4)"
+                my={{ sm: 21, lg: 10 }} 
                 marginInline={'auto'}
                 textAlign={'center'}
-                
+                px={2}
+                py={4}
                >
 
 
                 {/* <Form/> */}
 
-
-                <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
-                <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
-                    Στείλε μας email</Text>
-                    <Flex direction={{base:'column', lg:'row' }}gap={2} pt={2}>                    
-                <Button  as="a" 
-  href="mailto:opensource@uom.edu.gr"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={1}/> <Text> opensource@uom.edu.gr</Text></Button>
-                <Text mt={{base:0,lg:2}}>ή</Text>
-                <Button  as="a" 
-  href="mailto:linux-team@uom.edu.gr"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={1}/> <Text> linux-team@uom.edu.gr</Text></Button>
                 
-                </Flex>
+                <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
+                                  
+                 <Form />
                 </Flex>
                
+                </Flex>
+                or
+                <Flex 
+                direction={'column'} 
+                width={'fit-content'} 
+                align={'center'} 
+                justify={'center'}
+                borderRadius="12px" 
+                gap={4}
+                boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+                // bg="rgba(0, 12, 45, 0.98)" 
+                // bg='brand.dark.secondary'
+                backgroundColor= 'rgba(167, 139, 250, 0.6)'
+                // backdropFilter="blur(14px)"
+                border="1px solid rgba(167, 139, 250, 0.4)"
+                my={{ sm: 21, lg: 10 }} 
+                marginInline={'auto'}
+                textAlign={'center'}
+                px={2}
+                py={4}
+               >
+
+
+                {/* <Form/> */}
+
+                
                 <Flex direction={'column'} width={'fit-content'} alignItems={'center'}  gap={2}  padding={4}  px={{ sm: 21, lg: 20 }} marginInline={'auto'}>
                 <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}>
-                Βρες μας από κοντά</Text>
-                <Flex direction="column" gap={1} pt={2}>
-                            <Flex  gap={1} 
-                            onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')}
-                             cursor={'pointer'} 
-                             role="group"
-                             >
-
-                               <Box 
-    as={FaMapMarkerAlt} 
-    color="gray.400" 
-    _groupHover={{ color: 'brand.dark.secondary' }} 
-  />
-                              {/* <Box> */}
-                              <Text   fontSize="sm" color="gray.400" lineHeight="normal"  _groupHover={{ color: 'brand.dark.secondary' }}>
-                                Πανεπιστήμιο Μακεδονίας, Αίθουσα 10
-                              </Text>
-                              </Flex>
-                              <Text as={'p'} fontSize="sm" color="gray.500" lineHeight="normal">
-                              Κάθε Κυριακή στις 17:00 έχουμε συνάντηση.
-                              </Text>
-                              {/* </Box> */}
-                            
-                          </Flex>
+                    Send me an email</Text>                   
+                <Button  as="a" 
+  href="mailto:moisiadisgeorge23@gmail.com"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={1}/> <Text> moisiadisgeorge23@gmail.com</Text></Button>
+               
                 </Flex>
+               
                 </Flex>
            </Box>
            
@@ -84,4 +88,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Contact;

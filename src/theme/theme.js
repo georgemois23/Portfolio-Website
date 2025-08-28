@@ -13,9 +13,13 @@ const theme = extendTheme({
         secondary: "#e76a0f"
       },
       dark: {
-        text: "#dceeff",
-        primary: "#000d33",
-        secondary: "#e76a0f"
+        // text: "#025a4e",
+        // text: "#7f5539",
+        text: "#d6e3f0",
+        primary: "#ede9de",
+        // secondary: "#7f5539"
+        secondary: "#A78BFA",
+        background: "#0f1f2f"
       }
     },
   },
@@ -39,7 +43,7 @@ const theme = extendTheme({
         color: "brand.dark.text",  
         "::selection": {
         backgroundColor: "brand.dark.text",
-        color: "brand.dark.primary",
+        color: "brand.dark.secondary",
         
       },
       },

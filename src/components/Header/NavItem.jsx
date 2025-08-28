@@ -39,7 +39,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     transition="all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
     color={
         isActive
-          ? "brand.dark.secondary" 
+          ? "brand.dark.background" 
           : "brand.dark.text"
         
       // isMobile

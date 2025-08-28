@@ -46,7 +46,7 @@ function StyleSheet() {
                 width: 20px;
                 height: 20px;
                 border-radius: 50%;
-                background-color: #e76a0f;
+                background-color: #A78BFA;
                 will-change: transform;
             }
             `}
