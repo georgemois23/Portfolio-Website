@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Error404 = () => {
-    document.title = "Page Not Found | Moysiadis George Full-Stack Developer Portfolio";
+    document.title = "Page Not Found | Moysiadis George | Full-Stack Developer Portfolio";
     const navigate = useNavigate(); 
     return (
         <Box
@@ -18,11 +18,12 @@ const Error404 = () => {
         >
             <Heading
                 fontSize={{ sm:'6xl',base: '5xl', lg: '8xl' }}
-                color={'brand.dark.text'}
+                // color={'brand.dark.text'}
+                color={'brand.dark.secondary'}
             >
                 404
             </Heading>
-            <Text fontSize={{ sm:'1xl',base: '2xl', lg: '3xl' }} mt={3} mb={2}>
+            <Text fontSize={{ sm:'1xl',base: '2xl', lg: '3xl' }} mt={3} mb={2} >
                Page Not Found
             </Text>
             <Text color={'gray.500'} mb={6}>

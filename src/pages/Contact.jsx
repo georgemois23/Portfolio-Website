@@ -85,7 +85,7 @@ const Contact = () => {
                 {/* <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" mb={2}> */}
                     {/* Send me an email</Text>                    */}
                 <Button  as="a" 
-  href="mailto:moisiadisgeorge23@gmail.com"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={2} mt={0.5}/> <Text>Send me an email</Text></Button>
+  href="mailto:contact@moysiadis.dev"  fontSize={{ base: 'sm', lg: '1xl' }} width={'fit-content'} ><EmailIcon mr={2} mt={0.5}/> <Text>Send me an email</Text></Button>
                
                 </Flex>
                
