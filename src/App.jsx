@@ -3,7 +3,7 @@ import { Routes, Route,Navigate } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
-import Gallery from './pages/Gallery';
+// import Gallery from './pages/Gallery';
 // import Register from "./pages/Register";
 // import NotReady from "./pages/NotReady";
 // import Sponsors from "./pages/Sponsors";
@@ -63,7 +63,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/readme" element={<ReadMe />} />
-        <Route path="/gallery" element={<Gallery />} />
+        {/* <Route path="/gallery" element={<Gallery />} /> */}
 
         {/* <Route path="/*" element={<NotReady/>} /> */}
         <Route path="*" element={<Navigate to="/404" />} />
