@@ -17,7 +17,8 @@
   outline: none;
 }
 body {
-  background-color: #0F1F2F;
+  /* background-color: #0F1F2F; */
+  background-color: black;
 }
 
 html {

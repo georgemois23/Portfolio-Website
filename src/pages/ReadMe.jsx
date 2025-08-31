@@ -12,6 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiUserPlus } from 'react-icons/fi';
+import { RiMailSendLine } from "react-icons/ri";
 
 const ReadMe = () => {
   document.title = 'ReadMe | Moysiadis George | Full-Stack Developer Portfolio';
@@ -19,7 +20,8 @@ const ReadMe = () => {
 
   const bg = 'transparent';
 //   const cardBg = 'brand.dark.text';
-  const cardBg = "rgba(0, 10, 38, 0.95)";
+  // const cardBg = "rgba(0, 10, 38, 0.4)";
+  const cardBg = 'rgba(167, 139, 250, 0.2)';
   const headingColor = 'brand.dark.secondary';
   const textColor = 'brand.dark.text';
 
@@ -71,9 +73,9 @@ const ReadMe = () => {
             shadow="md"
             flexBasis={{ base: '100%', md: '45%', lg: '30%' }}
             transition="all 0.2s"
-            _hover={{ shadow: 'xl' }}
-            boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
-            border="1px solid rgba(255, 255, 255, 0.13)"
+            // _hover={{ shadow: 'xl' }}
+            // boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
+            // border="1px solid rgba(255, 255, 255, 0.13)"
           >
             <Heading
               as="h3"
@@ -98,7 +100,7 @@ const ReadMe = () => {
         </Text>
         <Button
           size={'md'}
-          leftIcon={<FiUserPlus />}
+          rightIcon={<RiMailSendLine />}
           onClick={() => navigate('/contact')}
         >
           Contact me

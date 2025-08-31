@@ -5,6 +5,7 @@ import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icon
 import { useRef,useState,useEffect } from "react";
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
+import Readme from "../pages/ReadMe";
 
 import { FiUsers } from "react-icons/fi";
 
@@ -224,7 +225,7 @@ One of my ongoing projects is constantly improving this personal website. As I w
     </Flex>
 
      
-
+    <Readme/>
 
     <Image draggable="false" src={logo} alt="Moysiadis logo" width={{ base: '550px', lg: '550px' }} height='auto' />
 
