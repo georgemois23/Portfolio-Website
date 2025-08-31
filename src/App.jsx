@@ -53,8 +53,9 @@ function App() {
     //   overflowY="auto"
     //   overflowX="hidden"
     // >
-  <Box minH="100vh" bg="0F1F2F" color="#D6E3F0" position="relative" overflowY="auto" overflowX={'hidden'} >
-          <Stars color="#D6E3F0" background="#0F1F2F" />
+  <Box minH="100vh" bg="#000a26" color="#D6E3F0" position="relative" overflowY="auto" overflowX={'hidden'} >
+          {/* <Stars color="#D6E3F0" background="#0F1F2F" /> */}
+          <Stars color="#D6E3F0" background="#000000" />
 <Box position="relative" zIndex={1}>
 
       <ScrollToTop />

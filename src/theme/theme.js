@@ -19,7 +19,8 @@ const theme = extendTheme({
         primary: "#ede9de",
         // secondary: "#7f5539"
         secondary: "#A78BFA",
-        background: "#0f1f2f"
+        // background: "#0f1f2f"
+        background: "black"
       }
     },
   },
