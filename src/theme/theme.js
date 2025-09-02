@@ -43,9 +43,9 @@ const theme = extendTheme({
         backgroundColor: "brand.dark.primary", 
         color: "brand.dark.text",  
         "::selection": {
-        backgroundColor: "brand.dark.text",
-        color: "brand.dark.secondary",
-        
+        backgroundColor: "brand.dark.secondary",
+        color: "brand.dark.background",
+
       },
       },
      

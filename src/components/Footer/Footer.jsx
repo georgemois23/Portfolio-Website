@@ -71,8 +71,8 @@ const Footer = () => {
             <Flex direction="column" gap={2}>
               <Flex align="center" gap={2} color="brand.dark.background">
                 <EmailIcon boxSize={4} />
-                <Text as="a" href="mailto:moisiadisgeorge23@gmail.com" fontSize="sm" color="brand.dark.background" wordBreak="break-word">
-                  moisiadisgeorge23@gmail.com
+                <Text as="a" href="mailto:contact@moysiadis.dev" fontSize="sm" color="brand.dark.background" wordBreak="break-word">
+                  contact@moysiadis.dev
                 </Text>
               </Flex>
               

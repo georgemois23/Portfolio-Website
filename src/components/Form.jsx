@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage, Flex,Image, Box, Text } from '@chakra-ui/react';
+import ResizeTextarea from "react-textarea-autosize";
 import emailjs from 'emailjs-com';
 import { IoMdSend } from "react-icons/io";
 import Imagesent from "../../src/assets/images/sent-mail1.gif"
@@ -70,7 +71,7 @@ const ContactForm = () => {
 
           <FormControl isInvalid={errors.message} mb={4}>
             <FormLabel>Message</FormLabel>
-            <Textarea name="message" value={form.message} onChange={handleChange} />
+            <Textarea as={ResizeTextarea} name="message" value={form.message} minH={'120px'} overflow="hidden" onChange={handleChange} />
             <FormErrorMessage>{errors.message}</FormErrorMessage>
           </FormControl>
 

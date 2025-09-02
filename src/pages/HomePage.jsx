@@ -75,7 +75,7 @@ export default function HomePage() {
 
   
   function scrollToRef() {
-    const yOffset = -150; 
+    const yOffset = window.innerWidth < 768 ? -100 : -50;
     const y = aboutSectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
     
     window.scrollTo({ top: y, behavior: 'smooth' });
@@ -151,7 +151,7 @@ export default function HomePage() {
   pointerEvents={isVisible ? 'none' : 'auto'} 
   onClick={()=> { setIsVisible(true); scrollToRef(); }}
   userSelect={'none'}
-  mt={{ base: '30vh', lg: '5vh' }}
+  mt={{ base: '30vh', lg: '12vh' }}
 >
   Scroll <ArrowDownIcon />
 </Text>
@@ -205,22 +205,36 @@ export default function HomePage() {
 >
 
 
-      <Text fontSize={{ base: 'lg', lg: '4xl' }} fontWeight={800}  textAlign="center" mb={{sm:2,md:4}}>Hello</Text>
-    <Box  as='p' textAlign="start" lineHeight="1.1" fontSize={{ base: 'sm', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+      {/* <Text fontSize={{ base: 'lg', lg: '4xl' }} fontWeight={800}  textAlign="center" mb={{sm:2,md:4}}>Hello</Text> */}
+      <Flex gap={6} direction={'column'} fontWeight={'600'}>
+    <Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+ I’m George, a passionate web developer driven by curiosity and creativity. With a strong focus on React.js and full-stack development, I enjoy building modern, scalable, and user-friendly applications that make an impact.
+ </Box>
+<Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+ 
+Currently pursuing my degree in Computer Science at the University of Macedonia, I combine academic knowledge with hands-on experience to bring ideas to life through clean code and thoughtful design. My goal is to grow as a developer by contributing to innovative projects, collaborating with teams, and continuously learning new technologies.
+</Box>
+<Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
+ 
+Whether it’s crafting seamless user experiences on the front end or architecting robust backend systems, I’m motivated to turn challenges into opportunities and deliver solutions that matter.
+   </Box>
+   </Flex>
+   <Box mb={'10vh'}></Box>
+    {/* <Box  as='p' textAlign="start" lineHeight="1.1" fontSize={{ base: 'sm', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
   My name is George Moysiadis, I am from Greece and I am a  student of Computer Science.
 I have completed a comprehensive course in web development, where I honed my skills in HTML, CSS, and JavaScript. This foundational knowledge has empowered me to bring creative ideas to life on the web. Currently, I'm expanding my expertise by diving into various frameworks, staying updated with the latest trends and technologies in the industry.
 One of my ongoing projects is constantly improving this personal website. As I work on enhancing it, I’m continuously learning new technologies and discovering more about web development. This process fuels my passion for the field even more.
-  </Box>
+  </Box> */}
     
 
     
 
-    <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex" size={{ base: 'sm', md: 'md' }}
+    {/* <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex" size={{ base: 'sm', md: 'md' }}
         alignItems="center" width={{ base: 'fit-content', lg: 'fit-content' }} wordBreak={'break-word'}
         gap={2} fontSize={{ base: 'sm', lg: 'md' }} mt={4}>
           Learn more
           <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /> 
-          </Button>
+          </Button> */}
  </Flex>
     </Flex>
 

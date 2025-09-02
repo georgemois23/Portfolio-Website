@@ -13,9 +13,19 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiUserPlus } from 'react-icons/fi';
 import { RiMailSendLine } from "react-icons/ri";
-
-const ReadMe = () => {
-  document.title = 'ReadMe | Moysiadis George | Full-Stack Developer Portfolio';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';    
+    
+const ReadMe = () => { 
+  const location = useLocation();
+    useEffect(() => {
+    if (location.pathname === "/contact") {
+      document.title =
+        "ReadMe | Moysiadis George | Full-Stack Developer Portfolio";
+    } else {
+      document.title = "Moysiadis George | Full-Stack Developer Portfolio";
+    }
+  }, [location]);
   const navigate = useNavigate();
 
   const bg = 'transparent';
@@ -52,7 +62,7 @@ const ReadMe = () => {
         color={textColor}
         textAlign="center"
       >
-        ReadMe - About Me
+        ReadMe  
       </Heading>
 
       <Flex
