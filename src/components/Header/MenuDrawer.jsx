@@ -37,11 +37,14 @@ import {
           zIndex: '99999 !important',
           // bg: 'brand.dark.primary',
           // bg: 'brand.dark.secondary',
-          bg: 'rgba(167, 139, 250, 0.6)',
+          // bg: 'rgba(167, 139, 250, 0.6)',
+          bg: 'rgba(2, 90, 78, 0.6)',
+
           width: "100%",
-          backdropFilter: "blur(20px)",
+          backdropFilter: "blur(15px)",
           maxH:"400px" ,
-          borderBottomRadius:"sm"
+          borderBottomRadius:"sm",
+          borderTopRadius: 'xl',
         }}>
           <DrawerCloseButton sx={{ zIndex: 9999 }}  />
           <DrawerHeader fontWeight={800} opacity={1} textAlign={"center"} onClick={goToHomePage}>

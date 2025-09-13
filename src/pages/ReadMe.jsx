@@ -31,7 +31,8 @@ const ReadMe = () => {
   const bg = 'transparent';
 //   const cardBg = 'brand.dark.text';
   // const cardBg = "rgba(0, 10, 38, 0.4)";
-  const cardBg = 'rgba(167, 139, 250, 0.2)';
+  // const cardBg = 'rgba(167, 139, 250, 0.2)';
+  const cardBg = 'rgba(2, 90, 78, 0.2)';
   const headingColor = 'brand.dark.secondary';
   const textColor = 'brand.dark.text';
 

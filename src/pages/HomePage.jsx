@@ -10,7 +10,7 @@ import Readme from "../pages/ReadMe";
 import { FiUsers } from "react-icons/fi";
 
 import { motion, AnimatePresence } from "framer-motion";
-import logo from '../Moysiadis.png'
+import logo from '../Moysiadis.png' 
 
 import Contact from './Contact';
 
@@ -242,7 +242,7 @@ One of my ongoing projects is constantly improving this personal website. As I w
     <Readme/>
 
     <Image draggable="false" src={logo} alt="Moysiadis logo" width={{ base: '550px', lg: '550px' }} height='auto' />
-
+   
     <Contact /> 
 
     </Flex>

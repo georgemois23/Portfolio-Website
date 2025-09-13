@@ -40,9 +40,11 @@ const Contact = () => {
                 boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
                 // bg="rgba(0, 12, 45, 0.98)" 
                 // bg='brand.dark.secondary'
-                backgroundColor= 'rgba(167, 139, 250, 0.6)'
+                // backgroundColor= 'rgba(167, 139, 250, 0.6)'
+                backgroundColor= 'rgba(2, 90, 78, 0.6)'
                 // backdropFilter="blur(14px)"
-                border="1px solid rgba(167, 139, 250, 0.4)"
+                // border="1px solid rgba(167, 139, 250, 0.4)"
+                border="1px solid rgba(2, 90, 78, 0.4)"
                 my={{ sm: 21, lg: 10 }} 
                 marginInline={'auto'}
                 textAlign={'center'}

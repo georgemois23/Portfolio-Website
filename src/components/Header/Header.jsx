@@ -65,7 +65,11 @@ const location = useLocation();
         // backgroundColor={"rgba(237, 233, 222, 0.5)"}
         // backgroundColor={"rgba(0, 10, 38, 0.93)"}
         // backgroundColor= 'rgba(15, 31, 47, 0.8)'
-        backgroundColor= 'rgba(167, 139, 250, 0.5)'
+
+
+        // backgroundColor= 'rgba(167, 139, 250, 0.5)'
+        backgroundColor= 'rgba(2, 90, 78, 0.5)'
+
         backdropFilter= 'blur(8px)'
         border={`1px solid brand.dark.secondary`}
 

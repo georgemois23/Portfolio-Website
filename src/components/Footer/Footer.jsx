@@ -30,6 +30,7 @@ const Footer = () => {
       gap={6}
       minH="fit-content"
       userSelect={'none'}
+       color="brand.dark.text"
     >
       <Flex
         align="flex-start"
@@ -45,8 +46,7 @@ const Footer = () => {
           <Text
             fontSize={{ base: "1.5rem", lg: "2rem" }}
             fontWeight="bold"
-            // color="brand.dark.text"
-            color="brand.dark.background"
+            // color="brand.dark.text" 
             // _hover={{ color: "brand.dark.secondary" }}
             transition="color 0.3s ease"
             fontFamily="'Sedgwick Ave Display', cursive"
@@ -65,13 +65,13 @@ const Footer = () => {
           
           <Box flex="1" minW="160px">
             {/* <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}> */}
-            <Text fontSize="sm" color="brand.dark.background" fontWeight="bold" mb={3} userSelect={'none'}>
+            <Text fontSize="sm"  fontWeight="bold" mb={3} userSelect={'none'}>
               CONTACT
             </Text>
             <Flex direction="column" gap={2}>
-              <Flex align="center" gap={2} color="brand.dark.background">
+              <Flex align="center" gap={2} >
                 <EmailIcon boxSize={4} />
-                <Text as="a" href="mailto:contact@moysiadis.dev" fontSize="sm" color="brand.dark.background" wordBreak="break-word">
+                <Text as="a" href="mailto:contact@moysiadis.dev" fontSize="sm"  wordBreak="break-word">
                   contact@moysiadis.dev
                 </Text>
               </Flex>
@@ -81,10 +81,10 @@ const Footer = () => {
 
 
           <Box flex="1" minW="200px">
-            <Text fontSize="sm" color="brand.dark.background" fontWeight="bold" mb={3} userSelect={'none'}>
+            <Text fontSize="sm"   fontWeight="bold" mb={3} userSelect={'none'}>
               SOCIAL MEDIA
             </Text>
-            <Flex direction="column" gap={3} color="brand.dark.background">
+            <Flex direction="column" gap={3} >
              <SocialMediaLink
                 icon={<FaLinkedin size="16px" />}
                 url="https://www.linkedin.com/in/george-moysiadis"
@@ -127,7 +127,7 @@ const Footer = () => {
         </Box> */}
       </Flex>
 
-      <Text fontSize="xs" color="brand.dark.background" textAlign="center" mt={4} userSelect={'none'}>
+      <Text fontSize="xs"   textAlign="center" mt={4} userSelect={'none'}>
        
         Moysiadis George I  © All rights reserved {new Date().getFullYear()} 
       </Text>
