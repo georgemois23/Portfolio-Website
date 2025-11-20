@@ -6,6 +6,7 @@ import { useRef,useState,useEffect } from "react";
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 import Readme from "../pages/ReadMe";
+import Logo from '../assets/logo/Logo';
 
 import { FiUsers } from "react-icons/fi";
 
@@ -58,8 +59,8 @@ export default function HomePage() {
   const MotionSpan = motion.span;
 
   const texts = [
-    { content: "MOYSIADIS", color: undefined },
-    { content: "GEORGE", color: undefined },
+    { content: "FULL-STACK", color: undefined },
+    { content: "DEVELOPER", color: undefined },
     // { content: "DEVELOPER", color: "gray.500" }
   ];
 
@@ -70,6 +71,14 @@ export default function HomePage() {
       sessionStorage.setItem('textAnimationPlayed', 'true');
     }
   }, []);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const isMobile = windowWidth < 992; 
+  const size = isMobile 
+    ? Math.min(windowWidth * 0.7, 350) 
+    : Math.min(windowWidth * 0.3, 500);
+  const width = size;
+  const height = size;
 
 
 
@@ -241,7 +250,7 @@ One of my ongoing projects is constantly improving this personal website. As I w
      
     <Readme/>
 
-    <Image draggable="false" src={logo} alt="Moysiadis logo" width={{ base: '550px', lg: '550px' }} height='auto' />
+    <Logo height={height} width={width}/>
    
     <Contact /> 
 

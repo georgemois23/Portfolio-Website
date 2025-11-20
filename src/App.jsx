@@ -24,37 +24,9 @@ import Stars from "./Stars";
 function App() {
   const [count, setCount] = useState(0)
    
-  
-//   return (
-//       <>
-//      <Box
-//   position="fixed"
-//   top={0}
-//   left={0}
-//   width="100vw"
-//   height="100vh"
-//   backgroundColor="#000a26"
-//   backgroundImage="linear-gradient(#001a66 1px, transparent 1px), linear-gradient(to right, #001a66 1px, #000a26 1px)"
-//   backgroundSize="50px 50px"
-//   zIndex={-1} 
-// />
 
-// <Box minH="100vh" overflowY="auto"overflowX={'hidden'}  position="relative" zIndex={1}>
  return (
-    // <Box
-    //   minH="100vh"
-    //   h="fit-content"
-    //   backgroundColor="#dceeff"
-    //   // opacity={0.8}
-    //   // backgroundImage={`radial-gradient(#444cf7 0.5px, transparent 0.5px), radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px)`}
-    //   background={'brand.dark.background'}
-    //   backgroundSize="20px 20px"
-    //   backgroundPosition="0 0, 10px 10px"
-    //   overflowY="auto"
-    //   overflowX="hidden"
-    // >
-  <Box minH="100vh" bg="#000a26" color="#D6E3F0" position="relative" overflowY="auto" overflowX={'hidden'} >
-          {/* <Stars color="#D6E3F0" background="#0F1F2F" /> */}
+  <Box minH="100vh" bg="#000000" color="#D6E3F0" position="relative" overflowY="auto" overflowX={'hidden'} >
           <Stars color="#D6E3F0" background="#000000" />
 <Box position="relative" zIndex={1}>
 

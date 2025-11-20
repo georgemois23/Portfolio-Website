@@ -25,7 +25,13 @@ const Footer = () => {
       py={8}
       px={{ base: 4, md: 8 }}
       // bg="rgba(0, 10, 38, 0.93)"
-      bg='brand.dark.secondary'
+      // bg='brand.dark.secondary'
+      bg= 'rgba(145, 109, 232, 0.6)'
+      sx={{
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)', 
+      }}
+      borderTop="1px solid rgba(145, 109, 232, 0.4)"
       width="100%"
       gap={6}
       minH="fit-content"
@@ -97,7 +103,7 @@ const Footer = () => {
               />
                <SocialMediaLink
                 icon={<FaInstagram size="16px" />}
-                url="https://www.instagram.com/opensourceuom/"
+                url="https://www.instagram.com/moisiadis.george/"
                 label="moisiadis.george"
               />
             

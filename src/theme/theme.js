@@ -19,7 +19,8 @@ const theme = extendTheme({
         primary: "#ede9de",
         // secondary: "#7f5539"
         // secondary: "#A78BFA",
-        secondary: "#025a4e",
+        // secondary: "#025a4e",
+        secondary: "#916de8",
 
         // background: "#0f1f2f"
         background: "black"

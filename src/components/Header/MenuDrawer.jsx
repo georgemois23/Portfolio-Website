@@ -31,7 +31,7 @@ import {
     const MotionDrawerContent = motion(DrawerContent);
   
     return (
-      <Drawer onClose={onClose} isOpen={isOpen} placement="bottom" size={'sm'} closeOnBlur >
+      <Drawer onClose={onClose} isOpen={isOpen} placement="top" size={'sm'} closeOnBlur >
         <DrawerOverlay />
         <DrawerContent sx={{
           zIndex: '99999 !important',
@@ -41,10 +41,10 @@ import {
           bg: 'rgba(2, 90, 78, 0.6)',
 
           width: "100%",
-          backdropFilter: "blur(15px)",
+          backdropFilter: "blur(14px)",
           maxH:"400px" ,
-          borderBottomRadius:"sm",
-          borderTopRadius: 'xl',
+          borderBottomRadius:"2xl",
+          // borderTopRadius: 'xl',
         }}>
           <DrawerCloseButton sx={{ zIndex: 9999 }}  />
           <DrawerHeader fontWeight={800} opacity={1} textAlign={"center"} onClick={goToHomePage}>

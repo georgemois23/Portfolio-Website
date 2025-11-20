@@ -25,7 +25,8 @@ function mulberry32(seed) {
 export default function StarsBackground({
   baseCount = 140,      // baseline on a 1280x720 viewport
   color = "#D6E3F0",
-  background = "#0F1F2F",
+  // background = "#0F1F2F",
+  background = "#000000",
   intensity = 1,        // multiplier for star count
 }) {
   const reduce = usePrefersReducedMotion();
@@ -57,7 +58,7 @@ export default function StarsBackground({
     for (let i = 0; i < total; i++) {
       const left = (rand() * 100).toFixed(3) + "vw";            // vw for horizontal
       const top = (-10 + rand() * 120).toFixed(3) + "vh";       // -10vh..110vh fills bottom
-      const size = `clamp(1px, ${(0.12 + rand() * 0.28).toFixed(3)}vw, 3px)`; // responsive 1px..~3px
+      const size = `clamp(4px, ${(0.12 + rand() * 0.28).toFixed(3)}vw, 3px)`; // responsive 1px..~3px
       const blur = `${(0.3 + rand() * 1.7).toFixed(1)}px`;
       const opacity = (0.6 + rand() * 0.4).toFixed(2);
       const dur = (35 + rand() * 65).toFixed(1) + "s";
@@ -84,51 +85,54 @@ export default function StarsBackground({
         content: '""',
         position: "absolute",
         inset: 0,
-        bgGradient:
-          "linear(to-b, rgba(15,31,47,0.30), rgba(15,31,47,0) 35%, rgba(15,31,47,0) 65%, rgba(15,31,47,0.30))",
+        bgGradient:"linear(to-b, rgba(15,31,47,0.30), rgba(15,31,47,0))"
+
       }}
     >
       <Box position="absolute" inset={0} overflow="hidden">
         {stars.map((s, idx) => (
-          <React.Fragment key={idx}>
-            {/* main copy */}
-            <Box
-              position="absolute"
-              left={s.left}
-              top={s.top}
-              width={s.size}
-              height={s.size}
-              bg={color}
-              borderRadius="full"
-              opacity={s.opacity}
-              filter={`drop-shadow(0 0 ${s.blur} ${color})`}
-              willChange="transform, opacity"
-              animation={
-                reduce
-                  ? undefined
-                  : `${floatUp} ${s.dur} linear ${s.delay} infinite, ${twinkle} ${s.twinkleDur} ease-in-out ${s.delay} infinite`
-              }
-            />
-            {/* duplicate 100vh lower for seamless flow at bottom */}
-            <Box
-              position="absolute"
-              left={s.left}
-              top={`calc(${s.top} + 100vh)`}
-              width={s.size}
-              height={s.size}
-              bg={color}
-              borderRadius="full"
-              opacity={s.opacity}
-              filter={`drop-shadow(0 0 ${s.blur} ${color})`}
-              willChange="transform, opacity"
-              animation={
-                reduce
-                  ? undefined
-                  : `${floatUp} ${s.dur} linear ${s.delay} infinite, ${twinkle} ${s.twinkleDur} ease-in-out ${s.delay} infinite`
-              }
-            />
-          </React.Fragment>
-        ))}
+  <React.Fragment key={idx}>
+    {/* main copy */}
+    <Box
+      as="span"
+      position="absolute"
+      left={s.left}
+      top={s.top}
+      fontSize={s.size}
+      color={color}
+      opacity={s.opacity}
+      textShadow={`0 0 ${s.blur} ${color}`}
+      willChange="transform, opacity"
+      animation={
+        reduce
+          ? undefined
+          : `${floatUp} ${s.dur} linear ${s.delay} infinite, ${twinkle} ${s.twinkleDur} ease-in-out ${s.delay} infinite`
+      }
+    >
+      {"<>"}
+    </Box>
+
+    {/* duplicate 100vh lower for seamless flow */}
+    <Box
+      as="span"
+      position="absolute"
+      left={s.left}
+      top={`calc(${s.top} + 100vh)`}
+      fontSize={s.size}
+      color={color}
+      opacity={s.opacity}
+      textShadow={`0 0 ${s.blur} ${color}`}
+      willChange="transform, opacity"
+      animation={
+        reduce
+          ? undefined
+          : `${floatUp} ${s.dur} linear ${s.delay} infinite, ${twinkle} ${s.twinkleDur} ease-in-out ${s.delay} infinite`
+      }
+    >
+      {"</>"}
+    </Box>
+  </React.Fragment>
+))}
       </Box>
     </Box>
   );

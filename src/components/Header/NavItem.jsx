@@ -36,10 +36,10 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     width={isMobile ? "full" : "auto"}
     textAlign={isMobile ? "center" : "left"}
     borderRadius="lg"
-    transition="all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+    transition="all 0.3s cubic-bezier(0.16, 1, 0.3, 1)" 
     color={
         isActive
-          ? "brand.dark.background" 
+          ? "brand.dark.text" 
           : "brand.dark.text"
         // isActive
         //   ? "brand.dark.background" 
@@ -65,7 +65,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
           : "brand.dark.secondary"
         : !isActive
         ? "brand.dark.text"
-        : "brand.dark.background",
+        : "brand.dark.",
         // : "white",
       transform: isMobile ? "none" : !isActive ? "translateY(-2px) scale(1.02)" : "none",
       textDecoration: "none",
@@ -78,7 +78,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
     }}
     userSelect="none"
     letterSpacing="-0.025em"
-    willChange="transform, box-shadow"
+    willChange="transform, box-shadow" 
     style={{
       WebkitTapHighlightColor: "transparent",
     }}

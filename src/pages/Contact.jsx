@@ -41,10 +41,16 @@ const Contact = () => {
                 // bg="rgba(0, 12, 45, 0.98)" 
                 // bg='brand.dark.secondary'
                 // backgroundColor= 'rgba(167, 139, 250, 0.6)'
-                backgroundColor= 'rgba(2, 90, 78, 0.6)'
+                // backgroundColor= 'rgba(2, 90, 78, 0.6)'
+                backgroundColor= 'rgba(145, 109, 232, 0.6)'
+                sx={{
+                backdropFilter: 'blur(2px)',
+                WebkitBackdropFilter: 'blur(2px)', 
+            }}
                 // backdropFilter="blur(14px)"
                 // border="1px solid rgba(167, 139, 250, 0.4)"
-                border="1px solid rgba(2, 90, 78, 0.4)"
+                // border="1px solid rgba(2, 90, 78, 0.4)"
+                border="1px solid rgba(145, 109, 232, 0.4)"
                 my={{ sm: 21, lg: 10 }} 
                 marginInline={'auto'}
                 textAlign={'center'}

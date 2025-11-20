@@ -32,7 +32,8 @@ const ReadMe = () => {
 //   const cardBg = 'brand.dark.text';
   // const cardBg = "rgba(0, 10, 38, 0.4)";
   // const cardBg = 'rgba(167, 139, 250, 0.2)';
-  const cardBg = 'rgba(2, 90, 78, 0.2)';
+  // const cardBg = 'rgba(2, 90, 78, 0.2)';
+  const cardBg = 'rgba(145, 109, 232, 0.2)';
   const headingColor = 'brand.dark.secondary';
   const textColor = 'brand.dark.text';
 
@@ -80,10 +81,14 @@ const ReadMe = () => {
             key={index}
             bg={cardBg}
             p={6}
-            rounded="lg"
-            shadow="md"
+            rounded="xl"
+            shadow="lg"
             flexBasis={{ base: '100%', md: '45%', lg: '30%' }}
             transition="all 0.2s"
+            sx={{
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)', 
+            }}
             // _hover={{ shadow: 'xl' }}
             // boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
             // border="1px solid rgba(255, 255, 255, 0.13)"
