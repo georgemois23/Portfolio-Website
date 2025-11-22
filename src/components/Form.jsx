@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Input, Textarea, Button, FormErrorMessage, Flex,Image, Box, Text } from '@chakra-ui/react';
+import { Input, Textarea, Button, Flex, Image, Text, Field } from '@chakra-ui/react';
 import ResizeTextarea from "react-textarea-autosize";
 import emailjs from 'emailjs-com';
 import { IoMdSend } from "react-icons/io";
-import Imagesent from "../../src/assets/images/sent-mail1.gif"
-import { scale } from 'framer-motion';
+import Imagesent from "../../src/assets/images/sent-mail1.gif";
+
 const ContactForm = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
@@ -19,7 +19,10 @@ const ContactForm = () => {
     return newErrors;
   };
 
-  const handleChange = (e) => {setForm({ ...form, [e.target.name]: e.target.value }); setErrors({ ...errors, [e.target.name]: '', [e.target.email]: '', [e.target.message]: ''});};
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' }); // Simplified error clearing
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +30,6 @@ const ContactForm = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // Send email using EmailJS
       try {
         setLoading(true);
         const response = await emailjs.send(
@@ -54,46 +56,58 @@ const ContactForm = () => {
   };
 
   return (
-    <Flex w="100%" maxW="250px" minH="350px" justifyContent={'center'}> 
+    <Flex w="100%" maxW="250px" minH="350px" justifyContent={'center'}>
       {!submitted ? (
-        <form onSubmit={handleSubmit}>
-          <FormControl isInvalid={errors.name} mb={4}>
-            <FormLabel>Name</FormLabel>
+        <form onSubmit={handleSubmit} style={{ width: '100%' }}>
+          
+          {/* NAME FIELD */}
+          <Field.Root invalid={!!errors.name} mb={4}>
+            <Field.Label>Name</Field.Label>
             <Input name="name" value={form.name} onChange={handleChange} />
-            <FormErrorMessage>{errors.name}</FormErrorMessage>
-          </FormControl>
+            <Field.ErrorText>{errors.name}</Field.ErrorText>
+          </Field.Root>
 
-          <FormControl isInvalid={errors.email} mb={4}>
-            <FormLabel>Email</FormLabel>
+          {/* EMAIL FIELD */}
+          <Field.Root invalid={!!errors.email} mb={4}>
+            <Field.Label>Email</Field.Label>
             <Input name="email" type="email" value={form.email} onChange={handleChange} />
-            <FormErrorMessage>{errors.email}</FormErrorMessage>
-          </FormControl>
+            <Field.ErrorText>{errors.email}</Field.ErrorText>
+          </Field.Root>
 
-          <FormControl isInvalid={errors.message} mb={4}>
-            <FormLabel>Message</FormLabel>
-            <Textarea as={ResizeTextarea} name="message" value={form.message} minH={'120px'} overflow="hidden" onChange={handleChange} />
-            <FormErrorMessage>{errors.message}</FormErrorMessage>
-          </FormControl>
+          {/* MESSAGE FIELD */}
+          <Field.Root invalid={!!errors.message} mb={4}>
+            <Field.Label>Message</Field.Label>
+            <Textarea 
+              as={ResizeTextarea} 
+              name="message" 
+              value={form.message} 
+              minH={'120px'} 
+              overflow="hidden" 
+              onChange={handleChange} 
+            />
+            <Field.ErrorText>{errors.message}</Field.ErrorText>
+          </Field.Root>
 
-            <Button 
-            type="submit" 
-            // bg="rgba(0, 10, 38, 0.95)" 
-            bg="brand.dark.background" 
-            color="brand.dark.text" 
-            _hover={{ transform: "scale(1.05)" }} 
+          <Button
+            type="submit"
+            bg="brand.dark.background"
+            color="brand.dark.text"
+            _hover={{ transform: "scale(1.05)" }}
             width="100%"
+            disabled={loading} // Good practice to disable button while sending
           >
             <Flex alignItems="center" gap={2} justifyContent="center">
               {loading ? 'Sending...' : 'Send  '} <IoMdSend size={14} />
             </Flex>
           </Button>
-          
+
         </form>
       ) : (
         <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'}>
-        <Text style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: "bold" }}>Your message has been sent successfully!</Text>
-
-        <Image src={Imagesent} alt="Success" draggable="false" width={{base:'150px'}} />
+          <Text style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: "bold" }}>
+            Your message has been sent successfully!
+          </Text>
+          <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '150px' }} />
         </Flex>
       )}
     </Flex>

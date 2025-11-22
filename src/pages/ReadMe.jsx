@@ -56,13 +56,14 @@ const ReadMe = () => {
   ];
 
   return (
-    <Box minH="100vh" px={{ base: 4, md: 10 }} py={10} bg={bg}>
+    <Box minH="70vh" px={{ base: 4, md: 10 }} py={10} bg={bg}>
       <Heading
         as="h1"
         fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
         mb={12}
         color={textColor}
         textAlign="center"
+        userSelect={'none'}
       >
         ReadMe  
       </Heading>
@@ -109,7 +110,7 @@ const ReadMe = () => {
         ))}
       </Flex>
 
-       <Center mt={16}>
+       {/* <Center mt={16}>
       <VStack spacing={4}>
         <Text fontSize={{sm:"xl",md:"2xl"}} fontWeight="semibold">
           Are you interested in connecting?
@@ -122,7 +123,7 @@ const ReadMe = () => {
           Contact me
         </Button>
       </VStack>
-    </Center>
+    </Center> */}
     </Box>
   );
 };

@@ -1,12 +1,19 @@
-import {Box,Flex,Text,Button,Icon,Tooltip,Image, Center, VStack}  from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Icon, Center, VStack } from "@chakra-ui/react";
 import '../App.css';
-import { useNavigate } from "react-router-dom";
-import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icons";
-import { useRef,useState,useEffect } from "react";
-import { Wrap, WrapItem } from '@chakra-ui/react';
+import { useLocation, useNavigate } from "react-router-dom";
+// 1. Remove deprecated @chakra-ui/icons
+// import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icons";
+// 2. Add React Icons replacements
+import { FaArrowDown, FaArrowRight } from "react-icons/fa"; 
+
+import { useRef, useState, useEffect } from "react";
+// Wrap/WrapItem are removed in v3, using Flex wrap="wrap" is the replacement if needed. 
+// Since they were unused in your render, I removed the import entirely.
+
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 import Readme from "../pages/ReadMe";
 import Logo from '../assets/logo/Logo';
+import Timelines from "../components/Timeline";
 
 import { FiUsers } from "react-icons/fi";
 
@@ -14,6 +21,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import logo from '../Moysiadis.png' 
 
 import Contact from './Contact';
+import Skills from "../components/Skills";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -22,7 +30,41 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const aboutRef = useRef(null);  
+  const location = useLocation();
+  const topRef = useRef(null);
+  const homeRef = useRef(null);
+  const projectsRef = useRef(null);
+  const contactRef = useRef(null);
+  
+
+  const refs = {
+    top: topRef,
+    readme: homeRef,
+    projects: projectsRef,
+    contact: contactRef,
+  };
+
+  const offsets = {
+  top: 0,
+  readme: -70,
+  projects: -200,
+  contact: -100,
+};
+
+useEffect(() => {
+  if (location.state?.scrollTo) {
+    const section = location.state.scrollTo;
+    const ref = refs[section];
+    if (ref?.current) {
+      const yOffset = offsets[section] ?? 0;
+      const y =
+        ref.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  }
+}, [location.state]);
+
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,7 +103,6 @@ export default function HomePage() {
   const texts = [
     { content: "FULL-STACK", color: undefined },
     { content: "DEVELOPER", color: undefined },
-    // { content: "DEVELOPER", color: "gray.500" }
   ];
 
   useEffect(() => {
@@ -80,33 +121,31 @@ export default function HomePage() {
   const width = size;
   const height = size;
 
-
-
-  
   function scrollToRef() {
     const yOffset = window.innerWidth < 768 ? -100 : -50;
     const y = aboutSectionRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
     
     window.scrollTo({ top: y, behavior: 'smooth' });
   }
+
+  function scrollTo(ref, offset = 0) {
+  if (!ref?.current) return;
+  const y = ref.current.getBoundingClientRect().top + window.pageYOffset + offset;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}
  
     return(
     <Flex justify="start"  direction={"column"} pt={{ base: '15vh', lg: '10vh' }} height="fit-content" align={'center'}  >
 
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="10vh"  display="flex" justifyContent="center" flexDirection="column" >
-  {/* <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }}>
-    OPEN SOURCE
-  </Text>
-  <Text fontSize={{ sm:'5xl',md: '6xl', lg: '9xl' }} color="gray.600">
-    UOM COMMUNITY
-  </Text> */}
- 
+
+      <Flex ref={topRef} direction="column" mb={10}>
     <AnimatePresence>
       {texts.map((text, index) => (
         <Text
           key={index}
-          fontSize={{ sm: "5xl", md: "6xl", lg: "9xl" }}
+          fontSize={{base: "4xl",sm: "5xl", md: "6xl", lg: "9xl" }}
           color={text.color}
           display="inline-block"
           userSelect={'none'}
@@ -143,6 +182,7 @@ export default function HomePage() {
         </Text>
       ))}
     </AnimatePresence>
+    </Flex>
 </Box>
 
 
@@ -150,50 +190,31 @@ export default function HomePage() {
   
   
   
-  <Text
+ <Text
   cursor="pointer"
-  // onClick={scrollToRef}
   fontSize={{ base: 'md', lg: 'xl' }}
   textAlign="center"
-  sx={{ transition: "all 0.3s ease-in-out" }}
+  css={{ transition: "all 0.3s ease-in-out" }}
   opacity={isVisible ? 0 : 1} 
   pointerEvents={isVisible ? 'none' : 'auto'} 
-  onClick={()=> { setIsVisible(true); scrollToRef(); }}
+  onClick={() => {
+    setIsVisible(true); 
+    scrollTo(homeRef, window.innerWidth < 768 ? -100 : -50);
+  }}
   userSelect={'none'}
   mt={{ base: '30vh', lg: '12vh' }}
+  display="flex"
+  alignItems="center"
+  gap={2}
 >
-  Scroll <ArrowDownIcon />
+  Scroll 
+  <Icon as={FaArrowDown} />
 </Text>
 
-{/* 
-    <Flex ref={aboutSectionRef}   
-    direction='column'  
-     mb={10} 
-     marginInline={'auto'} 
-     gap={2}   
-    //  width={{base: '90vw', lg:'70vw'}}  
-    width="100vw" 
-    py={{ base: '12vh', lg: '15vh' }}
-    // py={8}
-    //  padding={4}
-    px={{sm:4,lg: 8}}
-    //  borderRadius={8}  
-    boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.2)"
 
-    bg="rgba(0, 12, 45, 0.98)" 
-    // bgImage={backgroundImage}
-    bgSize="cover"
-    bgPosition="center"
-    bgRepeat={"space"}
-
-    // backdropFilter="blur(14px)"
-    // borderBlock="1px solid rgba(0, 46, 102, 0.9)" 
-    // border="1px solid rgba(0, 46, 102, 0.9)" 
-  mt={{ base: '25vw', lg: '12vh' }}
-  transform="translateY(-2px)" 
-  > */}
   <Flex
-  ref={aboutSectionRef}
+  // ref={aboutSectionRef}
+  ref={homeRef}
   direction="column"
   mb={10}
   marginInline="auto"
@@ -201,61 +222,32 @@ export default function HomePage() {
   width="100vw"
   pt={{ base: '22vh', lg: '25vh' }}
   py={8}
-  px={{ sm: 4, lg: 8 }}
-  // boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.2)"
-  // bg="rgba(0, 12, 45, 0.98)" // same as current
+  px={{ sm: 8, lg: 8 }}
   bgSize="cover"
   bgPosition="center"
   bgRepeat="space"
   mt={{ base: '25vw', lg: '12vh' }}
   transform="translateY(-2px)"
-  // borderTopLeftRadius={{ base: "40% 00%", lg: "0% 50%" }}
-  // borderTopRightRadius={{ base: "40% 10%", lg: "120% 50%" }}
 >
 
-
-      {/* <Text fontSize={{ base: 'lg', lg: '4xl' }} fontWeight={800}  textAlign="center" mb={{sm:2,md:4}}>Hello</Text> */}
-      <Flex gap={6} direction={'column'} fontWeight={'600'}>
-    <Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
- I’m George, a passionate web developer driven by curiosity and creativity. With a strong focus on React.js and full-stack development, I enjoy building modern, scalable, and user-friendly applications that make an impact.
- </Box>
-<Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
- 
-Currently pursuing my degree in Computer Science at the University of Macedonia, I combine academic knowledge with hands-on experience to bring ideas to life through clean code and thoughtful design. My goal is to grow as a developer by contributing to innovative projects, collaborating with teams, and continuously learning new technologies.
-</Box>
-<Box  as='p' textAlign="start" lineHeight="1.2" fontSize={{ base: 'lg', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
- 
-Whether it’s crafting seamless user experiences on the front end or architecting robust backend systems, I’m motivated to turn challenges into opportunities and deliver solutions that matter.
-   </Box>
-   </Flex>
-   <Box mb={'10vh'}></Box>
-    {/* <Box  as='p' textAlign="start" lineHeight="1.1" fontSize={{ base: 'sm', lg: '2xl' }}  fontFamily="Arial" px={{sm:0,md:8}} width={{base: '95%', lg:'70vw'}}  marginInline={'auto'} > 
-  My name is George Moysiadis, I am from Greece and I am a  student of Computer Science.
-I have completed a comprehensive course in web development, where I honed my skills in HTML, CSS, and JavaScript. This foundational knowledge has empowered me to bring creative ideas to life on the web. Currently, I'm expanding my expertise by diving into various frameworks, staying updated with the latest trends and technologies in the industry.
-One of my ongoing projects is constantly improving this personal website. As I work on enhancing it, I’m continuously learning new technologies and discovering more about web development. This process fuels my passion for the field even more.
-  </Box> */}
-    
-
-    
-
-    {/* <Button  marginInline={'auto'} onClick={() => navigate('/readme')} display="flex" size={{ base: 'sm', md: 'md' }}
-        alignItems="center" width={{ base: 'fit-content', lg: 'fit-content' }} wordBreak={'break-word'}
-        gap={2} fontSize={{ base: 'sm', lg: 'md' }} mt={4}>
-          Learn more
-          <ArrowForwardIcon style={{ fontSize: '28px', marginLeft: '2px' }} /> 
-          </Button> */}
- </Flex>
-    </Flex>
-
+      
+        <Readme />
+        <Skills/>
      
-    <Readme/>
+      </Flex>
+      </Flex>
+      <Flex ref={projectsRef} direction="column" mb={10}>
+  <Timelines />
+</Flex>
+    
 
     <Logo height={height} width={width}/>
    
-    <Contact /> 
+    <Flex ref={contactRef} direction="column" mb={10}>
+  <Contact />
+</Flex>
 
     </Flex>
 
     );
   }
-   

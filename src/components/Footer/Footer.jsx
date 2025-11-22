@@ -1,13 +1,13 @@
-import React from 'react';
-import { Flex, Box, Text, Image, useBreakpointValue } from '@chakra-ui/react';
-import { EmailIcon } from "@chakra-ui/icons";
-import { FaInstagram, FaGithub , FaLinkedin, FaMapMarkerAlt,FaDiscord } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { Flex, Box, Text, useBreakpointValue, Icon } from '@chakra-ui/react';
+import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import SocialMediaLink from './FooterSocial';
-import { useEffect, useState } from 'react';
-import logo from '../../'
+import Logo from '../../assets/logo/Logo';
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false);
+
+  const logoSize = useBreakpointValue({ base: 120, md: 150, lg: 180 });
 
   useEffect(() => {
     setMounted(true);
@@ -24,19 +24,18 @@ const Footer = () => {
       align="center"
       py={8}
       px={{ base: 4, md: 8 }}
-      // bg="rgba(0, 10, 38, 0.93)"
-      // bg='brand.dark.secondary'
-      bg= 'rgba(145, 109, 232, 0.6)'
-      sx={{
+      bg='rgba(145, 109, 232, 0.6)'
+      // 3. In v3, 'css' prop is preferred over 'sx' for arbitrary values
+      css={{
         backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)', 
+        WebkitBackdropFilter: 'blur(14px)',
       }}
       borderTop="1px solid rgba(145, 109, 232, 0.4)"
       width="100%"
       gap={6}
       minH="fit-content"
-      userSelect={'none'}
-       color="brand.dark.text"
+      userSelect="none"
+      color="brand.dark.text"
     >
       <Flex
         align="flex-start"
@@ -48,18 +47,9 @@ const Footer = () => {
         flexWrap="wrap"
       >
         
+        {/* LOGO BOX */}
         <Box flexShrink={0}>
-          <Text
-            fontSize={{ base: "1.5rem", lg: "2rem" }}
-            fontWeight="bold"
-            // color="brand.dark.text" 
-            // _hover={{ color: "brand.dark.secondary" }}
-            transition="color 0.3s ease"
-            fontFamily="'Sedgwick Ave Display', cursive"
-          >
-            
-            Moysiadis George
-              </Text>
+          <Logo height={logoSize} width={logoSize} />
         </Box>
         
         <Flex 
@@ -70,24 +60,23 @@ const Footer = () => {
         >
           
           <Box flex="1" minW="160px">
-            {/* <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}> */}
-            <Text fontSize="sm"  fontWeight="bold" mb={3} userSelect={'none'}>
+            <Text fontSize="sm" fontWeight="bold" mb={3} userSelect="none">
               CONTACT
             </Text>
             <Flex direction="column" gap={2}>
               <Flex align="center" gap={2} >
-                <EmailIcon boxSize={4} />
-                <Text as="a" href="mailto:contact@moysiadis.dev" fontSize="sm"  wordBreak="break-word">
+                {/* Replaced EmailIcon with Icon + React Icon */}
+                <Icon as={FaEnvelope} boxSize={4} />
+                <Text as="a" href="mailto:contact@moysiadis.dev" fontSize="sm" wordBreak="break-word">
                   contact@moysiadis.dev
                 </Text>
               </Flex>
-              
             </Flex>
           </Box>
 
 
           <Box flex="1" minW="200px">
-            <Text fontSize="sm"   fontWeight="bold" mb={3} userSelect={'none'}>
+            <Text fontSize="sm" fontWeight="bold" mb={3} userSelect="none">
               SOCIAL MEDIA
             </Text>
             <Flex direction="column" gap={3} >
@@ -106,35 +95,13 @@ const Footer = () => {
                 url="https://www.instagram.com/moisiadis.george/"
                 label="moisiadis.george"
               />
-            
             </Flex>
           </Box>
         </Flex>
 
-
-        {/* <Box flex="1" minW={{ base: "100%", md: "160px" }}>
-          <Text fontSize="sm" color="white" fontWeight="bold" mb={3} userSelect={'none'}>
-            ΒΡΕΙΤΕ ΜΑΣ
-          </Text>
-          <Flex align="flex-start" gap={2}>
-            <Box pt={1}>
-              <FaMapMarkerAlt size="16px" />
-            </Box>
-            <Text 
-              onClick={() => window.open('https://www.google.gr/maps/place/University+of+Macedonia/@40.6250129,22.9579198,17z/data=!4m5!3m4!1s0x14a838febd9553d7:0xdafb4206c7c961c9!8m2!3d40.6250129!4d22.9601085', '_blank')} 
-              cursor="pointer" 
-              fontSize="sm" 
-              color="gray.400"
-              lineHeight="tall"
-            >
-              Πανεπιστήμιο Μακεδονίας, Αίθουσα 10
-            </Text>
-          </Flex>
-        </Box> */}
       </Flex>
 
-      <Text fontSize="xs"   textAlign="center" mt={4} userSelect={'none'}>
-       
+      <Text fontSize="xs" textAlign="center" mt={4} userSelect="none">
         Moysiadis George I  © All rights reserved {new Date().getFullYear()} 
       </Text>
     </Flex>

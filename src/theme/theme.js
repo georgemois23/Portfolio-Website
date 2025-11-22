@@ -1,78 +1,77 @@
-import { background, Button, extendTheme } from "@chakra-ui/react";
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-const theme = extendTheme({
-  config: {
-    initialColorMode: "light",
-    useSystemColorMode: false, 
-  },
-  colors: {
-    brand: {
-      light: {
-        text: "#dceeff",
-        primary: "#0031a1",
-        secondary: "#e76a0f"
-      },
-      dark: {
-        // text: "#025a4e",
-        // text: "#7f5539",
-        text: "#d6e3f0",
-        primary: "#ede9de",
-        // secondary: "#7f5539"
-        // secondary: "#A78BFA",
-        // secondary: "#025a4e",
-        secondary: "#916de8",
-
-        // background: "#0f1f2f"
-        background: "black"
-      }
-    },
-  },
-  breakpoints: {
-    xxs:'140px',
-    xs: "280px",
-    sm: "320px",
-    sm2: "480px",
-    md: "768px",
-    lg: "960px",
-    xl: "1200px",
-    "2xl": "1600px",
-    "3xl": "1920px",
-  },
-  fonts: {},
-  fontSizes: {},
-  styles: {
-    global: {
-      body: {
-        backgroundColor: "brand.dark.primary", 
-        color: "brand.dark.text",  
-        "::selection": {
+const config = defineConfig({
+  // 1. Global Styles (formerly styles.global)
+  globalCss: {
+    body: {
+      backgroundColor: "brand.dark.primary",
+      color: "brand.dark.text",
+      "::selection": {
         backgroundColor: "brand.dark.secondary",
         color: "brand.dark.background",
-
       },
-      },
-     
     },
   },
-  components: {
-    Image:{
-      baseStyle: {
-        draggable: false,
-        userSelect: "none",
-    }},
-    Button: {
-      baseStyle: {
-        variant:"solid",
-        _hover: {
-          fontweight: "bold",
-          color: "brand.dark.secondary",
+
+  theme: {
+    // 2. Tokens (Colors, Fonts, Breakpoints)
+    // Note: All values must be wrapped in { value: ... }
+    tokens: {
+      breakpoints: {
+        xxs: { value: "140px" },
+        xs: { value: "280px" },
+        sm: { value: "320px" },
+        sm2: { value: "480px" },
+        md: { value: "768px" },
+        lg: { value: "960px" },
+        xl: { value: "1200px" },
+        "2xl": { value: "1600px" },
+        "3xl": { value: "1920px" },
+      },
+      colors: {
+        brand: {
+          light: {
+            text: { value: "#dceeff" },
+            primary: { value: "#0031a1" },
+            secondary: { value: "#e76a0f" },
+          },
+          dark: {
+            text: { value: "#d6e3f0" },
+            primary: { value: "#ede9de" },
+            secondary: { value: "#916de8" },
+            background: { value: "black" },
+          },
+        },
+      },
+    },
+
+    // 3. Component Customization (formerly components)
+    recipes: {
+      button: {
+        base: {
           backgroundColor: "brand.dark.text",
-          transform: "scale(1.05)", 
-          transition: "all 0.3s ease-in-out",
+          color: "brand.dark.background",
+          // Note: 'variant' is not defined in base, it's a default prop (see below)
+          _hover: {
+            fontWeight: "bold", // Fixed typo from fontweight
+            color: "brand.dark.secondary",
+            backgroundColor: "brand.dark.text",
+            transform: "scale(1.05)",
+            transition: "all 0.3s ease-in-out",
+          },
+        },
+      },
+      // Image is a primitive in v3, usually styled via direct props or globalCss.
+      // However, you can extend the native image recipe if you really need to:
+      image: {
+        base: {
+          draggable: "false",
+          userSelect: "none",
         },
       },
     },
   },
 });
 
-export default theme;
+// 4. Create the system merging with defaults
+export const system = createSystem(defaultConfig, config);

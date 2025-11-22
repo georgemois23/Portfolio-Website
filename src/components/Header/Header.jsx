@@ -1,12 +1,31 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Box, Flex, IconButton, useOutsideClick } from "@chakra-ui/react"; // Added useOutsideClick
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { Box, Flex, IconButton } from "@chakra-ui/react"; 
+// 1. Replace removed @chakra-ui/icons with react-icons
+import { IoMenu, IoClose } from "react-icons/io5";
 import { NAV_ITEMS } from "../../config/navigationConfig";
 import { NavItem } from "./NavItem";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeaderMenu } from "./HeaderMenu";
 import Logo from '../../assets/logo/Logo';
+
+// 2. Custom Hook: useOutsideClick (Removed in v3, implemented manually here)
+function useOutsideClick({ ref, handler }) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+}
 
 // Create a motion component from Chakra's Flex
 const MotionFlex = motion(Flex);
@@ -27,8 +46,10 @@ export default function Header() {
 
   // --- Close menu when route changes ---
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
+    setTimeout(() => {
+  setIsMenuOpen(false);
+    }, 900);
+}, [location.pathname, location.state]);
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -95,8 +116,11 @@ export default function Header() {
           zIndex="999"
 
           backgroundColor='rgba(145, 109, 232, 0.5)'
-          backdropFilter='blur(8px)'
-          sx={{ WebkitBackdropFilter: 'blur(8px)' }}
+          // 3. Use 'css' prop for backdrop filter in v3
+          css={{ 
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)' 
+          }}
           border={`1px solid brand.dark.secondary`}
           fontFamily="Arial"
           overflow="hidden" 
@@ -119,8 +143,10 @@ export default function Header() {
                left={{ base: "50%", lg: "auto" }}
                transform={{ base: "translateX(-50%)", lg: "none" }}
                zIndex={1}
+               
              >
-                 <Logo height={height} width={width} />
+                 <Logo height={height} width={width}
+                 />
              </Box>
 
              {/* DESKTOP NAV */}
@@ -129,8 +155,8 @@ export default function Header() {
              </Flex>
 
              {/* HAMBURGER ICON */}
+             {/* 4. IconButton: Removed 'icon' prop, use children instead */}
              <IconButton
-                icon={isMenuOpen ? <CloseIcon boxSize={4} /> : <HamburgerIcon boxSize={5} />}
                 display={{ base: "flex", lg: "none" }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -138,15 +164,17 @@ export default function Header() {
                 }}
                 variant="ghost"
                 color="brand.dark.text"
-                isRound
+                rounded="full" // Replaces isRound
                 minW="48px"
                 minH="48px"
                 zIndex={9999}
-                pl={6}
+                pr={4}
                 _hover={{ bg: "transparent" }}
                 _active={{ bg: "transparent", transform: "scale(0.9)" }}
                 transition="all 0.2s"
-             />
+             >
+               {isMenuOpen ? <IoClose size={20} /> : <IoMenu size={24} />}
+             </IconButton>
           </Flex>
 
           {/* COLLAPSIBLE MENU */}
@@ -187,7 +215,7 @@ const NavSection = ({ items }) => {
       userSelect={'none'}
     >
       {items.map((item) => (
-        <NavItem key={item.path} item={item} icon={item.icon} />
+        <NavItem key={item.path} item={item} icon={item.icon}  />
       ))}
     </Flex>
   );

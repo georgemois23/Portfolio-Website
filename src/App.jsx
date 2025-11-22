@@ -30,7 +30,7 @@ function App() {
           <Stars color="#D6E3F0" background="#000000" />
 <Box position="relative" zIndex={1}>
 
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
         <Routes>
         <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
