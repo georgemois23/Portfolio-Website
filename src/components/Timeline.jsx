@@ -1,5 +1,5 @@
 import { Badge, Button, Dialog, For, Span, Stack, Text, Timeline, useBreakpointValue } from "@chakra-ui/react"
-import { LuCheck, LuBriefcase, LuBriefcaseBusiness, LuGraduationCap, LuInfo, LuExternalLink, LuPersonStanding, LuUsers, LuCodeXml,  } from "react-icons/lu"
+import { LuCheck, LuBriefcase, LuBriefcaseBusiness, LuGraduationCap, LuInfo, LuExternalLink, LuPersonStanding, LuUsers, LuCodeXml, LuArrowRight,  } from "react-icons/lu"
 import PortfolioMoreDialog from "./PortfolioMoreDialog";
 import { useState } from "react";
 import opensourceImg from '../assets/images/projects-mock/opensource_MockUp.png';
@@ -51,9 +51,7 @@ const timelineDates = [
     from: "Feb 2025",
     to: "Present",
     title: "Development Team Member at Open Source UoM",
-    short_description: "Contributing to open-source projects at University of Macedonia’s Open Source team.",
-    description:
-      "Active member contributing to various open-source projects. Collaborate with team members on development, deployment, and project maintenance tasks.",
+    description: "Contributing to open-source projects at University of Macedonia’s Open Source team, collaborate with team members on development, deployment, and project maintenance tasks.",
     type: TimelineType.member,
   },
   {
@@ -143,9 +141,20 @@ const Timelines = () => {
                   <Stack spacing={2}>
                   {item.short_description ? item.short_description : item.description}
                    {item.short_description && 
-                    <Button w={'fit-content'} bgColor={'brand.dark.background'} color={'brand.dark.text'} borderRadius={8} onClick={()=>{handleOpenDialog(item)}}>
-                      Show more
-                    </Button>
+                    <Button 
+                    size="xs" 
+                    variant="ghost" 
+                    color="brand.dark.secondary" 
+                    _hover={{ bg: "transparent", color: "brand.dark.text"}}
+                    rightIcon={<LuArrowRight />}
+                    w={'fit-content'}
+                    fontWeight="bold"
+                    px={0} // Optional: aligns strictly left if you want it flush
+                    justifyContent="flex-start" // Ensures text aligns left
+                    onClick={() => handleOpenDialog(item)}
+                  >
+                    Read more
+                  </Button>
                     }
                   </Stack>
                 </Timeline.Description>
