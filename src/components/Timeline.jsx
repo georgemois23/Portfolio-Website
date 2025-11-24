@@ -31,6 +31,7 @@ const timelineDates = [
     description:
       "Developed backend with TypeScript (NestJS), PostgreSQL/PostGIS, and Prisma ORM. Built responsive UIs with React, Next.js, and MUI. Collaborated on API design and consumption using GraphQL and Dockerized workflows. Implemented background job processing with Bull and Redis, and automated testing with Jest. Used Git for version control in a collaborative environment.",
     type: TimelineType.work,
+    skills: ["React.js", "Next.js", "NestJS", "TypeScript", "PostgreSQL", "GraphQL", "Docker", "Jest"]
   },
   {
     from: "Apr 2025",
@@ -43,7 +44,8 @@ const timelineDates = [
     image: projectImages.opensource,
     mobile_image: projectImages.opensourceSmall,
     url: "https://open-source-redesign.vercel.app",
-    github: "https://github.com/georgemois23/OpenSourceRedesign"
+    github: "https://github.com/georgemois23/OpenSourceRedesign",
+    skills: ["React.js", "Chakra UI", "Sanity CMS", "JavaScript"]
   },
   {
     from: "Feb 2025",
@@ -66,6 +68,7 @@ const timelineDates = [
     mobile_image: projectImages.polyvoxSmall,
     url: "https://polyvox.moysiadis.dev",
     github: "https://github.com/georgemois23/pamac",
+    skills: ["React.js", "NestJS", "MUI"]
   },
   {
     from: "Mar 2024",
@@ -77,14 +80,13 @@ const timelineDates = [
     type: TimelineType.project,
     url: "https://moysiadis.dev",
     github: "https://github.com/georgemois23/georgemois23.github.io",
+    skills: ["HTML", "CSS", "JavaScript"]
   },
   {
     from: "Oct 2022",
     to: "Present",
     title: "B.Sc. in Applied Informatics at University of Macedonia",
-    short_description: "Bachelor’s degree in Applied Informatics focusing on Computer Science.",
-    description:
-      "Pursuing B.Sc. in Applied Informatics at University of Macedonia, specializing in Computer Science, software development, data structures, and algorithms.",
+    description: "Bachelor’s degree in Applied Informatics focusing on Computer Science.",
     type: TimelineType.education,
   },
 ];

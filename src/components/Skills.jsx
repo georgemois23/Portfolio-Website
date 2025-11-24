@@ -31,7 +31,26 @@ const purpleShades = [
   "#3917ad"
 ];
 
-const Skills = () => {
+const Skills = ({skills}) => {
+  if (skills) {
+    return (
+       <Wrap gap={{ base: 1, md: 2 }} justify="left" maxW={{base:"none", md: '50vw'}}>
+        {skills.map((skill, index) => (
+          <WrapItem key={index}>
+            <Badge
+              p={2}
+              borderRadius={"xl"}
+              bg={"brand.dark.background"} // cycle through purple tones
+              fontSize={{ base: "sm", xs: "2xs", md: "md" }}
+            >
+              <Text color={"white"}>{skill}</Text>
+            </Badge>
+          </WrapItem>
+        ))}
+      </Wrap>
+    );
+  }
+      
   return (
     <Container
       display={"flex"}

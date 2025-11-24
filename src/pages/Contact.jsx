@@ -63,7 +63,7 @@ const Contact = () => {
 
         </Flex>
 
-        or
+        {/* or
 
         <Flex
           direction={'column'}
@@ -85,12 +85,11 @@ const Contact = () => {
               width={'fit-content'} 
             >
               <Text>Send me an email</Text>
-              {/* 4. Use Icon component with 'as' prop */}
               <Icon as={FaEnvelope} ml={2} mt={0.5} /> 
             </Button>
           </Flex>
 
-        </Flex>
+        </Flex> */}
       </Box>
 
     </Flex>

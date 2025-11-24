@@ -28,6 +28,10 @@ const config = defineConfig({
         "2xl": { value: "1600px" },
         "3xl": { value: "1920px" },
       },
+      fontSizes: {
+    xxs: { value: "0.6rem" }, // ή ό,τι μέγεθος θες
+    "2xs": { value: "0.7rem" },
+  },
       colors: {
         brand: {
           light: {
