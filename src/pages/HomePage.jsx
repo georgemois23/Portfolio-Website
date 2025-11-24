@@ -22,6 +22,8 @@ import logo from '../Moysiadis.png'
 
 import Contact from './Contact';
 import Skills from "../components/Skills";
+import Portrait from '../components/Portrait'
+import Arrow from '../components/Arrow';
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -183,7 +185,50 @@ useEffect(() => {
       ))}
     </AnimatePresence>
     </Flex>
+   
 </Box>
+
+ <Flex
+  direction={{ base: "column", lg: "row" }}
+  justify="center"
+  align="center"
+  gap={{ base: 0, md: 4, lg: 6 }}
+  mt={10}
+>
+  {/* Text + Arrow wrapper */}
+  <Flex
+    direction={{ base: "column", lg: "row" }}
+    align="center"
+    gap={{ base: 1, lg: 2 }} // closer on small screens
+    mb={{ base: 1, lg: 0 }}
+  >
+    <Text
+      color="brand.dark.secondary"
+      fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
+      fontWeight="bold"
+      textTransform="uppercase"
+      userSelect="none"
+    >
+      Moysiadis George
+    </Text>
+
+    <Box
+      transform={{ base: "rotate(270deg)", lg: "rotate(180deg)" }}
+      transition="transform 0.3s"
+    >
+      <Arrow color="#916de8" />
+    </Box>
+  </Flex>
+
+  {/* Portrait */}
+  <Portrait
+    height={{ base: 140, md: height }}
+    width={{ base: 140, md: width }}
+  />
+</Flex>
+
+
+
 
 
     <Flex direction='column'  justify="center" align="center" gap={{ base: 1, lg: 0.5 }} mt={{ base: '7vw', lg: '6vh' }} mb={10}>
