@@ -200,7 +200,8 @@ useEffect(() => {
     direction={{ base: "column", lg: "row" }}
     align="center"
     gap={{ base: 1, lg: 2 }} // closer on small screens
-    mb={{ base: 1, lg: 0 }}
+    mb={{ base: -12, lg: 0 }}
+    mr={{ base: 0, lg: -4 }}
   >
     <Text
       color="brand.dark.secondary"
