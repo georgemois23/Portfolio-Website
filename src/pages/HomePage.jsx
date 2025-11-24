@@ -205,7 +205,7 @@ useEffect(() => {
     <Text
       color="brand.dark.secondary"
       fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-      fontWeight="bold"
+      fontWeight="thin"
       textTransform="uppercase"
       userSelect="none"
     >
