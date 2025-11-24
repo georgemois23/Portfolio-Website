@@ -1,7 +1,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/react';
 export const NAV_ITEMS = [
     {
-      label: "HOME",
+      label: "README",
       path: "/",
       type: "internal",
       scroll: "readme"

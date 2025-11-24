@@ -1,11 +1,14 @@
 import { Badge, Button, Dialog, For, Span, Stack, Text, Timeline, useBreakpointValue } from "@chakra-ui/react"
-import { LuCheck, LuBriefcase, LuBriefcaseBusiness, LuGraduationCap, LuInfo, LuExternalLink, LuPersonStanding, LuUsers, LuCodeXml, LuArrowRight,  } from "react-icons/lu"
+import { LuCheck, LuBriefcase, LuBriefcaseBusiness, LuGraduationCap, LuInfo, LuExternalLink, LuPersonStanding, LuUsers, LuCodeXml, LuArrowRight, LuDownload,  } from "react-icons/lu"
 import PortfolioMoreDialog from "./PortfolioMoreDialog";
 import { useState } from "react";
 import opensourceImg from '../assets/images/projects-mock/opensource_MockUp.png';
 import opensourceImgSmall from '../assets/images/projects-mock/opensource_MockUp_small.png';
 import polyvoxImg from '../assets/images/projects-mock/polyvox_MockUp.png';
 import polyvoxImgSmall from '../assets/images/projects-mock/polyvox_MockUp_small.png';
+import oldportfolio from '../assets/images/projects-mock/moysiadis.dev_.png';
+
+import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
 
 const TimelineType = {
   work: "work",
@@ -20,6 +23,7 @@ const projectImages = {
   opensourceSmall: opensourceImgSmall,
   polyvox: polyvoxImg,
   polyvoxSmall: polyvoxImgSmall,
+  oldportfolio: oldportfolio,
 };
 
 const timelineDates = [
@@ -76,6 +80,7 @@ const timelineDates = [
     description:
       "Built a personal web development portfolio (moysiadis.dev) showcasing projects and skills using HTML, CSS, and JavaScript.",
     type: TimelineType.project,
+    image: projectImages.oldportfolio,
     url: "https://moysiadis.dev",
     github: "https://github.com/georgemois23/georgemois23.github.io",
     skills: ["HTML", "CSS", "JavaScript"]
@@ -110,11 +115,11 @@ const Timelines = () => {
 
   return (
     <Stack gap="8" maxW="2xl" mx="auto" p={5}>
-      <Timeline.Root size={sizes}>
+      <Timeline.Root size={sizes} variant="outline">
         
         <For each={timelineDates}>
           {(item, index) => (
-            <Timeline.Item key={item.title} >
+            <Timeline.Item key={item.title}  >
               <Timeline.Connector>
                 <Timeline.Separator />
                 <Timeline.Indicator rounded="full" color={"brand.dark.text"} bg={"brand.dark.secondary"} > 
@@ -170,6 +175,47 @@ const Timelines = () => {
         onOpenChange={handleCloseDialog} 
         data={selectedItem} 
       />
+
+ import { LuDownload } from "react-icons/lu"; // 1. Double check this import exists!
+
+// ... inside your component
+
+<Button 
+  as="a" 
+  href={MoysiadisGeorgeCV}
+  download="Moysiadis George CV"
+  rel="noopener noreferrer" 
+  
+  // Layout Props
+  display="inline-flex"
+  alignItems="center"
+  gap={2} // Adds space between Text and Icon
+  borderRadius={'2xl'}
+  marginInline={'auto'}
+  w={'fit-content'}
+  p={6}
+  size="md" 
+  
+  // Style Props
+  variant="outline"
+  borderColor="brand.dark.secondary"
+  color="brand.dark.text"
+  borderWidth="2px"
+  bgColor={"brand.dark.background"}
+  
+  // 2. ANIMATION FIX: Target the 'svg' directly since we aren't using rightIcon anymore
+  sx={{
+    "svg": { transition: "transform 0.2s" }
+  }}
+  _hover={{
+    bg: "brand.dark.secondary",
+    color: "brand.dark.background",
+    "svg": { transform: "translateX(3px) translateY(-3px)" } 
+  }}
+>
+  Download CV 
+  <LuDownload /> 
+</Button>
     </Stack>
   )
 }

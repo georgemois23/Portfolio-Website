@@ -140,12 +140,12 @@ useEffect(() => {
 
 <Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="10vh"  display="flex" justifyContent="center" flexDirection="column" >
 
-      <Flex ref={topRef} direction="column" mb={10}>
+      <Flex ref={topRef} direction="column" mb={10} pt={4}>
     <AnimatePresence>
       {texts.map((text, index) => (
         <Text
           key={index}
-          fontSize={{base: "4xl",sm: "5xl", md: "6xl", lg: "9xl" }}
+          fontSize={{base: "5xl",xxs:'3xl',sm: "6xl", md: "7xl", lg: "9xl" }}
           color={text.color}
           display="inline-block"
           userSelect={'none'}
