@@ -176,9 +176,6 @@ const Timelines = () => {
         data={selectedItem} 
       />
 
- import { LuDownload } from "react-icons/lu"; // 1. Double check this import exists!
-
-// ... inside your component
 
 <Button 
   as="a" 
