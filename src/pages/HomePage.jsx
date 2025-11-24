@@ -77,13 +77,13 @@ useEffect(() => {
       { threshold: 0.3 }
     );
 
-    if (aboutSectionRef.current) {
-      observer.observe(aboutSectionRef.current);
+    if (homeRef.current) {
+      observer.observe(homeRef.current);
     }
 
     return () => {
-      if (aboutSectionRef.current) {
-        observer.unobserve(aboutSectionRef.current);
+      if (homeRef.current) {
+        observer.unobserve(homeRef.current);
       }
     };
   }, []);
@@ -210,6 +210,31 @@ useEffect(() => {
   Scroll 
   <Icon as={FaArrowDown} />
 </Text>
+
+ {/* {isVisible && (
+  <MotionSpan
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+    onAnimationComplete={() => setShouldRender(false)}
+  >
+    <Text
+      cursor="auto"
+      fontSize={{base: "3xl",sm: "4xl", md: "5xl", lg: "8xl" }}
+      textTransform={'uppercase'}
+      textAlign="center"
+      userSelect={'none'}
+      fontWeight={800}
+      whiteSpace= "wrap"
+      display={'inline-block'}
+      w={'40vw'}
+      lineHeight={0.7}
+      >
+        Moysiadis George
+      </Text>
+  </MotionSpan>
+)
+  } */}
 
 
   <Flex

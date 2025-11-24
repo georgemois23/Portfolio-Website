@@ -69,7 +69,7 @@ export default function StarsBackground({
     for (let i = 0; i < total; i++) {
       const left = (rand() * 100).toFixed(3) + "vw";
       const top = (-10 + rand() * 120).toFixed(3) + "vh";
-      const size = `clamp(4px, ${(0.12 + rand() * 0.28).toFixed(3)}vw, 3px)`;
+      const size = `clamp(5px, ${(0.12 + rand() * 0.28).toFixed(3)}vw, 3px)`;
       const blur = `${(0.3 + rand() * 1.7).toFixed(1)}px`;
       const opacity = (0.6 + rand() * 0.4).toFixed(2);
       const dur = (35 + rand() * 65).toFixed(1) + "s";
