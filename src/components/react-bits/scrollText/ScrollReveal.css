@@ -6,6 +6,7 @@
   
   /* Mobile Size (Default) */
   font-size: 2.25rem; /* Approx 36px */
+  padding: .8rem;
 }
 
 /* Tablet/Desktop Size (Replaces useBreakpointValue logic) */

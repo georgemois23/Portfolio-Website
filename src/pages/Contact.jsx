@@ -30,9 +30,6 @@ const Contact = () => {
         <Text fontSize={{ base: 'xl', lg: '4xl' }} fontWeight="bold" mb={4}>
           Do you want to get in touch with me?
         </Text>
-        <Text fontSize={{ base: 'md', lg: 'lg' }} mb={8} color={'gray.500'}>
-          Find all my contact information below.
-        </Text>
 
         <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="bold" >
           Write me!

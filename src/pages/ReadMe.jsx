@@ -39,22 +39,23 @@ const ReadMe = () => {
   const textColor = 'brand.dark.text';
 
   const sections = [
-    {
-      title: 'Who am I',
-      content:
-        "I'm a full stack developer specializing in React and TypeScript for backend development. I have strong knowledge of HTML, CSS, JavaScript, SQL, and APIs. I'm a passionate and enthusiastic developer, always eager to learn and build exciting projects.",
-    },
-    {
-      title: 'How I work',
-      content:
-        "I enjoy collaborating with others, sharing ideas, and working on challenging problems. My workflow includes writing clean, maintainable code, following best practices, and continuously improving my skills. I value open communication and teamwork in every project.",
-    },
-    {
-      title: 'Who can connect',
-      content:
-        "Anyone interested in technology, programming, or creative collaboration is welcome to connect with me. Whether you're experienced or just starting out, I believe in sharing knowledge and helping each other grow as developers.",
-    },
-  ];
+  {
+    title: 'Who am I',
+    content:
+      "I'm a 4th-year Applied Informatics (Computer Science) student at the University of Macedonia. I have hands-on experience as a full-stack developer, building scalable applications using React, Next.js, and TypeScript. I have strong knowledge of HTML, CSS, JavaScript, SQL, APIs, and backend development with NestJS and PostgreSQL. I am passionate about clean architecture, maintainable code, and delivering practical solutions from concept to deployment.",
+  },
+  {
+    title: 'How I work',
+    content:
+      "I enjoy collaborating with others, sharing ideas, and tackling challenging problems. I follow best practices, write clean and maintainable code, and continuously improve my skills. My workflow includes working with modern tools and frameworks, such as React, Next.js, TypeScript, GraphQL, Docker, and Redis. I value teamwork, open communication, and knowledge sharing in every project I work on.",
+  },
+  {
+    title: 'Who can connect',
+    content:
+      "Anyone interested in technology, programming, or creative collaboration is welcome to connect. Whether you're experienced or just starting out, I enjoy sharing knowledge, contributing to open-source projects, and helping others grow as developers. I also welcome connections for internships, collaborations, or professional guidance in full-stack development.",
+  },
+];
+
 
   return (
     <Box minH="70vh" px={{ base: 4, md: 10 }} py={0} bg={bg}>
@@ -110,21 +111,6 @@ const ReadMe = () => {
           </SpotlightCard>
         ))}
       </Flex>
-
-       {/* <Center mt={16}>
-      <VStack spacing={4}>
-        <Text fontSize={{sm:"xl",md:"2xl"}} fontWeight="semibold">
-          Are you interested in connecting?
-        </Text>
-        <Button
-          size={'md'}
-          rightIcon={<RiMailSendLine />}
-          onClick={() => navigate('/contact')}
-        >
-          Contact me
-        </Button>
-      </VStack>
-    </Center> */}
     </Box>
   );
 };

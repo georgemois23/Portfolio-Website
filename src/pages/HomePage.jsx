@@ -162,6 +162,7 @@ display="flex" justifyContent="center" flexDirection="column" >
       blurStrength={8}
       fontWeight={800}
       fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
+      disableAnimation={!shouldAnimate}
     >
       {/* <Text
         fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
@@ -203,100 +204,12 @@ display="flex" justifyContent="center" flexDirection="column" >
 
   </Box>
 </Flex>
-      {/* <Flex ref={topRef} direction="column" mb={10} pt={4}>
-    <AnimatePresence>
-      {texts.map((text, index) => (
-        <Text
-          key={index}
-          fontSize={{base: "5xl",xxs:'3xl',sm: "6xl", md: "7xl", lg: "9xl" }}
-          color={text.color}
-          display="inline-block"
-          userSelect={'none'}
-        >
-          {text.content.split(" ").map((word, wordIndex) => {
-            const Component = shouldAnimate ? MotionSpan : "span";
-            const props = shouldAnimate
-              ? {
-                  initial: { opacity: 0, y: 20 },
-                  animate: { opacity: 1, y: 0 },
-                  transition: {
-                    duration: 0.5,
-                    delay: index * 0.3 + wordIndex * 0.1,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }
-              : {};
-
-            return (
-              <Component
-                key={wordIndex}
-                {...props}
-                style={{
-                  display: "inline-block",
-                  marginRight: "0.25em",
-                  whiteSpace: "wrap",
-                  userSelect: 'none'
-                }}
-              >
-                {word}
-              </Component>
-            );
-          })}
-        </Text>
-      ))}
-    </AnimatePresence>
-    </Flex> */}
+     
    
 </Box>
 
 
-{/* <Portrait
-    height={{ base: 140, md: height }}
-    width={{ base: 140, md: width }}
-  /> */}
-
-
-
-    {/* <Flex direction='column'  justify="center" align="center" gap={{ base: 1, lg: 0.5 }} mt={{ base: '7vw', lg: '6vh' }} mb={0}> */}
-  
-  
-  
- {/* <Text
-  cursor="pointer"
-  fontSize={{ base: 'md', lg: 'xl' }}
-  textAlign="center"
-  css={{ transition: "all 0.3s ease-in-out" }}
-  opacity={isVisible ? 0 : 1} 
-  pointerEvents={isVisible ? 'none' : 'auto'} 
-  onClick={() => {
-    setIsVisible(true); 
-    scrollTo(homeRef, window.innerWidth < 768 ? -100 : -50);
-  }}
-  userSelect={'none'}
-  // mt={{ base: '30vh', lg: '12vh' }}
-  display="flex"
-  alignItems="center"
-  gap={2}
->
-  Scroll 
-  <Icon as={FaArrowDown} />
-</Text> */}
-
- 
-  {/* <Box mt={4}>
-  <ScrollReveal
-  baseOpacity={0}
-  enableBlur={true}
-  baseRotation={0}
-  blurStrength={8}
-  fontWeight={800}
->
-  Hi! I'm Moysiadis George.
-  I am 4th year Applied Informatics Student at the University of Macedonia and a Full-Stack Developer.
-</ScrollReveal>
-</Box> */}
-
- <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+ <Lanyard position={[0, 0, 17]} gravity={[0, -40, 0]} />
 
   <Flex
   // ref={aboutSectionRef}

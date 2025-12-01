@@ -103,11 +103,19 @@ const ContactForm = () => {
 
         </form>
       ) : (
-        <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'}>
-          <Text style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: "bold" }}>
+        <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'} gap={4}>
+          <Text fontSize={'lg'} style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: 800 }}>
             Your message has been sent successfully!
           </Text>
-          <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '150px' }} />
+          <Text as="caption" fontSize={'sm'} fontWeight={200} mb={4}>
+            I will get back to you as soon as possible.
+          </Text>
+          <Text as="a"
+            href="mailto:george@moysiadis.dev" fontWeight={600} mb={4} pt={2}>
+            If you have more questions, feel free to send an email here
+          </Text>
+
+          {/* <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '150px' }} /> */}
         </Flex>
       )}
     </Flex>
