@@ -9,6 +9,7 @@ import polyvoxImgSmall from '../assets/images/projects-mock/polyvox_MockUp_small
 import oldportfolio from '../assets/images/projects-mock/moysiadis.dev_.png';
 
 import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
+import { DownloadButton } from "./DownloadButton";
 
 const TimelineType = {
   work: "work",
@@ -176,43 +177,8 @@ const Timelines = () => {
         data={selectedItem} 
       />
 
+    <DownloadButton />
 
-<Button 
-  as="a" 
-  href={MoysiadisGeorgeCV}
-  download="Moysiadis George CV"
-  rel="noopener noreferrer" 
-  
-  // Layout Props
-  display="inline-flex"
-  alignItems="center"
-  gap={2} // Adds space between Text and Icon
-  borderRadius={'2xl'}
-  marginInline={'auto'}
-  w={'fit-content'}
-  p={6}
-  size="md" 
-  
-  // Style Props
-  variant="outline"
-  borderColor="brand.dark.secondary"
-  color="brand.dark.text"
-  borderWidth="2px"
-  bgColor={"brand.dark.background"}
-  
-  // 2. ANIMATION FIX: Target the 'svg' directly since we aren't using rightIcon anymore
-  sx={{
-    "svg": { transition: "transform 0.2s" }
-  }}
-  _hover={{
-    bg: "brand.dark.secondary",
-    color: "brand.dark.background",
-    "svg": { transform: "translateX(3px) translateY(-3px)" } 
-  }}
->
-  Download CV 
-  <LuDownload /> 
-</Button>
     </Stack>
   )
 }

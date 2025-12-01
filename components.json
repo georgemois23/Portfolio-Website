@@ -1,0 +1,8 @@
+{
+  "components": [
+    "Button",
+    "Input",
+    "Card",
+    "SpotlightCard"
+  ]
+}

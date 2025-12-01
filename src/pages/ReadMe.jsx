@@ -15,6 +15,7 @@ import { FiUserPlus } from 'react-icons/fi';
 import { RiMailSendLine } from "react-icons/ri";
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';    
+import SpotlightCard from '../components/react-bits/spotlight/SpotlightCard';
     
 const ReadMe = () => { 
   const location = useLocation();
@@ -56,7 +57,7 @@ const ReadMe = () => {
   ];
 
   return (
-    <Box minH="70vh" px={{ base: 4, md: 10 }} py={10} bg={bg}>
+    <Box minH="70vh" px={{ base: 4, md: 10 }} py={0} bg={bg}>
       <Heading
         as="h1"
         fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
@@ -78,7 +79,7 @@ const ReadMe = () => {
         mx="auto"
       >
         {sections.map((section, index) => (
-          <Box
+          <SpotlightCard spotlightColor="rgba(145, 109, 232, 0.5)"
             key={index}
             bg={cardBg}
             p={6}
@@ -106,7 +107,7 @@ const ReadMe = () => {
             <Text textAlign="left" color={textColor} as={'p'}>
               {section.content}
             </Text>
-          </Box>
+          </SpotlightCard>
         ))}
       </Flex>
 

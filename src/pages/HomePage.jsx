@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Button, Icon, Center, VStack } from "@chakra-ui/react";
+import { Box, Flex, Text, Button, Icon, Center, VStack, Link, HStack } from "@chakra-ui/react";
 import '../App.css';
 import { useLocation, useNavigate } from "react-router-dom";
 // 1. Remove deprecated @chakra-ui/icons
@@ -16,6 +16,7 @@ import Logo from '../assets/logo/Logo';
 import Timelines from "../components/Timeline";
 
 import { FiUsers } from "react-icons/fi";
+import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import { motion, AnimatePresence } from "framer-motion";
 import logo from '../Moysiadis.png' 
@@ -24,6 +25,8 @@ import Contact from './Contact';
 import Skills from "../components/Skills";
 import Portrait from '../components/Portrait'
 import Arrow from '../components/Arrow';
+import ScrollReveal from "../components/react-bits/scrollText/ScrollText";
+import Lanyard from "../components/react-bits/card/Lanyard";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -107,6 +110,11 @@ useEffect(() => {
     { content: "DEVELOPER", color: undefined },
   ];
 
+  const socialLinks = [
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/george-moysiadis', icon: FaLinkedin },
+      { name: 'Github', url: 'https://github.com/georgemois23', icon: FaGithub },
+    ];
+
   useEffect(() => {
     const animationPlayed = sessionStorage.getItem('textAnimationPlayed');
     if (!animationPlayed) {
@@ -140,9 +148,62 @@ useEffect(() => {
     <Flex justify="start"  direction={"column"} pt={{ base: '15vh', lg: '10vh' }} height="fit-content" align={'center'}  >
 
 
-<Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" mt="10vh"  display="flex" justifyContent="center" flexDirection="column" >
+<Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" 
+mt="10vh"  
+display="flex" justifyContent="center" flexDirection="column" >
 
-      <Flex ref={topRef} direction="column" mb={10} pt={4}>
+<Flex ref={topRef} direction="column" mb={10} pt={12}>
+  {texts.map((text, index) => (
+    <ScrollReveal
+      key={index}
+      baseOpacity={0}
+      enableBlur={true}
+      baseRotation={3}
+      blurStrength={8}
+      fontWeight={800}
+      fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
+    >
+      {/* <Text
+        fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
+        color={text.color}
+        display="inline-block"
+        userSelect="none"
+      > */}
+        {text.content}
+      {/* </Text> */}
+    </ScrollReveal>
+  ))}
+  
+  
+                  <Flex gap={6} justify="center" align="center" pt={12}>
+                    {socialLinks.map((link) => (
+    <Link
+      key={link.name}
+      href={link.url}
+      isExternal
+      _hover={{ opacity: 0.8 }}
+    >
+      <Icon as={link.icon} boxSize={12} color={'brand.dark.text'} /> {/* Big icon */}
+    </Link>
+  ))}
+</Flex>
+                
+
+  <Box mt={'35vh'}>
+   <ScrollReveal
+  baseOpacity={0}
+  enableBlur={true}
+  baseRotation={0}
+  blurStrength={8}
+  fontWeight={800}
+  fontSize={{ base: "3xl", xxs: "3xl", sm: "3xl", md: "4xl", lg: "4xl" }}
+>
+    Hi! I'm Moysiadis George, a Full-Stack Developer with hands-on experience in modern web technologies. I build scalable applications using React, Next.js, and TypeScript.
+</ScrollReveal>
+
+  </Box>
+</Flex>
+      {/* <Flex ref={topRef} direction="column" mb={10} pt={4}>
     <AnimatePresence>
       {texts.map((text, index) => (
         <Text
@@ -184,59 +245,23 @@ useEffect(() => {
         </Text>
       ))}
     </AnimatePresence>
-    </Flex>
+    </Flex> */}
    
 </Box>
 
- <Flex
-  direction={{ base: "column", lg: "row" }}
-  justify="center"
-  align="center"
-  gap={{ base: 0, md: 4, lg: 6 }}
-  mt={10}
->
-  {/* Text + Arrow wrapper */}
-  <Flex
-    direction={{ base: "column", lg: "row" }}
-    align="center"
-    gap={{ base: 1, lg: 2 }} // closer on small screens
-    mb={{ base: -12, lg: 0 }}
-    mr={{ base: 0, lg: -4 }}
-  >
-    <Text
-      color="brand.dark.secondary"
-      fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }}
-      fontWeight="thin"
-      textTransform="uppercase"
-      userSelect="none"
-    >
-      Moysiadis George
-    </Text>
 
-    <Box
-      transform={{ base: "rotate(270deg)", lg: "rotate(180deg)" }}
-      transition="transform 0.3s"
-    >
-      <Arrow color="#916de8" />
-    </Box>
-  </Flex>
-
-  {/* Portrait */}
-  <Portrait
+{/* <Portrait
     height={{ base: 140, md: height }}
     width={{ base: 140, md: width }}
-  />
-</Flex>
+  /> */}
 
 
 
-
-
-    <Flex direction='column'  justify="center" align="center" gap={{ base: 1, lg: 0.5 }} mt={{ base: '7vw', lg: '6vh' }} mb={10}>
+    {/* <Flex direction='column'  justify="center" align="center" gap={{ base: 1, lg: 0.5 }} mt={{ base: '7vw', lg: '6vh' }} mb={0}> */}
   
   
   
- <Text
+ {/* <Text
   cursor="pointer"
   fontSize={{ base: 'md', lg: 'xl' }}
   textAlign="center"
@@ -248,50 +273,40 @@ useEffect(() => {
     scrollTo(homeRef, window.innerWidth < 768 ? -100 : -50);
   }}
   userSelect={'none'}
-  mt={{ base: '30vh', lg: '12vh' }}
+  // mt={{ base: '30vh', lg: '12vh' }}
   display="flex"
   alignItems="center"
   gap={2}
 >
   Scroll 
   <Icon as={FaArrowDown} />
-</Text>
+</Text> */}
 
- {/* {isVisible && (
-  <MotionSpan
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    onAnimationComplete={() => setShouldRender(false)}
-  >
-    <Text
-      cursor="auto"
-      fontSize={{base: "3xl",sm: "4xl", md: "5xl", lg: "8xl" }}
-      textTransform={'uppercase'}
-      textAlign="center"
-      userSelect={'none'}
-      fontWeight={800}
-      whiteSpace= "wrap"
-      display={'inline-block'}
-      w={'40vw'}
-      lineHeight={0.7}
-      >
-        Moysiadis George
-      </Text>
-  </MotionSpan>
-)
-  } */}
+ 
+  {/* <Box mt={4}>
+  <ScrollReveal
+  baseOpacity={0}
+  enableBlur={true}
+  baseRotation={0}
+  blurStrength={8}
+  fontWeight={800}
+>
+  Hi! I'm Moysiadis George.
+  I am 4th year Applied Informatics Student at the University of Macedonia and a Full-Stack Developer.
+</ScrollReveal>
+</Box> */}
 
+ <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
 
   <Flex
   // ref={aboutSectionRef}
   ref={homeRef}
   direction="column"
-  mb={10}
+  // mb={10}
   marginInline="auto"
   gap={2}
   width="100vw"
-  pt={{ base: '22vh', lg: '25vh' }}
+  // pt={{ base: '22vh', lg: '25vh' }}
   py={8}
   px={{ sm: 8, lg: 8 }}
   bgSize="cover"
@@ -306,7 +321,7 @@ useEffect(() => {
         <Skills/>
      
       </Flex>
-      </Flex>
+      {/* </Flex> */}
       <Flex ref={projectsRef} direction="column" mb={10}>
   <Timelines />
 </Flex>

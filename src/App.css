@@ -2,6 +2,8 @@
   text-align: center;
 }
 
+
+
 @font-face {
   font-family: 'RobotoSlab';
   src: url('./assets/fonts/RobotoSlab.ttf') format('truetype');
@@ -14,6 +16,8 @@
 * {
   -webkit-tap-highlight-color: transparent;
   -webkit-focus-ring-color: transparent;
+  --flame-color: var(--chakra-colors-brand-dark-secondary);
+
   outline: none;
 }
 body {
