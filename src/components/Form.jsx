@@ -10,6 +10,7 @@ const ContactForm = () => {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const allGood = form.name && form.email && form.message.length >= 2;
 
   const validate = () => {
     const newErrors = {};
@@ -94,7 +95,8 @@ const ContactForm = () => {
             color="brand.dark.text"
             _hover={{ transform: "scale(1.05)" }}
             width="100%"
-            disabled={loading} // Good practice to disable button while sending
+            disabled={loading || !allGood} // Good practice to disable button while sending
+            _disabled={{ opacity: 0.8, transform: 'scale(0.95)', cursor: 'auto' }}
           >
             <Flex alignItems="center" gap={2} justifyContent="center">
               {loading ? 'Sending...' : 'Send  '} <IoMdSend size={14} />

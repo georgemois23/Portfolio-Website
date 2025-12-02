@@ -78,6 +78,7 @@ const ReadMe = () => {
         flexWrap="wrap"
         maxW="7xl"
         mx="auto"
+        userSelect={'none'}
       >
         {sections.map((section, index) => (
           <SpotlightCard spotlightColor="rgba(145, 109, 232, 0.5)"

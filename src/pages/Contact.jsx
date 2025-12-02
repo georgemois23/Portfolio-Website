@@ -25,6 +25,7 @@ const Contact = () => {
       height="fit-content" 
       px={{ sm: 5, lg: 20 }} 
       mb={{ base: 20, lg: 20 }}
+      userSelect={'none'}
     >
       <Box textAlign={"center"} marginInline={'auto'} >
         <Text fontSize={{ base: 'xl', lg: '4xl' }} fontWeight="bold" mb={4}>

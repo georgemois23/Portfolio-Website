@@ -1,19 +1,36 @@
-/* Base Container Styles (Replaces <Heading>) */
+/* Base Container Styles */
 .scroll-reveal-container {
   margin: 0;
-  line-height: 1;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Standard system fonts */
-  
-  /* Mobile Size (Default) */
-  font-size: 2.25rem; /* Approx 36px */
-  padding: .8rem;
+  line-height: 1.2;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  /* Mobile font size (base) */
+  font-size: 1.5rem; /* ~ lg */
+  font-weight: 800;
+
+  padding: 0.8rem;
+  user-select: none;
 }
 
-/* Tablet/Desktop Size (Replaces useBreakpointValue logic) */
+/* Tablet >= 768px */
 @media (min-width: 768px) {
   .scroll-reveal-container {
-    font-size: 3rem; /* Approx 48px - Chakra 4xl equivalent */
+    font-size: 1.5rem; /* ~ xl */
     max-width: 70vw;
+  }
+}
+
+/* Desktop >= 1024px */
+@media (min-width: 1024px) {
+  .scroll-reveal-container {
+    font-size: 2.25rem; /* ~ 2xl */
+  }
+}
+
+/* Large Desktop >= 1280px */
+@media (min-width: 1280px) {
+  .scroll-reveal-container {
+    font-size: 3rem; /* ~ 3xl */
   }
 }
 

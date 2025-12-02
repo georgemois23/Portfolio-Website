@@ -110,10 +110,12 @@ const ScrollReveal = ({
     <Tag
       ref={containerRef}
       className={`scroll-reveal-container ${className}`}
-      style={{
-        fontWeight: fontWeight,
-        ...(fontSize && { fontSize }), 
-      }}
+      // style={{
+      //   fontWeight: fontWeight,
+      //   ...(fontSize && { fontSize }), 
+      // }}
+      fontWeight={fontWeight}
+      fontSize={'3rem'} 
     >
       {splitText}
     </Tag>

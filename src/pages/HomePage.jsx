@@ -51,8 +51,8 @@ export default function HomePage() {
 
   const offsets = {
   top: 0,
-  readme: -70,
-  projects: -200,
+  readme: -125,
+  projects: -150,
   contact: -100,
 };
 
@@ -154,30 +154,19 @@ display="flex" justifyContent="center" flexDirection="column" >
 
 <Flex ref={topRef} direction="column" mb={10} pt={12}>
   {texts.map((text, index) => (
-    <ScrollReveal
-      key={index}
-      baseOpacity={0}
-      enableBlur={true}
-      baseRotation={3}
-      blurStrength={8}
-      fontWeight={800}
-      fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
-      disableAnimation={!shouldAnimate}
-    >
-      {/* <Text
-        fontSize={{ base: "3xl", xxs: "3xl", sm: "6xl", md: "7xl", lg: "4xl" }}
+      <Text
+        fontSize={{ base: "4xl", xxs: "4xl", sm: "6xl", md: "7xl", lg: "7xl" }}
         color={text.color}
         display="inline-block"
         userSelect="none"
-      > */}
+      >
         {text.content}
-      {/* </Text> */}
-    </ScrollReveal>
+      </Text>
   ))}
   
   
-                  <Flex gap={6} justify="center" align="center" pt={12}>
-                    {socialLinks.map((link) => (
+    <Flex gap={6} justify="center" align="center" pt={12}>
+      {socialLinks.map((link) => (
     <Link
       key={link.name}
       href={link.url}
@@ -190,14 +179,14 @@ display="flex" justifyContent="center" flexDirection="column" >
 </Flex>
                 
 
-  <Box mt={'35vh'}>
+  <Box mt={'25vh'}>
    <ScrollReveal
   baseOpacity={0}
   enableBlur={true}
   baseRotation={0}
   blurStrength={8}
   fontWeight={800}
-  fontSize={{ base: "3xl", xxs: "3xl", sm: "3xl", md: "4xl", lg: "4xl" }}
+  fontSize={{ base: "2xl", xxs: "2xl", sm: "2xl", md: "4xl", lg: "7xl" }}
 >
     Hi! I'm Moysiadis George, a Full-Stack Developer with hands-on experience in modern web technologies. I build scalable applications using React, Next.js, and TypeScript.
 </ScrollReveal>
@@ -209,7 +198,7 @@ display="flex" justifyContent="center" flexDirection="column" >
 </Box>
 
 
- <Lanyard position={[0, 0, 17]} gravity={[0, -40, 0]} />
+ <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
 
   <Flex
   // ref={aboutSectionRef}
@@ -225,7 +214,7 @@ display="flex" justifyContent="center" flexDirection="column" >
   bgSize="cover"
   bgPosition="center"
   bgRepeat="space"
-  mt={{ base: '25vw', lg: '12vh' }}
+  // mt={{ base: '25vw', lg: '12vh' }}
   transform="translateY(-2px)"
 >
 
