@@ -27,6 +27,7 @@ import Portrait from '../components/Portrait'
 import Arrow from '../components/Arrow';
 import ScrollReveal from "../components/react-bits/scrollText/ScrollText";
 import Lanyard from "../components/react-bits/card/Lanyard";
+import Magnet from "../components/react-bits/scroll-velocity/Magnet";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -143,7 +144,8 @@ useEffect(() => {
   const y = ref.current.getBoundingClientRect().top + window.pageYOffset + offset;
   window.scrollTo({ top: y, behavior: 'smooth' });
 }
- 
+
+  
     return(
     <Flex justify="start"  direction={"column"} pt={{ base: '15vh', lg: '10vh' }} height="fit-content" align={'center'}  >
 
@@ -229,7 +231,8 @@ display="flex" justifyContent="center" flexDirection="column" >
 </Flex>
     
 
-    <Logo height={height} width={width}/>
+    {/* <Logo height={height} width={width}/> */}
+  
    
     <Flex ref={contactRef} direction="column" mb={10}>
   <Contact />

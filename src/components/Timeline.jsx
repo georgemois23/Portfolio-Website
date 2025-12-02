@@ -1,4 +1,4 @@
-import { Badge, Button, Dialog, For, Span, Stack, Text, Timeline, useBreakpointValue } from "@chakra-ui/react"
+import { Badge, Box, Button, Dialog, For, Span, Stack, Text, Timeline, useBreakpointValue } from "@chakra-ui/react"
 import { LuCheck, LuBriefcase, LuBriefcaseBusiness, LuGraduationCap, LuInfo, LuExternalLink, LuPersonStanding, LuUsers, LuCodeXml, LuArrowRight, LuDownload,  } from "react-icons/lu"
 import PortfolioMoreDialog from "./PortfolioMoreDialog";
 import { useState } from "react";
@@ -10,6 +10,7 @@ import oldportfolio from '../assets/images/projects-mock/moysiadis.dev_.png';
 
 import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
 import { DownloadButton } from "./DownloadButton";
+import Magnet from "./react-bits/scroll-velocity/Magnet";
 
 const TimelineType = {
   work: "work",
@@ -114,6 +115,11 @@ const Timelines = () => {
     setIsOpen(false);
   };
 
+  function handleGitHub() {
+      window.open('https://github.com/georgemois23', '_blank');
+    }
+   
+
   return (
     <Stack gap="8" maxW="2xl" mx="auto" p={5}>
       <Timeline.Root size={sizes} variant="outline">
@@ -176,7 +182,11 @@ const Timelines = () => {
         onOpenChange={handleCloseDialog} 
         data={selectedItem} 
       />
-
+      <Box marginInline={'auto'} mb={4}>
+    <Magnet padding={50} disabled={false} magnetStrength={8}>
+      <p style={{userSelect:'none'}} onClick={handleGitHub}>View all projects on <span style={{cursor:'pointer'}}>GitHub!</span></p>
+    </Magnet>
+  </Box>
     <DownloadButton />
 
     </Stack>

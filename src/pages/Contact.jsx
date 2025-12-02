@@ -23,7 +23,7 @@ const Contact = () => {
       minH="60vh" 
       pt={{ base: 4, lg: 10 }} 
       height="fit-content" 
-      px={{ sm: 5, lg: 20 }} 
+      px={{ sm: 10, lg: 20 }} 
       mb={{ base: 20, lg: 20 }}
       userSelect={'none'}
     >
