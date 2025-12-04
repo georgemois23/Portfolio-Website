@@ -42,7 +42,7 @@ const timelineDates = [
   {
     from: "Apr 2025",
     to: "July 2025",
-    title: "Website Rebuild Lead at Open Source UoM",
+    title: "Website Rebuild at Open Source UoM",
     short_description: "Redesigned and rebuilt the university team’s website using React and Sanity CMS.",
     description:
       "Independently redesigned and rebuilt the Open Source UoM website. Developed a responsive, user-friendly interface integrated with Sanity CMS for dynamic content management. Led the project from concept to deployment.",
@@ -83,7 +83,7 @@ const timelineDates = [
       "Built a personal web development portfolio (moysiadis.dev) showcasing projects and skills using HTML, CSS, and JavaScript.",
     type: TimelineType.project,
     image: projectImages.oldportfolio,
-    url: "https://moysiadis.dev",
+    url: "https://oldportfolio.moysiadis.dev/",
     github: "https://github.com/georgemois23/georgemois23.github.io",
     skills: ["HTML", "CSS", "JavaScript"]
   },
@@ -98,7 +98,6 @@ const timelineDates = [
 
 
 const Timelines = () => {
-  // Handle responsive sizes
   const sizes = useBreakpointValue({ base: "lg", md: "md", lg: "xl" }) || "sm"
   const textSizes = useBreakpointValue({ base: "md", md: "md", lg: "xl" }) || "sm"
   const [isOpen, setIsOpen] = useState(false);
