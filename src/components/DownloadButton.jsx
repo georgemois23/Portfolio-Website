@@ -3,6 +3,7 @@ import { keyframes } from '@emotion/react';
 import { LuDownload } from "react-icons/lu";
 import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
 
+
 // 1. Purple Fire Colors
 const fireColors = "conic-gradient(from 0deg, #322659, #9f7aea, #d6bcfa, #9f7aea, #322659)";
 
