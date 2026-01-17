@@ -31,7 +31,7 @@ const projectImages = {
 const timelineDates = [
   {
     from: "Sept 2025",
-    to: "Dec 2025 (Expected)",
+    to: "Dec 2025",
     title: "Full-Stack Developer Intern at Metatopia",
     short_description: "Developing full-stack web applications using React, Next.js, and NestJS.",
     description:
