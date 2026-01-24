@@ -16,7 +16,7 @@
 * {
   -webkit-tap-highlight-color: transparent;
   -webkit-focus-ring-color: transparent;
-  --flame-color: var(--chakra-colors-brand-dark-secondary);
+  --flame-color: var(--chakapp.jsra-colors-brand-dark-secondary);
 
   outline: none;
 }
