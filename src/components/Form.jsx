@@ -3,7 +3,8 @@ import { Input, Textarea, Button, Flex, Image, Text, Field } from '@chakra-ui/re
 import ResizeTextarea from "react-textarea-autosize";
 import emailjs from 'emailjs-com';
 import { IoMdSend } from "react-icons/io";
-import Imagesent from "../../src/assets/images/sent-mail1.gif";
+import Imagesent from "../../src/assets/images/sent-mail2.gif";
+import MailSuccess from './GifSuccess';
 
 const ContactForm = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -112,12 +113,13 @@ const ContactForm = () => {
           <Text as="caption" fontSize={'sm'} fontWeight={200} mb={4}>
             I will get back to you as soon as possible.
           </Text>
-          <Text as="a"
+          {/* <Text as="a"
             href="mailto:george@moysiadis.dev" fontWeight={600} mb={4} pt={2}>
             If you have more questions, feel free to send an email here
-          </Text>
+          </Text> */}
 
-          {/* <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '150px' }} /> */}
+          {/* <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '100px' }} /> */}
+          <MailSuccess />
         </Flex>
       )}
     </Flex>
