@@ -200,7 +200,7 @@ display="flex" justifyContent="center" flexDirection="column" >
 </Box>
 
 
- <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
+ {/* <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} /> */}
 
   <Flex
   // ref={aboutSectionRef}
@@ -220,8 +220,9 @@ display="flex" justifyContent="center" flexDirection="column" >
   transform="translateY(-2px)"
 >
 
-      
+      <Box mt={10} >
         <Readme />
+      </Box>
         <Skills/>
      
       </Flex>

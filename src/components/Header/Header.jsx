@@ -143,7 +143,8 @@ export default function Header() {
                left={{ base: "50%", lg: "auto" }}
                transform={{ base: "translateX(-50%)", lg: "none" }}
                zIndex={1}
-               
+               onClick={() => navigate("/")}  
+               _hover={{ cursor: 'pointer' }}
              >
                  <Logo height={height} width={width}
                  />
