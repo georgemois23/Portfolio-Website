@@ -8,7 +8,6 @@ import polyvoxImg from '../assets/images/projects-mock/polyvox_MockUp.png';
 import polyvoxImgSmall from '../assets/images/projects-mock/polyvox_MockUp_small.png';
 import oldportfolio from '../assets/images/projects-mock/moysiadis.dev_.png';
 
-import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
 import { DownloadButton } from "./DownloadButton";
 import Magnet from "./react-bits/scroll-velocity/Magnet";
 

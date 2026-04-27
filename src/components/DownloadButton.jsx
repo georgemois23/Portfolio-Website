@@ -1,7 +1,6 @@
 import { Button } from '@chakra-ui/react';
 import { keyframes } from '@emotion/react';
 import { LuDownload } from "react-icons/lu";
-import MoysiadisGeorgeCV from '../Moysiadis_George.pdf';
 
 
 // 1. Purple Fire Colors
@@ -17,8 +16,8 @@ export const DownloadButton = () => {
   return (
     <Button
       as="a"
-      href={MoysiadisGeorgeCV}
-      download="Moysiadis George CV"
+      href="/Moysiadis_George.pdf"
+      download="Moysiadis George CV.pdf"
       rel="noopener noreferrer"
       
       // Layout
