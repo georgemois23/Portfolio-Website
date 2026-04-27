@@ -37,6 +37,7 @@ export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
   const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [isScrollExploreHovered, setIsScrollExploreHovered] = useState(false);
   const location = useLocation();
   const topRef = useRef(null);
   const homeRef = useRef(null);
@@ -234,6 +235,8 @@ useEffect(() => {
       pt={{ base: 7, md: 10, lg: 12 }}
       cursor="pointer"
       onClick={() => scrollTo(homeRef, -80)}
+      onMouseEnter={() => setIsScrollExploreHovered(true)}
+      onMouseLeave={() => setIsScrollExploreHovered(false)}
     >
       <Text
         fontSize={{ base: "2xs", md: "xs" }}
@@ -251,9 +254,10 @@ useEffect(() => {
         <Flex direction="column" align="center" gap={0.5} mt={2}>
           <Icon
             as={FaAngleDoubleDown}
-            color="brand.dark.text"
+            color={isScrollExploreHovered ? "rgba(186, 132, 255, 0.95)" : "brand.dark.text"}
             opacity={0.72}
             boxSize={{ base: 3, md: 3.5 }}
+            transition="color 0.2s ease"
           />
         </Flex>
       </MotionBox>
@@ -268,7 +272,7 @@ useEffect(() => {
           _hover={{ opacity: 0.8 }}
           transition="opacity 0.2s ease"
         >
-          <Icon as={link.icon} boxSize={{ base: 6, md: 7 }} color={"brand.dark.text"} />
+          <Icon as={link.icon} boxSize={{ base: 6, md: 7 }} _hover={{ color: "rgba(186, 132, 255, 0.95)", scale: 1.2, transition: "all 0.2s ease" }} color={"brand.dark.text"} />
         </Link>
       ))}
     </Flex>
