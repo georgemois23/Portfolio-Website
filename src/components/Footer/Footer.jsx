@@ -20,8 +20,8 @@ const Footer = () => {
   ];
 
   // Visual constants
-  const glassBg = 'rgba(66, 32, 133, 0.97)';
-  const glassBorder = 'rgba(186, 132, 255, 0.9)';
+  const glassBg = 'rgba(28, 16, 52, 0.98)';
+  const glassBorder = 'rgba(156, 114, 235, 0.62)';
   const textColor = '#F6EAFF';
   const accentText = '#D7A9FF';
   const linkColor = '#F0D8FF';
