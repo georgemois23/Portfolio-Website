@@ -8,8 +8,8 @@ const GlitchText = ({
   const inlineStyles = {
     "--after-duration": `${Math.max(speed, 0.1) * 3}s`,
     "--before-duration": `${Math.max(speed, 0.1) * 2}s`,
-    "--after-shadow": enableShadows ? "-5px 0 red" : "none",
-    "--before-shadow": enableShadows ? "5px 0 cyan" : "none",
+    "--after-shadow": enableShadows ? "-5px 0 rgba(186, 132, 255, 0.95)" : "none",
+    "--before-shadow": enableShadows ? "5px 0 rgba(116, 72, 214, 0.95)" : "none",
   };
 
   const hoverClass = enableOnHover ? "enable-on-hover" : "";
