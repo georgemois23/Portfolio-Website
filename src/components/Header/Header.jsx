@@ -46,10 +46,8 @@ export default function Header() {
 
   // --- Close menu when route changes ---
   useEffect(() => {
-    setTimeout(() => {
-  setIsMenuOpen(false);
-    }, 900);
-}, [location.pathname, location.state]);
+    setIsMenuOpen(false);
+  }, [location.pathname, location.state]);
 
   const toggleMobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -80,13 +78,13 @@ export default function Header() {
         height: isMobile ? "70px" : "80px", 
         width: isMobile ? "75%" : "70%", 
         borderRadius: "50px",
-        transition: { type: "spring", stiffness: 300, damping: 30 }
+        transition: { type: "tween", duration: 0.16, ease: "easeOut" }
     },
     open: { 
         height: "auto", 
         width: isMobile ? "95%" : "70%", 
         borderRadius: "25px", 
-        transition: { type: "spring", stiffness: 300, damping: 30 }
+        transition: { type: "tween", duration: 0.16, ease: "easeOut" }
     }
   };
 
@@ -111,17 +109,17 @@ export default function Header() {
           
           maxW={"800px"}
           
-          margin={"2rem auto .25rem"}
-          paddingX={{ xs: '1rem', sm: "2rem" }}
+          margin={{ base: "1rem auto .25rem", md: "1.4rem auto .25rem", lg: "2rem auto .25rem" }}
+          paddingX={{ base: "0.75rem", sm: "1.2rem", md: "2rem" }}
           zIndex="999"
 
-          backgroundColor='rgba(145, 109, 232, 0.5)'
+          backgroundColor="rgba(42, 28, 74, 0.9)"
           // 3. Use 'css' prop for backdrop filter in v3
           css={{ 
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)' 
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)' 
           }}
-          border={`1px solid brand.dark.secondary`}
+          border="1px solid rgba(145, 109, 232, 0.55)"
           fontFamily="Arial"
           overflow="hidden" 
         >
@@ -170,9 +168,9 @@ export default function Header() {
                 minH="48px"
                 zIndex={9999}
                 pr={4}
-                _hover={{ bg: "transparent" }}
-                _active={{ bg: "transparent", transform: "scale(0.9)" }}
-                transition="all 0.2s"
+                _hover={{ bg: "whiteAlpha.100" }}
+                _active={{ bg: "whiteAlpha.200", transform: "scale(0.95)" }}
+                transition="all 0.12s"
              >
                {isMenuOpen ? <IoClose size={20} /> : <IoMenu size={24} />}
              </IconButton>
@@ -185,10 +183,10 @@ export default function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.2, delay: 0.1 }} 
+                transition={{ duration: 0.12 }} 
               >
                  <Box pb={6}> 
-                    <HeaderMenu />
+                    <HeaderMenu onItemClick={() => setIsMenuOpen(false)} />
                  </Box>
               </motion.div>
             )}

@@ -16,7 +16,9 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
       navigate(item.path);
     }
 
-    if (onClose) onClose();
+    if (onClose) {
+      setTimeout(() => onClose(), 0);
+    }
   };
 
   if (item.underConstruction) {
@@ -37,7 +39,7 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
       width={isMobile ? "full" : "auto"}
       textAlign={isMobile ? "center" : "left"}
       borderRadius="lg"
-      transition="all 0.3s cubic-bezier(0.16, 1, 0.3, 1)"
+      transition="all 0.15s ease-out"
       color="brand.dark.text"
       bg="transparent"
       _hover={{
@@ -51,7 +53,6 @@ export const NavItem = ({ item, onClose, isMobile = false }) => {
       }}
       userSelect="none"
       letterSpacing="-0.025em"
-      willChange="transform, box-shadow"
       style={{
         WebkitTapHighlightColor: "transparent",
       }}

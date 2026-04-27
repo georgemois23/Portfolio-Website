@@ -100,6 +100,7 @@ const timelineDates = [
 const Timelines = () => {
   const sizes = useBreakpointValue({ base: "lg", md: "md", lg: "xl" }) || "sm"
   const textSizes = useBreakpointValue({ base: "md", md: "md", lg: "xl" }) || "sm"
+  const timelineMaxW = useBreakpointValue({ base: "100%", md: "3xl", lg: "5xl" }) || "100%"
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
@@ -120,7 +121,36 @@ const Timelines = () => {
    
 
   return (
-    <Stack gap="8" maxW="2xl" mx="auto" p={5}>
+    <Stack
+      gap={{ base: 6, md: 8 }}
+      maxW={timelineMaxW}
+      mx="auto"
+      px={{ base: 3, sm: 4, md: 5 }}
+      py={{ base: 4, md: 5 }}
+      // border="1px solid"
+      // borderColor="whiteAlpha.300"
+      borderRadius="xl"
+    >
+      <Box>
+        <Text
+          fontSize={{ base: "2xl", md: "3xl" }}
+          color="brand.dark.text"
+          fontWeight="700"
+          mb={1}
+          userSelect="none"
+        >
+          Timeline
+        </Text>
+        <Text
+          fontSize={{ base: "sm", md: "md" }}
+          color="brand.dark.text"
+          opacity={0.85}
+          userSelect="none"
+        >
+          Experience, projects, and milestones.
+        </Text>
+      </Box>
+
       <Timeline.Root size={sizes} variant="outline">
         
         <For each={timelineDates}>
@@ -128,7 +158,8 @@ const Timelines = () => {
             <Timeline.Item key={item.title}  >
               <Timeline.Connector>
                 <Timeline.Separator />
-                <Timeline.Indicator rounded="full" color={"brand.dark.text"} bg={"brand.dark.secondary"} > 
+                <Timeline.Indicator rounded="full" color={"brand.dark.text"} 
+                bg={"rgba(42, 28, 74, 1)"} > 
                   {item.type === TimelineType.work &&<LuBriefcaseBusiness />} 
                   {item.type === TimelineType.education && <LuGraduationCap />}
                   {item.type === TimelineType.member && <LuUsers />}
@@ -136,19 +167,48 @@ const Timelines = () => {
                 </Timeline.Indicator>
               </Timeline.Connector>
               
-              <Timeline.Content width="full" mb="8" bg={'rgba(145, 109, 232, 0.2)'} p={5} borderRadius="lg">
+              <Timeline.Content
+                width="full"
+                mb={{ base: 5, md: 8 }}
+                // bg="rgba(145, 109, 232, 0.18)"
+                bg="rgba(42, 28, 74, 0.72)"
+
+                border="1px solid"
+                borderColor="rgba(145, 109, 232, 0.35)"
+                p={{ base: 3.5, md: 5 }}
+                borderRadius="lg"
+                transition="transform 0.2s ease, border-color 0.2s ease"
+                _hover={{
+                  transform: "translateY(-2px)",
+                  borderColor: "rgba(145, 109, 232, 0.6)",
+                }}
+              >
                 {/* Date Range */}
-                <Text textStyle="xs" color="brand.dark.secondary" fontWeight="semibold" mb="1">
+                <Text
+                  display="inline-block"
+                  textStyle="xs"
+                  // color="brand.dark.secondary"
+                  color="rgba(235, 225, 255, 0.98)"
+                  fontWeight="semibold"
+                  mb="2"
+                  px={2}
+                  py={1}
+                  borderRadius="md"
+                  // bg="rgba(145, 109, 232, 0.15)"
+                  bg="rgba(145, 109, 232, 0.34)"
+                  border="1px solid"
+                  borderColor="rgba(186, 154, 255, 0.8)"
+                >
                   {item.from} — {item.to}
                 </Text>
 
                 {/* Job Title */}
-                <Timeline.Title textStyle={textSizes} fontWeight="bold">
+                <Timeline.Title textStyle={textSizes} fontWeight="bold" color="brand.dark.text" lineHeight="1.35">
                   {item.title}
                 </Timeline.Title>
 
                 {/* Description */}
-                <Timeline.Description textStyle="sm" color="fg.subtle" mt="1">
+                <Timeline.Description textStyle={{ base: "xs", md: "sm" }} color="brand.dark.text" opacity={0.88} mt="2">
                   <Stack spacing={2}>
                   {item.short_description ? item.short_description : item.description}
                    {item.short_description && 
@@ -181,9 +241,14 @@ const Timelines = () => {
         onOpenChange={handleCloseDialog} 
         data={selectedItem} 
       />
-      <Box marginInline={'auto'} mb={4}>
+      <Box marginInline={'auto'} mb={2}>
     <Magnet padding={50} disabled={false} magnetStrength={8}>
-      <p style={{userSelect:'none'}} onClick={handleGitHub}>View all projects on <span style={{cursor:'pointer'}}>GitHub!</span></p>
+      <p
+        style={{ userSelect: "none", textAlign: "center", fontSize: "0.95rem" }}
+        onClick={handleGitHub}
+      >
+        View all projects on <span style={{cursor:'pointer'}}>GitHub!</span>
+      </p>
     </Magnet>
   </Box>
     <DownloadButton />

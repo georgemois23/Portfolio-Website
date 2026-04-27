@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Input, Textarea, Button, Flex, Image, Text, Field } from '@chakra-ui/react';
+import { Input, Textarea, Button, Flex, Text, Field } from '@chakra-ui/react';
 import ResizeTextarea from "react-textarea-autosize";
 import emailjs from 'emailjs-com';
 import { IoMdSend } from "react-icons/io";
-import Imagesent from "../../src/assets/images/sent-mail2.gif";
 import MailSuccess from './GifSuccess';
 
 const ContactForm = () => {
@@ -58,34 +57,58 @@ const ContactForm = () => {
   };
 
   return (
-    <Flex w="100%" maxW="250px" minH="350px" justifyContent={'center'}>
+    <Flex w="100%" maxW={{ base: "100%", md: "500px" }} minH="350px" justifyContent="center">
       {!submitted ? (
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           
           {/* NAME FIELD */}
           <Field.Root invalid={!!errors.name} mb={4}>
-            <Field.Label>Name</Field.Label>
-            <Input name="name" value={form.name} onChange={handleChange} />
+            <Field.Label color="brand.dark.text">Name</Field.Label>
+            <Input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              bg="rgba(255,255,255,0.01)"
+              borderColor="rgba(145, 109, 232, 0.5)"
+              color="brand.dark.text"
+              _placeholder={{ color: "whiteAlpha.700" }}
+              _focusVisible={{ borderColor: "brand.dark.secondary", boxShadow: "none" }}
+            />
             <Field.ErrorText>{errors.name}</Field.ErrorText>
           </Field.Root>
 
           {/* EMAIL FIELD */}
           <Field.Root invalid={!!errors.email} mb={4}>
-            <Field.Label>Email</Field.Label>
-            <Input name="email" type="email" value={form.email} onChange={handleChange} />
+            <Field.Label color="brand.dark.text">Email</Field.Label>
+            <Input
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              bg="rgba(255,255,255,0.01)"
+              borderColor="rgba(145, 109, 232, 0.5)"
+              color="brand.dark.text"
+              _placeholder={{ color: "whiteAlpha.700" }}
+              _focusVisible={{ borderColor: "brand.dark.secondary", boxShadow: "none" }}
+            />
             <Field.ErrorText>{errors.email}</Field.ErrorText>
           </Field.Root>
 
           {/* MESSAGE FIELD */}
           <Field.Root invalid={!!errors.message} mb={4}>
-            <Field.Label>Message</Field.Label>
+            <Field.Label color="brand.dark.text">Message</Field.Label>
             <Textarea 
               as={ResizeTextarea} 
               name="message" 
               value={form.message} 
-              minH={'120px'} 
+              minH="140px"
               overflow="hidden" 
               onChange={handleChange} 
+              bg="rgba(255,255,255,0.01)"
+              borderColor="rgba(145, 109, 232, 0.5)"
+              color="brand.dark.text"
+              _placeholder={{ color: "whiteAlpha.700" }}
+              _focusVisible={{ borderColor: "brand.dark.secondary", boxShadow: "none" }}
             />
             <Field.ErrorText>{errors.message}</Field.ErrorText>
           </Field.Root>
@@ -94,10 +117,12 @@ const ContactForm = () => {
             type="submit"
             bg="brand.dark.background"
             color="brand.dark.text"
-            _hover={{ transform: "scale(1.05)" }}
+            border="1px solid"
+            borderColor="rgba(145, 109, 232, 0.6)"
+            _hover={{ bg: "rgba(145, 109, 232, 0.28)" }}
             width="100%"
             disabled={loading || !allGood} // Good practice to disable button while sending
-            _disabled={{ opacity: 0.9, transform: 'scale(0.95)', cursor: 'auto' }}
+            _disabled={{ opacity: 0.6, cursor: 'not-allowed' }}
           >
             <Flex alignItems="center" gap={2} justifyContent="center">
               {loading ? 'Sending...' : 'Send  '} <IoMdSend size={14} />
@@ -107,10 +132,10 @@ const ContactForm = () => {
         </form>
       ) : (
         <Flex justifyContent={'center'} flexDir={'column'} alignItems={'center'} gap={4}>
-          <Text fontSize={'lg'} style={{ marginTop: "1rem", color: "brand.dark.secondary", fontWeight: 800 }}>
+          <Text fontSize={{ base: "md", md: "lg" }} mt="1rem" color="brand.dark.secondary" fontWeight={800} textAlign="center">
             Your message has been sent successfully!
           </Text>
-          <Text as="caption" fontSize={'sm'} fontWeight={200} mb={4}>
+          <Text as="caption" fontSize={{ base: "xs", md: "sm" }} fontWeight={300} mb={4} color="brand.dark.text" opacity={0.85} textAlign="center">
             I will get back to you as soon as possible.
           </Text>
           {/* <Text as="a"
@@ -118,7 +143,6 @@ const ContactForm = () => {
             If you have more questions, feel free to send an email here
           </Text> */}
 
-          {/* <Image src={Imagesent} alt="Success" draggable="false" width={{ base: '100px' }} /> */}
           <MailSuccess />
         </Flex>
       )}

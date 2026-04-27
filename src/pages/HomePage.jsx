@@ -28,6 +28,7 @@ import Arrow from '../components/Arrow';
 import ScrollReveal from "../components/react-bits/scrollText/ScrollText";
 import Lanyard from "../components/react-bits/card/Lanyard";
 import Magnet from "../components/react-bits/scroll-velocity/Magnet";
+import GlitchText from "../components/react-bits/glitch-text/GlitchText";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -106,10 +107,11 @@ useEffect(() => {
 
   const MotionSpan = motion.span;
 
-  const texts = [
-    { content: "FULL-STACK", color: undefined },
-    { content: "DEVELOPER", color: undefined },
-  ];
+  const intro = {
+    label: "Moysiadis George",
+    titleTop: "FULL-STACK",
+    titleBottom: "DEVELOPER",
+  };
 
   const socialLinks = [
       { name: 'LinkedIn', url: 'https://www.linkedin.com/in/george-moysiadis', icon: FaLinkedin },
@@ -147,56 +149,122 @@ useEffect(() => {
 
   
     return(
-    <Flex justify="start"  direction={"column"} pt={{ base: '15vh', lg: '10vh' }} height="fit-content" align={'center'}  >
+    <Flex justify="start"  direction={"column"} 
+    pt={{ base: 0, lg: '10vh' }} 
+    height="fit-content" align={'center'}  >
 
 
-<Box textAlign="center" fontWeight="800" lineHeight="0.9" fontFamily="Arial" 
-mt="10vh"  
-display="flex" justifyContent="center" flexDirection="column" >
+<Box
+  textAlign="center"
+  // fontFamily="Arial"
+  // mt={{ base: "4vh", md: "6vh", lg: "8vh" }}
+  px={{ base: 4, md: 6 }}
+  width="100%"
+>
+  <Flex
+    ref={topRef}
+    direction="column"
+    align="center"
+    justify="center"
+    minH={{ base: "100svh", md: "74vh", lg: "82vh" }}
+    borderTop="1px solid"
+    borderBottom="1px solid"
+    borderColor="whiteAlpha.200"
+    py={{ base: 8, md: 12, lg: 14 }}
+  >
+    <Text
+      fontSize={{ base: "xs", md: "sm" }}
+      textTransform="uppercase"
+      letterSpacing="0.25em"
+      border="1px solid"
+      borderColor="whiteAlpha.400"
+      px={3}
+      py={1}
+      mb={{ base: 4, md: 7, lg: 8 }}
+      color="brand.dark.text"
+      opacity={0.9}
+    >
+      {intro.label}
+    </Text>
 
-<Flex ref={topRef} direction="column" mb={10} pt={12}>
-  {texts.map((text, index) => (
+    <Flex direction="column" gap={{ base: 1.5, sm: 0 }} align="center">
       <Text
-        fontSize={{ base: "4xl", xxs: "4xl", sm: "6xl", md: "7xl", lg: "7xl" }}
-        color={text.color}
-        display="inline-block"
+        fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
+        fontWeight="900"
+        lineHeight="0.88"
+        textTransform="uppercase"
+        letterSpacing={{ base: "0.01em", md: "0.02em" }}
+        color="brand.dark.text"
         userSelect="none"
       >
-        {text.content}
+        <GlitchText speed={1} enableShadows enableOnHover={false}>
+          {intro.titleTop}
+        </GlitchText>
       </Text>
-  ))}
-  
-  
-    <Flex gap={6} justify="center" align="center" pt={12}>
-      {socialLinks.map((link) => (
-    <Link
-      key={link.name}
-      href={link.url}
-      isExternal
-      _hover={{ opacity: 0.8 }}
+      <Text
+        fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
+        fontWeight="900"
+        lineHeight="0.88"
+        textTransform="uppercase"
+        letterSpacing={{ base: "0.01em", md: "0.02em" }}
+        color="brand.dark.text"
+        userSelect="none"
+      >
+        <GlitchText speed={1} enableShadows enableOnHover={false}>
+          {intro.titleBottom}
+        </GlitchText>
+      </Text>
+    </Flex>
+
+    <Text
+      fontSize={{ base: "xs", md: "sm" }}
+      fontWeight="600"
+      textTransform="uppercase"
+      letterSpacing="0.12em"
+      maxW="900px"
+      pt={{ base: 5, md: 7, lg: 8 }}
+      color="brand.dark.text"
+      opacity={0.85}
     >
-      <Icon as={link.icon} boxSize={12} color={'brand.dark.text'} /> {/* Big icon */}
-    </Link>
-  ))}
-</Flex>
-                
+      Creating fast and reliable digital experiences with thoughtful design and modern engineering.
+    </Text>
 
-  <Box mt={'25vh'}>
-   <ScrollReveal
-  baseOpacity={0}
-  enableBlur={true}
-  baseRotation={0}
-  blurStrength={8}
-  fontWeight={800}
-  fontSize={{ base: "2xl", xxs: "2xl", sm: "2xl", md: "4xl", lg: "7xl" }}
->
-    Hi! I'm Moysiadis George, a Full-Stack Developer with hands-on experience in modern web technologies. I build scalable applications using React, Next.js, and TypeScript.
-</ScrollReveal>
+    <Text
+      pt={{ base: 7, md: 10, lg: 12 }}
+      fontSize={{ base: "2xs", md: "xs" }}
+      textTransform="uppercase"
+      letterSpacing="0.12em"
+      color="brand.dark.text"
+      opacity={0.55}
+      cursor="pointer"
+      onClick={() => scrollTo(homeRef, -80)}
+    >
+      Scroll to explore
+    </Text>
+    <Icon
+      as={FaArrowDown}
+      mt={2}
+      color="brand.dark.text"
+      opacity={0.7}
+      boxSize={{ base: 3, md: 3.5 }}
+      cursor="pointer"
+      onClick={() => scrollTo(homeRef, -80)}
+    />
 
-  </Box>
-</Flex>
-     
-   
+    <Flex gap={{ base: 4, md: 5 }} justify="center" align="center" pt={{ base: 6, md: 9, lg: 10 }}>
+      {socialLinks.map((link) => (
+        <Link
+          key={link.name}
+          href={link.url}
+          isExternal
+          _hover={{ opacity: 0.8 }}
+          transition="opacity 0.2s ease"
+        >
+          <Icon as={link.icon} boxSize={{ base: 6, md: 7 }} color={"brand.dark.text"} />
+        </Link>
+      ))}
+    </Flex>
+  </Flex>
 </Box>
 
 

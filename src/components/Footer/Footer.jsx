@@ -20,40 +20,39 @@ const Footer = () => {
   ];
 
   // Visual constants
-  const glassBg = 'rgba(145, 109, 232, 0.6)';
-  const glassBorder = 'rgba(255, 255, 255, 0.2)';
-  const textColor = 'white'; 
+  const glassBg = 'rgba(66, 32, 133, 0.97)';
+  const glassBorder = 'rgba(186, 132, 255, 0.9)';
+  const textColor = '#F6EAFF';
+  const accentText = '#D7A9FF';
+  const linkColor = '#F0D8FF';
+  const linkHover = '#FFFFFF';
 
   return (
     <Box
       as="footer"
       w="100%"
+      minH="100vh"
       bg={glassBg}
-      css={{
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-      }}
       borderTop={`1px solid ${glassBorder}`}
       color={textColor}
-      py={{ base: 6, md: 6 }}
-      px={{ base: 6, md: 12, lg: 20 }}
+      py={{ base: 5, md: 6 }}
+      px={{ base: 4, md: 10, lg: 20 }}
       overflow="hidden"
       position="relative"
     >
-      <Box maxW="container.xl" mx="auto">
+      <Box maxW="container.xl" mx="auto" minH="calc(100vh - 48px)" display="flex" flexDirection="column" justifyContent="space-between">
         
         {/* BIG HEADLINE */}
         <Heading
           as="h1"
-          fontSize={{ base: "13vw", md: "11vw", lg: "9vw" }} 
+          fontSize={{ base: "11vw", md: "9vw", lg: "7vw" }} 
           lineHeight="0.9"
-          fontWeight="400"
+          fontWeight="600"
           letterSpacing="-0.02em"
           textTransform="uppercase"
-          mb={8}
-          pt={{base:12, md:0}}
+          mb={6}
+          pt={{base:6, md:0}}
           userSelect="none"
-          textShadow="0 4px 20px rgba(0,0,0,0.1)"
         >
           Moysiadis George
         </Heading>
@@ -66,23 +65,23 @@ const Footer = () => {
           direction={{ base: "column", md: "row" }} 
           justify="space-between" 
           align={{ base: "start", md: "center" }}
-          mb={{ base: 12, md: 20 }}
-          fontSize={{ base: "sm", md: "md" }}
-          fontWeight="bold"
+          mb={{ base: 8, md: 14 }}
+          fontSize={{ base: "xs", md: "sm" }}
+          fontWeight="600"
           textTransform="uppercase"
           letterSpacing="wider"
-          opacity={0.9}
+          color={accentText}
         >
           <Text>Engineering & Development</Text>
           <Text mt={{ base: 2, md: 0 }}>Thessaloniki • Available for {new Date().getFullYear()}</Text>
         </Flex>
 
         {/* MAIN GRID */}
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="100%">
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 7, md: 10 }} w="100%">
           
           {/* LEFT COLUMN */}
           <Box>
-            <Text fontSize="lg" fontWeight="bold" opacity={0.7} mb={4}>Digital Connect</Text>
+            <Text fontSize="lg" fontWeight="bold" color={accentText} mb={4}>Digital Connect</Text>
           </Box>
 
           {/* RIGHT COLUMN */}
@@ -96,6 +95,7 @@ const Footer = () => {
                   href={link.url}
                   isExternal
                   w="100%"
+                  color={linkColor}
                   _hover={{ textDecoration: "none" }}
                   role="group"
                 >
@@ -105,14 +105,13 @@ const Footer = () => {
                     justify="space-between"
                     p={4}
                     borderRadius="xl"
-                    bg="whiteAlpha.100" // Very subtle initial background
-                    border="1px solid transparent"
+                    bg="rgba(128, 72, 222, 0.55)"
+                    border="1px solid rgba(214, 173, 255, 0.9)"
                     transition="all 0.3s ease"
                     _groupHover={{ 
-                      bg: "whiteAlpha.200", // Brighter on hover
-                      border: `1px solid ${glassBorder}`, // Add border definition on hover
-                      transform: "translateY(-3px)", // Subtle lift effect
-                      boxShadow: "xl"
+                      bg: "rgba(154, 93, 255, 0.72)",
+                      border: `1px solid rgba(242, 224, 255, 1)`,
+                      transform: "translateY(-2px)"
                     }}
                   >
                     <Flex align="center" gap={4}>
@@ -141,19 +140,20 @@ const Footer = () => {
 
             {/* Email Section */}
             <Box mt={2}>
-              <Text fontSize="lg" fontWeight="bold" opacity={0.7} mb={2}>Drop a line</Text>
+            <Text fontSize="lg" fontWeight="bold" color={accentText} mb={2}>Drop a line</Text>
               <Link 
                 href="mailto:contact@moysiadis.dev" 
-                _hover={{ textDecoration: 'none' }}
+                color={linkColor}
+                _hover={{ textDecoration: 'none', color: linkHover }}
                 role="group"
               >
                 <Text 
-                  fontSize={{ base: "2xl", md: "3xl", lg: "4xl" }} 
+                  fontSize={{ base: "xl", md: "2xl", lg: "3xl" }} 
                   lineHeight="1"
                   wordBreak="break-word"
                   fontWeight="bold"
-                  transition="opacity 0.3s"
-                  _groupHover={{ opacity: 0.8 }}
+                  transition="color 0.2s ease"
+                  _groupHover={{ color: linkHover }}
                 >
                   contact@moysiadis.dev
                 </Text>
@@ -164,8 +164,8 @@ const Footer = () => {
         </SimpleGrid>
 
         {/* COPYRIGHT */}
-        <Box mt={{base: 10, md:20}} borderTop={`1px solid ${glassBorder}`} pt={6}>
-            <Text fontSize="xs" opacity={0.6} textAlign="center">
+        <Box mt={{base: 8, md:16}} borderTop={`1px solid ${glassBorder}`} pt={6}>
+            <Text fontSize="xs" color={accentText} textAlign="center">
              © {new Date().getFullYear()} Moysiadis George.
             </Text>
         </Box>

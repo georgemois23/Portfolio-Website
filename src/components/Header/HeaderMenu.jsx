@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
-export const HeaderMenu = () => {
+export const HeaderMenu = ({ onItemClick }) => {
     // Animation for staggering items (optional but looks premium)
     const container = {
         hidden: { opacity: 0 },
@@ -48,6 +48,7 @@ export const HeaderMenu = () => {
                     <NavItem
                         item={item}
                         isMobile
+                        onClose={onItemClick}
                     />
                 </MotionBox>
             ))}

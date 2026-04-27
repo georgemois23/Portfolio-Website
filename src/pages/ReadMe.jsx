@@ -1,21 +1,16 @@
-import React from 'react';
 import {
   Box,
   Text,
-  Button,
-  Center,
   Heading,
   Flex,
-  useColorModeValue,
-  VStack
+  HStack,
+  VStack,
+  Separator,
+  Link,
+  Code,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FiUserPlus } from 'react-icons/fi';
-import { RiMailSendLine } from "react-icons/ri";
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';    
-import SpotlightCard from '../components/react-bits/spotlight/SpotlightCard';
     
 const ReadMe = () => { 
   const location = useLocation();
@@ -27,14 +22,9 @@ const ReadMe = () => {
       document.title = "Moysiadis George | Full-Stack Developer Portfolio";
     }
   }, [location]);
-  const navigate = useNavigate();
-
   const bg = 'transparent';
-//   const cardBg = 'brand.dark.text';
-  // const cardBg = "rgba(0, 10, 38, 0.4)";
-  // const cardBg = 'rgba(167, 139, 250, 0.2)';
-  // const cardBg = 'rgba(2, 90, 78, 0.2)';
-  const cardBg = 'rgba(145, 109, 232, 0.2)';
+  // const cardBg = 'rgba(42, 28, 74, 0.32)';
+  const cardBg = 'rgba(42, 28, 74, 0.72)';
   const headingColor = 'brand.dark.secondary';
   const textColor = 'brand.dark.text';
 
@@ -42,12 +32,12 @@ const ReadMe = () => {
   {
     title: 'Who am I',
     content:
-      "I'm a 4th-year Applied Informatics (Computer Science) student at the University of Macedonia. I have hands-on experience as a full-stack developer, building scalable applications using React, Next.js, and TypeScript. I have strong knowledge of HTML, CSS, JavaScript, SQL, APIs, and backend development with NestJS and PostgreSQL. I am passionate about clean architecture, maintainable code, and delivering practical solutions from concept to deployment.",
+      "I'm a 4th-year Applied Informatics (Computer Science) student at the University of Macedonia. I have hands-on experience as a full-stack developer, building scalable applications using React, TypeScript, and NestJS. I have strong knowledge of HTML, CSS, JavaScript, SQL, APIs, and backend development with NestJS and PostgreSQL. I am passionate about clean architecture, maintainable code, and delivering practical solutions from concept to deployment.",
   },
   {
     title: 'How I work',
     content:
-      "I enjoy collaborating with others, sharing ideas, and tackling challenging problems. I follow best practices, write clean and maintainable code, and continuously improve my skills. My workflow includes working with modern tools and frameworks, such as React, Next.js, TypeScript, GraphQL, Docker, and Redis. I value teamwork, open communication, and knowledge sharing in every project I work on.",
+      "I enjoy collaborating with others, sharing ideas, and tackling challenging problems. I follow best practices, write clean and maintainable code, and continuously improve my skills. My workflow includes working with modern tools and frameworks, such as React, TypeScript, NestJS, GraphQL, Docker, and Redis. I value teamwork, open communication, and knowledge sharing in every project I work on.",
   },
   {
     title: 'Who can connect',
@@ -58,60 +48,105 @@ const ReadMe = () => {
 
 
   return (
-    <Box minH="70vh" px={{ base: 4, md: 10 }} py={0} bg={bg}>
-      <Heading
-        as="h1"
-        fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-        mb={12}
-        color={textColor}
-        textAlign="center"
-        userSelect={'none'}
-      >
-        ReadMe  
-      </Heading>
-
-      <Flex
-        direction={{ base: 'column', lg: 'row' }}
-        gap={12}
-        justify="center"
-        align="stretch"
-        flexWrap="wrap"
-        maxW="7xl"
+    <Box minH="70vh" px={{ base: 3, sm: 3, md: 10 }} py={0} bg={bg}>
+      <Box
+        maxW="5xl"
         mx="auto"
-        userSelect={'none'}
+        userSelect="none"
+        border="1px solid"
+        borderColor="whiteAlpha.300"
+        borderRadius="lg"
+        overflow="hidden"
+        bg={cardBg}
       >
-        {sections.map((section, index) => (
-          <SpotlightCard spotlightColor="rgba(145, 109, 232, 0.5)"
-            key={index}
-            bg={cardBg}
-            p={6}
-            rounded="xl"
-            shadow="lg"
-            flexBasis={{ base: '100%', md: '45%', lg: '30%' }}
-            transition="all 0.2s"
-            sx={{
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)', 
-            }}
-            // _hover={{ shadow: 'xl' }}
-            // boxShadow="0 2px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.4)"
-            // border="1px solid rgba(255, 255, 255, 0.13)"
-          >
-            <Heading
-              as="h3"
-              size="md"
-              mb={4}
-              textAlign="left"
-              color={headingColor}
-            >
-              {section.title}
+        <Flex
+          justify="space-between"
+          align={{ base: "flex-start", md: "center" }}
+          direction={{ base: "column", md: "row" }}
+          px={{ base: 3, sm: 4, md: 6 }}
+          py={{ base: 3, md: 4 }}
+          gap={{ base: 2, md: 3 }}
+          borderBottom="1px solid"
+          borderColor="whiteAlpha.300"
+        >
+          <VStack align="start" gap={0}>
+            <Heading as="h1" fontSize={{ base: "lg", sm: "xl", md: "2xl" }} color={textColor}>
+              README.md
             </Heading>
-            <Text textAlign="left" color={textColor} as={'p'}>
-              {section.content}
+            <Text fontSize={{ base: "xs", md: "sm" }} color={textColor} opacity={0.75}>
+              georgemois23 / portfolio
             </Text>
-          </SpotlightCard>
-        ))}
-      </Flex>
+          </VStack>
+
+          <Flex gap={2} wrap="wrap">
+            <Code colorScheme="purple" bg="whiteAlpha.200" color={textColor} fontSize={{ base: "2xs", sm: "xs" }}>
+              React
+            </Code>
+            <Code colorScheme="purple" bg="whiteAlpha.200" color={textColor} fontSize={{ base: "2xs", sm: "xs" }}>
+              TypeScript
+            </Code>
+            <Code colorScheme="purple" bg="whiteAlpha.200" color={textColor} fontSize={{ base: "2xs", sm: "xs" }}>
+              NestJS
+            </Code>
+          </Flex>
+        </Flex>
+
+        <VStack align="stretch" px={{ base: 3, sm: 4, md: 8 }} py={{ base: 4, sm: 5, md: 8 }} gap={{ base: 4, md: 6 }}>
+          <Box>
+            <Heading as="h2" fontSize={{ base: "xl", sm: "2xl", md: "3xl" }} color={textColor} mb={2}>
+              # Moysiadis George
+            </Heading>
+            <Text color={textColor} opacity={0.9} fontSize={{ base: "sm", md: "md" }} lineHeight={{ base: "1.7", md: "1.8" }}>
+              Building practical, scalable web applications with modern frontend and backend technologies.
+            </Text>
+          </Box>
+
+          <Flex wrap="wrap" gap={{ base: 2, md: 4 }} fontSize={{ base: "sm", md: "md" }}>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+              About
+            </Link>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+              Workflow
+            </Link>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+              Connect
+            </Link>
+          </Flex>
+
+          <Separator borderColor="whiteAlpha.300" />
+
+          {sections.map((section, index) => (
+            <Box key={index}>
+              <Heading as="h3" fontSize={{ base: "md", md: "lg" }} mb={3} color={headingColor}>
+                ## {section.title}
+              </Heading>
+              <Text textAlign="left" color={textColor} opacity={0.95} lineHeight={{ base: "1.75", md: "1.9" }} fontSize={{ base: "sm", md: "md" }}>
+                {section.content}
+              </Text>
+            </Box>
+          ))}
+
+          <Separator borderColor="whiteAlpha.300" />
+
+          <Box
+            border="1px solid"
+            borderColor="whiteAlpha.300"
+            borderRadius="md"
+            bg="blackAlpha.300"
+            p={{ base: 3, md: 4 }}
+            fontFamily="monospace"
+            fontSize={{ base: "2xs", sm: "xs", md: "sm" }}
+            color={textColor}
+            whiteSpace="pre-wrap"
+            overflowX="auto"
+          >
+{`// quick summary
+role: Full-Stack Developer
+focus: React, TypeScript, NestJS
+interests: scalable architecture, clean code, collaboration`}
+          </Box>
+        </VStack>
+      </Box>
     </Box>
   );
 };

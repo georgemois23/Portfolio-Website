@@ -1,4 +1,4 @@
-import { Badge, Container, Heading, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import { Badge, Box, Container, Heading, Text, Wrap, WrapItem, VStack } from "@chakra-ui/react";
 
 const skillsData = [
   "React.js",
@@ -19,31 +19,27 @@ const skillsData = [
   "Leadership"
 ];
 
-// More purple shades, all in the same tone family
-const purpleShades = [
-  "#916de8", // base
-  "#835be3",
-  "#7649df",
-  "#6537d9",
-  "#5a2fcf",
-  "#4e28c5",
-  "#431fb8",
-  "#3917ad"
-];
+const panelBg = "rgba(42, 28, 74, 0.72)";
+const badgeBg = "rgba(145, 109, 232, 0.2)";
+const badgeBorder = "rgba(145, 109, 232, 0.45)";
 
 const Skills = ({skills}) => {
   if (skills) {
     return (
-       <Wrap gap={{ base: 1, md: 2 }} justify="left" maxW={{base:"none", md: '50vw'}}>
+       <Wrap gap={{ base: 2, md: 2.5 }} justify="left" maxW={{base:"none", md: '50vw'}}>
         {skills.map((skill, index) => (
           <WrapItem key={index}>
             <Badge
-              p={2}
-              borderRadius={"xl"}
-              bg={"brand.dark.background"} // cycle through purple tones
-              fontSize={{ base: "sm", xs: "2xs", md: "md" }}
+              px={3}
+              py={1.5}
+              borderRadius="lg"
+              bg={badgeBg}
+              border="1px solid"
+              borderColor={badgeBorder}
+              fontSize={{ base: "xs", md: "sm" }}
+              textTransform="none"
             >
-              <Text color={"white"}>{skill}</Text>
+              <Text color="brand.dark.text" lineHeight="1.2">{skill}</Text>
             </Badge>
           </WrapItem>
         ))}
@@ -58,31 +54,58 @@ const Skills = ({skills}) => {
       alignItems={"center"}
       flexDirection={"column"}
       my={10}
+      px={{ base: 3, md: 4 }}
     >
-      <Heading
-              as="h1"
-              fontSize={{ base: '2xl', md: '3xl', lg: '4xl' }}
-              mb={12}
-              color={"brand.dark.text"}
-              textAlign="center"
-            >
-              Skills  
-            </Heading>
+      <VStack
+        w="100%"
+        maxW="5xl"
+        align="stretch"
+        bg={panelBg}
+        border="1px solid"
+        borderColor="whiteAlpha.300"
+        borderRadius="xl"
+        px={{ base: 4, md: 6 }}
+        py={{ base: 5, md: 7 }}
+        gap={5}
+      >
+        <Box>
+          <Heading
+            as="h2"
+            fontSize={{ base: "xl", md: "2xl", lg: "3xl" }}
+            color="brand.dark.text"
+            textAlign="left"
+            mb={2}
+          >
+            Skills
+          </Heading>
+          <Text
+            fontSize={{ base: "sm", md: "md" }}
+            color="brand.dark.text"
+            opacity={0.85}
+          >
+            Technologies and collaboration skills I use to build reliable products.
+          </Text>
+        </Box>
 
-      <Wrap spacing={2} justify="center" maxW={{base:"none", md: '50vw'}}>
-        {skillsData.map((skill, index) => (
-          <WrapItem key={index}>
-            <Badge
-              p={2}
-              borderRadius={"xl"}
-              bg={purpleShades[index % purpleShades.length]} // cycle through purple tones
-              fontSize={{ base: "sm", xs: "xs", md: "lg" }}
-            >
-              <Text color={"white"}>{skill}</Text>
-            </Badge>
-          </WrapItem>
-        ))}
-      </Wrap>
+        <Wrap spacing={{ base: 2, md: 3 }} justify="flex-start">
+          {skillsData.map((skill, index) => (
+            <WrapItem key={index}>
+              <Badge
+                px={{ base: 3, md: 3.5 }}
+                py={{ base: 1.5, md: 2 }}
+                borderRadius="lg"
+                bg={badgeBg}
+                border="1px solid"
+                borderColor={badgeBorder}
+                fontSize={{ base: "xs", sm: "sm", md: "md" }}
+                textTransform="none"
+              >
+                <Text color="brand.dark.text" lineHeight="1.2">{skill}</Text>
+              </Badge>
+            </WrapItem>
+          ))}
+        </Wrap>
+      </VStack>
     </Container>
   );
 };
