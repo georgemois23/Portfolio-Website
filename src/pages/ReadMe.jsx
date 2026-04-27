@@ -46,6 +46,15 @@ const ReadMe = () => {
   },
 ];
 
+  const scrollToSection = (id) => {
+    const target = document.getElementById(id);
+    if (target) {
+      const headerOffset = window.innerWidth < 992 ? 110 : 90;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
 
   return (
     <Box minH="70vh" px={{ base: 3, sm: 3, md: 10 }} py={0} bg={bg}>
@@ -102,13 +111,13 @@ const ReadMe = () => {
           </Box>
 
           <Flex wrap="wrap" gap={{ base: 2, md: 4 }} fontSize={{ base: "sm", md: "md" }}>
-            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }} onClick={() => scrollToSection("readme-about")}>
               About
             </Link>
-            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }} onClick={() => scrollToSection("readme-workflow")}>
               Workflow
             </Link>
-            <Link color={headingColor} _hover={{ opacity: 0.85 }}>
+            <Link color={headingColor} _hover={{ opacity: 0.85 }} onClick={() => scrollToSection("readme-connect")}>
               Connect
             </Link>
           </Flex>
@@ -116,7 +125,16 @@ const ReadMe = () => {
           <Separator borderColor="whiteAlpha.300" />
 
           {sections.map((section, index) => (
-            <Box key={index}>
+            <Box
+              key={index}
+              id={
+                section.title === "Who am I"
+                  ? "readme-about"
+                  : section.title === "How I work"
+                  ? "readme-workflow"
+                  : "readme-connect"
+              }
+            >
               <Heading as="h3" fontSize={{ base: "md", md: "lg" }} mb={3} color={headingColor}>
                 ## {section.title}
               </Heading>

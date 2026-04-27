@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 // 1. Remove deprecated @chakra-ui/icons
 // import { ArrowForwardIcon, ArrowDownIcon ,InfoOutlineIcon} from "@chakra-ui/icons";
 // 2. Add React Icons replacements
-import { FaArrowDown, FaArrowRight } from "react-icons/fa"; 
+import { FaArrowDown, FaAngleDoubleDown, FaArrowRight } from "react-icons/fa"; 
 
 import { useRef, useState, useEffect } from "react";
 // Wrap/WrapItem are removed in v3, using Flex wrap="wrap" is the replacement if needed. 
@@ -106,6 +106,7 @@ useEffect(() => {
   }, [isVisible]);
 
   const MotionSpan = motion.span;
+  const MotionBox = motion(Box);
 
   const intro = {
     label: "Moysiadis George",
@@ -229,27 +230,34 @@ useEffect(() => {
       Creating fast and reliable digital experiences with thoughtful design and modern engineering.
     </Text>
 
-    <Text
+    <Box
       pt={{ base: 7, md: 10, lg: 12 }}
-      fontSize={{ base: "2xs", md: "xs" }}
-      textTransform="uppercase"
-      letterSpacing="0.12em"
-      color="brand.dark.text"
-      opacity={0.55}
       cursor="pointer"
       onClick={() => scrollTo(homeRef, -80)}
     >
-      Scroll to explore
-    </Text>
-    <Icon
-      as={FaArrowDown}
-      mt={2}
-      color="brand.dark.text"
-      opacity={0.7}
-      boxSize={{ base: 3, md: 3.5 }}
-      cursor="pointer"
-      onClick={() => scrollTo(homeRef, -80)}
-    />
+      <Text
+        fontSize={{ base: "2xs", md: "xs" }}
+        textTransform="uppercase"
+        letterSpacing="0.12em"
+        color="brand.dark.text"
+        opacity={0.55}
+      >
+        Scroll to explore
+      </Text>
+      <MotionBox
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 1, repeat: Infinity, repeatDelay: 1.8, ease: "easeInOut" }}
+      >
+        <Flex direction="column" align="center" gap={0.5} mt={2}>
+          <Icon
+            as={FaAngleDoubleDown}
+            color="brand.dark.text"
+            opacity={0.72}
+            boxSize={{ base: 3, md: 3.5 }}
+          />
+        </Flex>
+      </MotionBox>
+    </Box>
 
     <Flex gap={{ base: 4, md: 5 }} justify="center" align="center" pt={{ base: 6, md: 9, lg: 10 }}>
       {socialLinks.map((link) => (

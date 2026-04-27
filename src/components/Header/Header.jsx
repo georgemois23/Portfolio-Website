@@ -67,7 +67,7 @@ export default function Header() {
 
   const isMobile = windowWidth < 992; 
   const size = isMobile 
-    ? Math.min(windowWidth * 0.35, 160) 
+    ? Math.min(windowWidth * 0.28, 128) 
     : Math.min(Math.max(windowWidth * 0.12, 120), 180);
   const width = size;
   const height = size;
@@ -75,14 +75,14 @@ export default function Header() {
   // --- ANIMATION VARIANTS ---
   const headerVariants = {
     closed: { 
-        height: isMobile ? "70px" : "80px", 
-        width: isMobile ? "75%" : "70%", 
+        height: isMobile ? "62px" : "80px", 
+        width: isMobile ? "68%" : "70%", 
         borderRadius: "50px",
         transition: { type: "tween", duration: 0.16, ease: "easeOut" }
     },
     open: { 
         height: "auto", 
-        width: isMobile ? "95%" : "70%", 
+        width: isMobile ? "88%" : "70%", 
         borderRadius: "25px", 
         transition: { type: "tween", duration: 0.16, ease: "easeOut" }
     }
@@ -128,11 +128,12 @@ export default function Header() {
           <Flex 
             width="100%" 
             align="center" 
-            justify={{ base: "flex-end", lg: "space-between" }}
-            height={{ base: "70px", lg: "80px" }} 
+            justify="space-between"
+            height={{ base: "62px", lg: "80px" }} 
             flexShrink={0}
             position="relative"
           >
+            <Box display={{ base: "block", lg: "none" }} w="48px" h="48px" />
              
              {/* LOGO */}
              <Box 
@@ -167,7 +168,6 @@ export default function Header() {
                 minW="48px"
                 minH="48px"
                 zIndex={9999}
-                pr={4}
                 _hover={{ bg: "whiteAlpha.100" }}
                 _active={{ bg: "whiteAlpha.200", transform: "scale(0.95)" }}
                 transition="all 0.12s"

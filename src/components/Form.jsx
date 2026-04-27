@@ -122,7 +122,7 @@ const ContactForm = () => {
             _hover={{ bg: "rgba(145, 109, 232, 0.28)" }}
             width="100%"
             disabled={loading || !allGood} // Good practice to disable button while sending
-            _disabled={{ opacity: 0.6, cursor: 'not-allowed' }}
+            _disabled={{ opacity: 0.6, cursor: 'default' }}
           >
             <Flex alignItems="center" gap={2} justifyContent="center">
               {loading ? 'Sending...' : 'Send  '} <IoMdSend size={14} />

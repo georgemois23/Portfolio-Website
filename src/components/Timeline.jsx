@@ -184,7 +184,7 @@ const Timelines = () => {
               >
                 {/* Date Range */}
                 <Text
-                  display="inline-block"
+                  display={{ base: "block", md: "inline-block" }}
                   textStyle="xs"
                   // color="brand.dark.secondary"
                   color="rgba(235, 225, 255, 0.98)"
@@ -195,6 +195,12 @@ const Timelines = () => {
                   borderRadius="md"
                   // bg="rgba(145, 109, 232, 0.15)"
                   bg="rgba(145, 109, 232, 0.34)"
+                  // w={{ base: "full", md: "auto" }}
+                  w={ "fit-content" }
+                  // maxW={{ base: "none", md: "fit-content" }}
+                  maxW={ "fit-content" }
+                  whiteSpace="nowrap"
+                  textAlign={{ base: "left", md: "left" }}
                   border="1px solid"
                   borderColor="rgba(186, 154, 255, 0.8)"
                 >
