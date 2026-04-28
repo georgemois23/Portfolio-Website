@@ -244,6 +244,7 @@ useEffect(() => {
         letterSpacing="0.12em"
         color="brand.dark.text"
         opacity={0.55}
+        userSelect="none"
       >
         Scroll to explore
       </Text>

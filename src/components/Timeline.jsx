@@ -157,8 +157,12 @@ const Timelines = () => {
             <Timeline.Item key={item.title}  >
               <Timeline.Connector>
                 <Timeline.Separator />
-                <Timeline.Indicator rounded="full" color={"brand.dark.text"} 
-                bg={"rgba(42, 28, 74, 1)"} > 
+                <Timeline.Indicator
+                rounded="full"
+                color={"brand.dark.text"}
+                bg={"rgba(42, 28, 74, 1)"}
+                fontSize={{ base: "md", md: "lg" }}
+                > 
                   {item.type === TimelineType.work &&<LuBriefcaseBusiness />} 
                   {item.type === TimelineType.education && <LuGraduationCap />}
                   {item.type === TimelineType.member && <LuUsers />}
@@ -249,7 +253,7 @@ const Timelines = () => {
       <Box marginInline={'auto'} mb={2}>
     <Magnet padding={50} disabled={false} magnetStrength={8}>
       <p
-        style={{ userSelect: "none", textAlign: "center", fontSize: "0.95rem" }}
+        style={{ userSelect: "none", textAlign: "center", fontSize: "0.95rem",cursor:'pointer' }}
         onClick={handleGitHub}
       >
         View all projects on <span style={{cursor:'pointer'}}>GitHub!</span>
