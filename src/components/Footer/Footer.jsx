@@ -81,13 +81,15 @@ const Footer = () => {
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 7, md: 10 }} w="100%">
           
           {/* LEFT COLUMN */}
-          <Box>
+          <Box position="relative" zIndex={0}>
             <Text fontSize="lg" fontWeight="bold" color={accentText} mb={4}>Digital Connect</Text>
             <Box
               mt={4}
               display={{ base: "none", md: "flex" }}
               justifyContent={{ base: "center", md: "flex-start" }}
               transform={{ base: "none", md: "translateX(72px)", lg: "translateX(102px)" }}
+              position="relative"
+              zIndex={0}
             >
               <CircularText
                 text="DEV*MOYSIADIS*GEORGE*"
@@ -99,62 +101,62 @@ const Footer = () => {
           </Box>
 
           {/* RIGHT COLUMN */}
-          <VStack align="flex-start" spacing={16} w="100%">
+          <VStack align="flex-start" spacing={16} w="100%" position="relative" zIndex={2}>
             <Box
               w="100%"
               display={{ base: "grid", md: "block" }}
               gridTemplateColumns={{ base: "1fr auto", md: "none" }}
               columnGap={{ base: 3, md: 0 }}
               alignItems="start"
+              position="relative"
+              zIndex={2}
             >
               {/* 3. NEW SOCIAL PILLS SECTION */}
-              <VStack align="flex-start" spacing={4} w="100%" maxW="400px">
+              <VStack align="flex-start" spacing={4} w="100%" maxW="400px" position="relative" zIndex={3}>
                 {socialLinks.map((link) => (
-                  <Link
+                  <Flex
+                    as="a"
                     key={link.name}
                     href={link.url}
-                    isExternal
-                    w="100%"
-                    color={linkColor}
-                    _hover={{ textDecoration: "none" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     role="group"
+                    align="center"
+                    justify="space-between"
+                    p={4}
+                    w="fit-content"
+                    color={linkColor}
+                    borderRadius="xl"
+                    bg="rgba(128, 72, 222, 0.55)"
+                    border="1px solid rgba(214, 173, 255, 0.9)"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      textDecoration: "none",
+                      bg: "rgba(154, 93, 255, 0.72)",
+                      border: `1px solid rgba(242, 224, 255, 1)`,
+                      transform: "translateY(-2px)",
+                    }}
                   >
-                    {/* THE GLASS PILL CONTAINER */}
-                    <Flex 
-                      align="center" 
-                      justify="space-between"
-                      p={4}
-                      borderRadius="xl"
-                      bg="rgba(128, 72, 222, 0.55)"
-                      border="1px solid rgba(214, 173, 255, 0.9)"
-                      transition="all 0.3s ease"
-                      _groupHover={{ 
-                        bg: "rgba(154, 93, 255, 0.72)",
-                        border: `1px solid rgba(242, 224, 255, 1)`,
-                        transform: "translateY(-2px)"
-                      }}
-                    >
-                      <Flex align="center" gap={4}>
-                        <Icon as={link.icon} boxSize={6} />
-                        <Text fontSize="xl" fontWeight="600">{link.name}</Text>
-                      </Flex>
-                      
-                      {/* Subtle arrow to indicate it's a link */}
-                      <Icon 
-                          viewBox="0 0 24 24" 
-                          boxSize={5} 
-                          opacity={0}
-                          transform="translateX(-10px)"
-                          transition="all 0.3s ease"
-                          _groupHover={{ opacity: 0.8, transform: "translateX(0)" }}
-                      >
-                          <path
-                            fill="currentColor"
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                          />
-                      </Icon>
+                    <Flex align="center" gap={4}>
+                      <Icon as={link.icon} boxSize={6} />
+                      <Text fontSize="xl" fontWeight="600">{link.name}</Text>
                     </Flex>
-                  </Link>
+                    
+                    {/* Subtle arrow to indicate it's a link */}
+                    <Icon 
+                        viewBox="0 0 24 24" 
+                        boxSize={5} 
+                        opacity={0}
+                        transform="translateX(-10px)"
+                        transition="all 0.3s ease"
+                        _groupHover={{ opacity: 0.8, transform: "translateX(0)" }}
+                    >
+                        <path
+                          fill="currentColor"
+                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                        />
+                    </Icon>
+                  </Flex>
                 ))}
               </VStack>
 
@@ -163,7 +165,10 @@ const Footer = () => {
                 justifyContent="flex-end"
                 alignItems="flex-start"
                 pt={10}
-                pr={1}
+                pr={0}
+                transform={{ base: "translateX(-10px)", sm: "translateX(-4px)", md: "none" }}
+                position="relative"
+                zIndex={0}
               >
                 <CircularText
                   text="DEV*MOYSIADIS*GEORGE*"

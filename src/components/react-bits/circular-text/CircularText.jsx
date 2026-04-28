@@ -117,6 +117,28 @@ const CircularText = ({ text, spinDuration = 20, onHover = "speedUp", className 
               font-size: 9px;
             }
           }
+
+          @media (max-width: 420px) {
+            .circular-text {
+              width: 122px;
+              height: 122px;
+            }
+
+            .circular-text span {
+              font-size: 12px;
+            }
+          }
+
+          @media (max-width: 310px) {
+            .circular-text {
+              width: 96px;
+              height: 96px;
+            }
+
+            .circular-text span {
+              font-size: 7px;
+            }
+          }
         `}
       </style>
 
@@ -131,7 +153,16 @@ const CircularText = ({ text, spinDuration = 20, onHover = "speedUp", className 
       >
         {letters.map((letter, i) => {
           const rotationDeg = (360 / letters.length) * i;
-          const radius = typeof window !== "undefined" && window.innerWidth <= 768 ? 56 : 97;
+          const radius =
+            typeof window !== "undefined"
+              ? window.innerWidth <= 420
+                ? window.innerWidth <= 310
+                  ? 41
+                  : 48
+                : window.innerWidth <= 768
+                ? 56
+                : 97
+              : 97;
           const transform = `rotate(${rotationDeg}deg) translateY(-${radius}px)`;
           return (
             <span key={i} style={{ transform, WebkitTransform: transform }}>
