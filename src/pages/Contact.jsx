@@ -34,6 +34,8 @@ const Contact = () => {
         </Text>
         
         <Flex
+          position="relative"
+          overflow="hidden"
           direction="column"
           width="100%"
           maxW="640px"
@@ -41,15 +43,38 @@ const Contact = () => {
           justify="center"
           borderRadius="12px"
           gap={4}
-          backgroundColor="rgba(42, 28, 74, 0.92)"
+          background="linear-gradient(120deg, rgba(20, 16, 40, 0.95) 0%, rgba(33, 23, 60, 0.92) 48%, rgba(16, 24, 46, 0.95) 100%)"
           border="1px solid rgba(145, 109, 232, 0.45)"
+          boxShadow="0 16px 42px rgba(38, 24, 78, 0.4)"
           my={{ base: 6, md: 10 }}
           marginInline="auto"
           textAlign="center"
           px={{ base: 3, md: 5 }}
           py={{ base: 4, md: 6 }}
         >
+          <Box
+            position="absolute"
+            top="-70px"
+            left="-80px"
+            w="170px"
+            h="170px"
+            borderRadius="full"
+            bg="radial-gradient(circle, rgba(145,109,232,0.2) 0%, rgba(145,109,232,0) 72%)"
+            pointerEvents="none"
+          />
+          <Box
+            position="absolute"
+            right="-70px"
+            bottom="-80px"
+            w="170px"
+            h="170px"
+            borderRadius="full"
+            bg="radial-gradient(circle, rgba(95,170,255,0.16) 0%, rgba(95,170,255,0) 72%)"
+            pointerEvents="none"
+          />
           <Flex
+            position="relative"
+            zIndex={1}
             direction="column"
             width="100%"
             alignItems="center"

@@ -19,7 +19,7 @@ const skillsData = [
   "Leadership"
 ];
 
-const panelBg = "rgba(42, 28, 74, 0.72)";
+const panelBg = "linear-gradient(120deg, rgb(7, 8, 16) 0%, rgb(13, 11, 24) 48%, rgb(6, 10, 20) 100%)";
 const badgeBg = "rgba(145, 109, 232, 0.2)";
 const badgeBorder = "rgba(145, 109, 232, 0.45)";
 
@@ -67,7 +67,30 @@ const Skills = ({skills}) => {
         px={{ base: 4, md: 6 }}
         py={{ base: 5, md: 7 }}
         gap={5}
+        position="relative"
+        overflow="hidden"
       >
+        <Box
+          position="absolute"
+          top="-120px"
+          left="-140px"
+          w={{ base: "220px", md: "340px" }}
+          h={{ base: "220px", md: "340px" }}
+          borderRadius="full"
+          bg="radial-gradient(circle, rgba(145,109,232,0.24) 0%, rgba(145,109,232,0) 72%)"
+          pointerEvents="none"
+        />
+        <Box
+          position="absolute"
+          right="-120px"
+          bottom="-140px"
+          w={{ base: "230px", md: "360px" }}
+          h={{ base: "230px", md: "360px" }}
+          borderRadius="full"
+          bg="radial-gradient(circle, rgba(95,170,255,0.2) 0%, rgba(95,170,255,0) 72%)"
+          pointerEvents="none"
+        />
+        <Box position="relative" zIndex={1}>
         <Box>
           <Heading
             as="h2"
@@ -105,6 +128,7 @@ const Skills = ({skills}) => {
             </WrapItem>
           ))}
         </Wrap>
+        </Box>
       </VStack>
     </Container>
   );

@@ -27,7 +27,7 @@ const projectImages = {
   oldportfolio: oldportfolio,
 };
 
-const timelineDates = [
+export const timelineDates = [
   {
     from: "Sept 2025",
     to: "Dec 2025",
@@ -120,14 +120,12 @@ const Timelines = () => {
    
 
   return (
-    <Stack
+      <Stack
       gap={{ base: 6, md: 8 }}
       maxW={timelineMaxW}
       mx="auto"
       px={{ base: 3, sm: 4, md: 5 }}
       py={{ base: 4, md: 5 }}
-      // border="1px solid"
-      // borderColor="whiteAlpha.300"
       borderRadius="xl"
     >
       <Box>
@@ -171,11 +169,11 @@ const Timelines = () => {
               </Timeline.Connector>
               
               <Timeline.Content
+                position="relative"
+                overflow="hidden"
                 width="full"
                 mb={{ base: 5, md: 8 }}
-                // bg="rgba(145, 109, 232, 0.18)"
-                bg="rgba(42, 28, 74, 0.72)"
-
+                bg="linear-gradient(120deg, rgba(20, 16, 40, 0.95) 0%, rgba(33, 23, 60, 0.92) 48%, rgba(16, 24, 46, 0.95) 100%)"
                 border="1px solid"
                 borderColor="rgba(145, 109, 232, 0.35)"
                 p={{ base: 3.5, md: 5 }}
@@ -184,8 +182,30 @@ const Timelines = () => {
                 _hover={{
                   transform: "translateY(-2px)",
                   borderColor: "rgba(145, 109, 232, 0.6)",
+                  boxShadow: "0 12px 36px rgba(60, 35, 120, 0.35)",
                 }}
               >
+                <Box
+                  position="absolute"
+                  top="-70px"
+                  left="-80px"
+                  w="180px"
+                  h="180px"
+                  borderRadius="full"
+                  bg="radial-gradient(circle, rgba(145,109,232,0.18) 0%, rgba(145,109,232,0) 72%)"
+                  pointerEvents="none"
+                />
+                <Box
+                  position="absolute"
+                  right="-70px"
+                  bottom="-80px"
+                  w="180px"
+                  h="180px"
+                  borderRadius="full"
+                  bg="radial-gradient(circle, rgba(95,170,255,0.14) 0%, rgba(95,170,255,0) 72%)"
+                  pointerEvents="none"
+                />
+                <Box position="relative" zIndex={1}>
                 {/* Date Range */}
                 <Text
                   display={{ base: "block", md: "inline-block" }}
@@ -238,6 +258,7 @@ const Timelines = () => {
                     }
                   </Stack>
                 </Timeline.Description>
+                </Box>
               </Timeline.Content>
             </Timeline.Item>
           )}

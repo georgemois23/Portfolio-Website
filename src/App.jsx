@@ -17,18 +17,30 @@ import Contact from "./pages/Contact";
 import Header from "./components/Header/Header";
 import ReadMe from "./pages/ReadMe";
 import Error404 from "./pages/Error404";
+import JourneyPage from "./pages/JourneyPage";
 import ScrollToTop from "./components/ScrollToTop";
 import './App.css';
 // import LinuxCommands from './pages/LinuxCommands.jsx';
 import Stars from "./Stars";
+import CoolCustomCursor from "./components/CustomCursor";
 function App() {
   const [count, setCount] = useState(0)
    
 
  return (
-  <Box minH="100vh" bg="#000000" color="#D6E3F0" position="relative" overflowY="auto" overflowX={'hidden'} >
-          <Stars color="#D6E3F0" background="#000000" />
-<Box position="relative" zIndex={1}>
+  <CoolCustomCursor>
+    <Box
+      id="app-scroll-container"
+      minH="100vh"
+      w="100%"
+      bg="#000000"
+      color="#D6E3F0"
+      position="relative"
+      overflowY="auto"
+      overflowX="hidden"
+    >
+            <Stars color="#D6E3F0" background="#000000" />
+  <Box position="relative" zIndex={1} w="100%">
 
       {/* <ScrollToTop /> */}
         <Routes>
@@ -48,8 +60,8 @@ function App() {
       </Box>
 
       </Box>
-      // </>
-    );
+    </CoolCustomCursor>
+  );
   }
 
 export default App

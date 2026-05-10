@@ -1,4 +1,14 @@
-import { Box, Flex, Text, Button, Icon, Center, VStack, Link, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Text,
+  Button,
+  Icon,
+  Center,
+  VStack,
+  Link,
+  HStack,
+} from "@chakra-ui/react";
 import '../App.css';
 import { useLocation, useNavigate } from "react-router-dom";
 // 1. Remove deprecated @chakra-ui/icons
@@ -13,7 +23,7 @@ import { useRef, useState, useEffect } from "react";
 import { ToolTipUnderConstruction } from "../components/ToolTipUnderConstruction";
 import Readme from "../pages/ReadMe";
 import Logo from '../assets/logo/Logo';
-import Timelines from "../components/Timeline";
+import NewTimeline from "../components/NewTimeline";
 
 import { FiUsers } from "react-icons/fi";
 import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -23,12 +33,14 @@ import logo from '../Moysiadis.png'
 
 import Contact from './Contact';
 import Skills from "../components/Skills";
+import QAAccordion from "../components/QAAccordion";
 import Portrait from '../components/Portrait'
 import Arrow from '../components/Arrow';
 import ScrollReveal from "../components/react-bits/scrollText/ScrollText";
 import Lanyard from "../components/react-bits/card/Lanyard";
 import Magnet from "../components/react-bits/scroll-velocity/Magnet";
 import GlitchText from "../components/react-bits/glitch-text/GlitchText";
+import Timelines from "../components/Timeline";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -301,16 +313,18 @@ useEffect(() => {
   transform="translateY(-2px)"
 >
 
-      <Box mt={10} >
+      <Box mt={10}>
         <Readme />
       </Box>
-        <Skills/>
+      <Skills />
      
       </Flex>
       {/* </Flex> */}
       <Flex ref={projectsRef} direction="column" mb={10}>
   <Timelines />
 </Flex>
+
+      <QAAccordion />
     
 
     {/* <Logo height={height} width={width}/> */}

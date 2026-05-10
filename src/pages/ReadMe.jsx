@@ -24,7 +24,7 @@ const ReadMe = () => {
   }, [location]);
   const bg = 'transparent';
   // const cardBg = 'rgba(42, 28, 74, 0.32)';
-  const cardBg = 'rgba(42, 28, 74, 0.72)';
+  const cardBg = 'linear-gradient(120deg, rgb(7, 8, 16) 0%, rgb(13, 11, 24) 48%, rgb(6, 10, 20) 100%)';
   const headingColor = 'brand.dark.secondary';
   const textColor = 'brand.dark.text';
 
@@ -67,7 +67,29 @@ const ReadMe = () => {
         borderRadius="lg"
         overflow="hidden"
         bg={cardBg}
+        position="relative"
       >
+        <Box
+          position="absolute"
+          top="-120px"
+          left="-140px"
+          w={{ base: "220px", md: "340px" }}
+          h={{ base: "220px", md: "340px" }}
+          borderRadius="full"
+          bg="radial-gradient(circle, rgba(145,109,232,0.24) 0%, rgba(145,109,232,0) 72%)"
+          pointerEvents="none"
+        />
+        <Box
+          position="absolute"
+          right="-120px"
+          bottom="-140px"
+          w={{ base: "230px", md: "360px" }}
+          h={{ base: "230px", md: "360px" }}
+          borderRadius="full"
+          bg="radial-gradient(circle, rgba(95,170,255,0.2) 0%, rgba(95,170,255,0) 72%)"
+          pointerEvents="none"
+        />
+        <Box position="relative" zIndex={1}>
         <Flex
           justify="space-between"
           align={{ base: "flex-start", md: "center" }}
@@ -164,6 +186,7 @@ focus: React, TypeScript, NestJS
 interests: scalable architecture, clean code, collaboration`}
           </Box>
         </VStack>
+        </Box>
       </Box>
     </Box>
   );

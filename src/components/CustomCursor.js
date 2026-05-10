@@ -1,11 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo/logo.png";
 
 export default function CoolCustomCursor({ children }) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({
+    x: typeof window !== "undefined" ? window.innerWidth / 2 : 0,
+    y: typeof window !== "undefined" ? window.innerHeight / 2 : 0,
+  });
   const [hovered, setHovered] = useState(false);
+  const [label, setLabel] = useState("");
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -22,19 +25,25 @@ export default function CoolCustomCursor({ children }) {
   useEffect(() => {
     if (!isDesktop) return; // skip listeners on small screens
 
+    const interactiveSelector =
+      "a, button, input, textarea, select, summary, [role='button'], [data-cursor='hover']";
+
     const handleMouseMove = (e) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
 
     const handleMouseOver = (e) => {
-      if (e.target.closest("button, a, input, textarea")) {
+      const interactiveElement = e.target.closest(interactiveSelector);
+      if (interactiveElement) {
         setHovered(true);
+        setLabel(interactiveElement.getAttribute("data-cursor-label") || "");
       }
     };
 
     const handleMouseOut = (e) => {
-      if (e.target.closest("button, a, input, textarea")) {
+      if (e.target.closest(interactiveSelector)) {
         setHovered(false);
+        setLabel("");
       }
     };
 
@@ -56,28 +65,45 @@ export default function CoolCustomCursor({ children }) {
   
 
   return (
-    <div style={{ position: "relative", cursor: "none" }}>
-     <motion.div
-  animate={{
-    x: position.x - (hovered ? 40 : 20), // center depending on size
-    y: position.y - (hovered ? 40 : 20),
-    width: hovered ? 80 : 40,
-    height: hovered ? 80 : 40,
-    opacity: 0.9,
-  }}
-  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    backgroundImage: `url(${logo})`,
-    backgroundSize: "contain",
-    backgroundRepeat: "no-repeat",
-    pointerEvents: "none",
-    zIndex: 9999999,
-    mixBlendMode: "difference",
-  }}
-/>
+    <div style={{ position: "relative", cursor: "none", width: "100%" }}>
+      <style>
+        {`
+          * {
+            cursor: none !important;
+          }
+        `}
+      </style>
+      <motion.div
+        animate={{
+          x: position.x - (hovered ? 28 : 14),
+          y: position.y - (hovered ? 28 : 14),
+          width: hovered ? 56 : 28,
+          height: hovered ? 56 : 28,
+          opacity: 1,
+        }}
+        transition={{ type: "spring", stiffness: 350, damping: 28, mass: 0.3 }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          borderRadius: "9999px",
+          backgroundColor: "#ffffff",
+          pointerEvents: "none",
+          zIndex: 9999999,
+          mixBlendMode: "difference",
+          willChange: "transform,width,height",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#000000",
+          fontSize: "9px",
+          fontWeight: 700,
+          letterSpacing: "0.06em",
+          textTransform: "uppercase",
+        }}
+      >
+        {hovered && label ? label : null}
+      </motion.div>
       {children}
     </div>
   );
