@@ -23,6 +23,9 @@ import './App.css';
 // import LinuxCommands from './pages/LinuxCommands.jsx';
 import Stars from "./Stars";
 import CoolCustomCursor from "./components/CustomCursor";
+
+import FilesPage from './components/Folder/FilesPage.jsx';
+
 function App() {
   const [count, setCount] = useState(0)
    
@@ -49,6 +52,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/readme" element={<ReadMe />} />
         {/*<Route path="/gallery" element={<Gallery />} /> */}
+        <Route path="/files" element={<FilesPage />} /> 
 
         {/* <Route path="/*" element={<NotReady/>} /> */}
         <Route path="*" element={<Navigate to="/404" />} />
