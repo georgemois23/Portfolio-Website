@@ -82,7 +82,7 @@ export default function Layout() {
 
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
-      {isJourneyPage ? (
+      {isJourneyPage || isHomePage ? (
         <Box flex="1">
           <Outlet />
         </Box>

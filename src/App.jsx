@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route,Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { Box, Heading, Button } from "@chakra-ui/react";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
@@ -28,7 +28,8 @@ import FilesPage from './components/Folder/FilesPage.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
-   
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
  return (
   <CoolCustomCursor>
@@ -36,13 +37,11 @@ function App() {
       id="app-scroll-container"
       minH="100vh"
       w="100%"
-      bg="#000000"
-      color="#D6E3F0"
+      bg="portfolio.bg"
+      color="portfolio.text"
       position="relative"
-      overflowY="auto"
-      overflowX="hidden"
     >
-            <Stars color="#D6E3F0" background="#000000" />
+            {!isHomePage && <Stars color="#D6E3F0" background="#000000" />}
   <Box position="relative" zIndex={1} w="100%">
 
       {/* <ScrollToTop /> */}

@@ -1,11 +1,34 @@
 import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
+// Redesign palette — single source of truth for every color in the new UI.
+// Exported as plain values so GSAP / inline CSS gradients can consume them,
+// and registered below as Chakra tokens (colors.portfolio.*) for style props.
+export const palette = {
+  background: "#0a0a0a",
+  surface: "#141414",
+  text: "#f5f5f5",
+  muted: "#878787",
+  stroke: "#1f1f1f",
+  accent: "#f5f5f5",
+  accentFrom: "#89AACC",
+  accentTo: "#4E85BF",
+  accentGradient: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)",
+  accentGlow: "rgba(137, 170, 204, 0.35)",
+  success: "#4ade80",
+};
+
+export const fonts = {
+  body: "'Inter', sans-serif",
+  display: "'Instrument Serif', serif",
+};
+
 const config = defineConfig({
   // 1. Global Styles (formerly styles.global)
   globalCss: {
     body: {
-      backgroundColor: "brand.dark.primary",
-      color: "brand.dark.text",
+      backgroundColor: "portfolio.bg",
+      color: "portfolio.text",
+      fontFamily: "body",
       "::selection": {
         backgroundColor: "brand.dark.secondary",
         color: "brand.dark.background",
@@ -32,7 +55,19 @@ const config = defineConfig({
     xxs: { value: "0.6rem" }, // ή ό,τι μέγεθος θες
     "2xs": { value: "0.7rem" },
   },
+      fonts: {
+        body: { value: fonts.body },
+        display: { value: fonts.display },
+      },
       colors: {
+        portfolio: {
+          bg: { value: palette.background },
+          surface: { value: palette.surface },
+          text: { value: palette.text },
+          muted: { value: palette.muted },
+          stroke: { value: palette.stroke },
+          accent: { value: palette.accent },
+        },
         brand: {
           light: {
             text: { value: "#dceeff" },
