@@ -1,0 +1,95 @@
+.hero-bg {
+  --mx: 50%;
+  --my: 50%;
+}
+
+.hero-bg__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+  mix-blend-mode: screen;
+}
+
+.hero-bg__blob--one {
+  top: -10%;
+  left: -10%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle at 30% 30%, rgba(145, 109, 232, 0.65), transparent 70%);
+  animation: hero-drift-one 22s ease-in-out infinite alternate;
+}
+
+.hero-bg__blob--two {
+  bottom: -15%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle at 70% 70%, rgba(64, 78, 237, 0.5), transparent 70%);
+  animation: hero-drift-two 26s ease-in-out infinite alternate;
+}
+
+.hero-bg__blob--three {
+  top: 35%;
+  left: 50%;
+  width: 35vw;
+  height: 35vw;
+  max-width: 480px;
+  max-height: 480px;
+  background: radial-gradient(circle, rgba(186, 132, 255, 0.35), transparent 70%);
+  animation: hero-drift-three 30s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift-one {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(8vw, 6vh) scale(1.15); }
+}
+
+@keyframes hero-drift-two {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-6vw, -8vh) scale(1.1); }
+}
+
+@keyframes hero-drift-three {
+  0% { transform: translate(-50%, 0) scale(1); }
+  100% { transform: translate(-50%, -10vh) scale(1.2); }
+}
+
+.hero-bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(214, 227, 240, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(214, 227, 240, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0.9) 0%, transparent 75%);
+  mask-image: radial-gradient(circle at 50% 40%, rgba(0, 0, 0, 0.9) 0%, transparent 75%);
+}
+
+.hero-bg__spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(186, 132, 255, 0.14),
+    transparent 35%
+  );
+  transition: background 0.2s ease;
+}
+
+.hero-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg__blob {
+    animation: none !important;
+  }
+}

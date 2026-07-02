@@ -4,92 +4,81 @@ import { Box } from "@chakra-ui/react";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 
+function getScrollContainer() {
+  return document.getElementById("app-scroll-container") || window;
+}
+
+function getVisibleRatio(el, scroller) {
+  const elRect = el.getBoundingClientRect();
+  const viewportHeight =
+    scroller === window ? window.innerHeight : scroller.clientHeight;
+  const scrollerRect =
+    scroller === window
+      ? { top: 0, bottom: viewportHeight }
+      : scroller.getBoundingClientRect();
+
+  const visibleTop = Math.max(elRect.top, scrollerRect.top);
+  const visibleBottom = Math.min(elRect.bottom, scrollerRect.bottom);
+  const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+  return visibleHeight / viewportHeight;
+}
+
 export default function Layout() {
   const location = useLocation();
   const isJourneyPage = location.pathname === "/journey";
+  const isHomePage = location.pathname === "/";
   const [isFooterVisible, setIsFooterVisible] = useState(false);
-  const [isInTimelineExperience, setIsInTimelineExperience] = useState(false);
-  const [isInHomeHero, setIsInHomeHero] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const isHomePage = window.location.pathname === "/";
-    const heroThreshold = window.innerHeight * 0.72;
-    return isHomePage && window.scrollY < heroThreshold;
-  });
+  const [isInHomeHero, setIsInHomeHero] = useState(isHomePage);
   const footerRef = useRef(null);
-  const getScrollContainer = () =>
-    document.getElementById("app-scroll-container") || window;
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFooterVisible(entry.isIntersecting);
-      },
-      { threshold: 0.8 }
-    );
-
-    if (footerRef.current) {
-      observer.observe(footerRef.current);
-    }
-
-    return () => {
-      if (footerRef.current) {
-        observer.unobserve(footerRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const isHomePage = location.pathname === "/";
     const scroller = getScrollContainer();
 
-    const updateHeroVisibility = () => {
-      if (!isHomePage) {
+    const updateHeaderZones = () => {
+      if (isHomePage) {
+        const stickyHero = document.getElementById("home-hero-sticky");
+        if (stickyHero) {
+          setIsInHomeHero(getVisibleRatio(stickyHero, scroller) > 0.35);
+        } else {
+          const heroEl = document.getElementById("home-hero-scroll");
+          if (heroEl) {
+            setIsInHomeHero(getVisibleRatio(heroEl, scroller) > 0.35);
+          } else {
+            const scrollTop =
+              scroller === window ? window.scrollY : scroller.scrollTop;
+            const viewportHeight =
+              scroller === window ? window.innerHeight : scroller.clientHeight;
+            setIsInHomeHero(scrollTop < viewportHeight * 0.9);
+          }
+        }
+      } else {
         setIsInHomeHero(false);
-        return;
       }
 
-      const viewportHeight =
-        scroller === window ? window.innerHeight : scroller.clientHeight;
-      const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
-      const heroThreshold = viewportHeight * 0.72;
-      setIsInHomeHero(scrollTop < heroThreshold);
-    };
-
-    updateHeroVisibility();
-    scroller.addEventListener("scroll", updateHeroVisibility, { passive: true });
-    window.addEventListener("resize", updateHeroVisibility);
-
-    return () => {
-      scroller.removeEventListener("scroll", updateHeroVisibility);
-      window.removeEventListener("resize", updateHeroVisibility);
-    };
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const scroller = getScrollContainer();
-    const updateTimelineVisibility = () => {
-      const timelineEl = document.getElementById("new-timeline-experience");
-      if (!timelineEl) {
-        setIsInTimelineExperience(false);
-        return;
+      const footerEl = footerRef.current;
+      if (footerEl) {
+        setIsFooterVisible(getVisibleRatio(footerEl, scroller) > 0.12);
+      } else {
+        setIsFooterVisible(false);
       }
-
-      const rect = timelineEl.getBoundingClientRect();
-      const viewportHeight =
-        scroller === window ? window.innerHeight : scroller.clientHeight;
-      const isVisible = rect.top < viewportHeight * 0.8 && rect.bottom > viewportHeight * 0.2;
-      setIsInTimelineExperience(isVisible);
     };
 
-    updateTimelineVisibility();
-    scroller.addEventListener("scroll", updateTimelineVisibility, { passive: true });
-    window.addEventListener("resize", updateTimelineVisibility);
+    updateHeaderZones();
+    const timers = [0, 100, 300].map((ms) => setTimeout(updateHeaderZones, ms));
+
+    scroller.addEventListener("scroll", updateHeaderZones, { passive: true });
+    window.addEventListener("resize", updateHeaderZones);
 
     return () => {
-      scroller.removeEventListener("scroll", updateTimelineVisibility);
-      window.removeEventListener("resize", updateTimelineVisibility);
+      timers.forEach(clearTimeout);
+      scroller.removeEventListener("scroll", updateHeaderZones);
+      window.removeEventListener("resize", updateHeaderZones);
     };
-  }, [location.pathname]);
+  }, [location.pathname, isHomePage]);
+
+  // Hide fixed header while hero or footer is in view
+  const hideHeader = (isHomePage && isInHomeHero) || isFooterVisible;
 
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
@@ -99,38 +88,26 @@ export default function Layout() {
         </Box>
       ) : (
         <>
-      {/* HEADER BOX */}
-      <Box 
-        // REMOVED: display={isFooterVisible ? "none" : "block"} 
-        position="fixed" 
-        top="0" 
-        width="100%" 
-        zIndex="999"
-        // Transition props
-        opacity={
-          location.pathname === "/" && (isInHomeHero || isInTimelineExperience)
-            ? 0
-            : 1
-        }
-        pointerEvents={
-          location.pathname === "/" && (isInHomeHero || isInTimelineExperience)
-            ? "none"
-            : "auto"
-        }
-        transition="opacity 0.4s ease-in-out"
-      >
-        <Header />
-      </Box>
+          <Box
+            position="fixed"
+            top="0"
+            width="100%"
+            zIndex="999"
+            opacity={hideHeader ? 0 : 1}
+            visibility={hideHeader ? "hidden" : "visible"}
+            pointerEvents={hideHeader ? "none" : "auto"}
+            transition="opacity 0.4s ease-in-out, visibility 0.4s ease-in-out"
+          >
+            <Header />
+          </Box>
 
-      <Box 
-      // mt="80px" 
-      flex="1">
-        <Outlet />
-      </Box>
+          <Box flex="1">
+            <Outlet />
+          </Box>
 
-      <div ref={footerRef}>
-        <Footer />
-      </div>
+          <div ref={footerRef}>
+            <Footer />
+          </div>
         </>
       )}
     </Box>

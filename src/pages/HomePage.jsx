@@ -28,7 +28,7 @@ import NewTimeline from "../components/NewTimeline";
 import { FiUsers } from "react-icons/fi";
 import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import logo from '../Moysiadis.png' 
 
 import Contact from './Contact';
@@ -41,6 +41,7 @@ import Lanyard from "../components/react-bits/card/Lanyard";
 import Magnet from "../components/react-bits/scroll-velocity/Magnet";
 import GlitchText from "../components/react-bits/glitch-text/GlitchText";
 import Timelines from "../components/Timeline";
+import HeroBackground from "../components/HeroBackground";
 
 export default function HomePage() {
   document.title = "Moysiadis George | Full-Stack Developer Portfolio";
@@ -52,6 +53,7 @@ export default function HomePage() {
   const [isScrollExploreHovered, setIsScrollExploreHovered] = useState(false);
   const location = useLocation();
   const topRef = useRef(null);
+  const heroScrollRef = useRef(null);
   const homeRef = useRef(null);
   const projectsRef = useRef(null);
   const contactRef = useRef(null);
@@ -120,6 +122,17 @@ useEffect(() => {
 
   const MotionSpan = motion.span;
   const MotionBox = motion(Box);
+  const MotionFlex = motion(Flex);
+
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroScrollRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroScale = useTransform(heroScrollProgress, [0, 1], [1, 1.18]);
+  const heroOpacity = useTransform(heroScrollProgress, [0, 0.55, 1], [1, 1, 0]);
+  const heroBlur = useTransform(heroScrollProgress, [0.5, 1], [0, 6]);
+  const heroFilter = useTransform(heroBlur, (v) => `blur(${v}px)`);
 
   const intro = {
     label: "Moysiadis George",
@@ -161,6 +174,16 @@ useEffect(() => {
   window.scrollTo({ top: y, behavior: 'smooth' });
 }
 
+  function scrollPastHero() {
+    if (!heroScrollRef.current) {
+      scrollTo(homeRef, -80);
+      return;
+    }
+    const el = heroScrollRef.current;
+    const y = el.offsetTop + el.offsetHeight - window.innerHeight + 2;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
   
     return(
     <Flex justify="start"  direction={"column"} 
@@ -169,84 +192,129 @@ useEffect(() => {
 
 
 <Box
+  ref={heroScrollRef}
+  id="home-hero-scroll"
   textAlign="center"
-  // fontFamily="Arial"
-  // mt={{ base: "4vh", md: "6vh", lg: "8vh" }}
   px={{ base: 4, md: 6 }}
   width="100%"
+  h={{ base: "calc(100svh + 14vh)", md: "calc(100vh + 18vh)", lg: "calc(100vh + 20vh)" }}
+  position="relative"
 >
-  <Flex
+  <Box
+    id="home-hero-sticky"
+    position="sticky"
+    top={0}
+    h={{ base: "100svh", md: "100vh" }}
+    overflow="hidden"
+    zIndex={1}
+  >
+  <HeroBackground />
+  <MotionFlex
     ref={topRef}
     direction="column"
     align="center"
     justify="center"
-    minH={{ base: "100svh", md: "74vh", lg: "82vh" }}
-    borderTop="1px solid"
+    h="100%"
+    position="relative"
+    zIndex={1}
+    // borderTop="1px solid"
     borderBottom="1px solid"
     borderColor="whiteAlpha.200"
     py={{ base: 8, md: 12, lg: 14 }}
+    style={{
+      scale: heroScale,
+      opacity: heroOpacity,
+      filter: heroFilter,
+    }}
   >
-    <Text
-      fontSize={{ base: "xs", md: "sm" }}
-      textTransform="uppercase"
-      letterSpacing="0.25em"
-      border="1px solid"
-      borderColor="whiteAlpha.400"
-      px={3}
-      py={1}
-      mb={{ base: 4, md: 7, lg: 8 }}
-      color="brand.dark.text"
-      opacity={0.9}
+    <MotionBox
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {intro.label}
-    </Text>
+      <Text
+        fontSize={{ base: "xs", md: "sm" }}
+        textTransform="uppercase"
+        letterSpacing="0.25em"
+        border="1px solid"
+        borderColor="whiteAlpha.400"
+        px={3}
+        py={1}
+        mb={{ base: 4, md: 7, lg: 8 }}
+        color="brand.dark.text"
+        opacity={0.9}
+      >
+        {intro.label}
+      </Text>
+    </MotionBox>
 
     <Flex direction="column" gap={{ base: 1.5, sm: 0 }} align="center">
-      <Text
-        fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
-        fontWeight="900"
-        lineHeight="0.88"
-        textTransform="uppercase"
-        letterSpacing={{ base: "0.01em", md: "0.02em" }}
-        color="brand.dark.text"
-        userSelect="none"
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
       >
-        <GlitchText speed={1} enableShadows enableOnHover={false}>
-          {intro.titleTop}
-        </GlitchText>
-      </Text>
-      <Text
-        fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
-        fontWeight="900"
-        lineHeight="0.88"
-        textTransform="uppercase"
-        letterSpacing={{ base: "0.01em", md: "0.02em" }}
-        color="brand.dark.text"
-        userSelect="none"
+        <Text
+          fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
+          fontWeight="900"
+          lineHeight="0.88"
+          textTransform="uppercase"
+          letterSpacing={{ base: "0.01em", md: "0.02em" }}
+          color="brand.dark.text"
+          userSelect="none"
+        >
+          <GlitchText speed={1} enableShadows enableOnHover={false}>
+            {intro.titleTop}
+          </GlitchText>
+        </Text>
+      </MotionBox>
+      <MotionBox
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.22, ease: "easeOut" }}
       >
-        <GlitchText speed={1} enableShadows enableOnHover={false}>
-          {intro.titleBottom}
-        </GlitchText>
-      </Text>
+        <Text
+          fontSize={{ base: "4xl", sm: "6xl", md: "7xl", lg: "9xl" }}
+          fontWeight="900"
+          lineHeight="0.88"
+          textTransform="uppercase"
+          letterSpacing={{ base: "0.01em", md: "0.02em" }}
+          color="brand.dark.text"
+          userSelect="none"
+        >
+          <GlitchText speed={1} enableShadows enableOnHover={false}>
+            {intro.titleBottom}
+          </GlitchText>
+        </Text>
+      </MotionBox>
     </Flex>
 
-    <Text
-      fontSize={{ base: "xs", md: "sm" }}
-      fontWeight="600"
-      textTransform="uppercase"
-      letterSpacing="0.12em"
-      maxW="900px"
-      pt={{ base: 5, md: 7, lg: 8 }}
-      color="brand.dark.text"
-      opacity={0.85}
+    <MotionBox
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
     >
-      Creating fast and reliable digital experiences with thoughtful design and modern engineering.
-    </Text>
+      <Text
+        fontSize={{ base: "xs", md: "sm" }}
+        fontWeight="600"
+        textTransform="uppercase"
+        letterSpacing="0.12em"
+        maxW="900px"
+        pt={{ base: 5, md: 7, lg: 8 }}
+        color="brand.dark.text"
+        opacity={0.85}
+      >
+        Creating fast and reliable digital experiences with thoughtful design and modern engineering.
+      </Text>
+    </MotionBox>
 
-    <Box
+    <MotionBox
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
       pt={{ base: 7, md: 10, lg: 12 }}
       cursor="pointer"
-      onClick={() => scrollTo(homeRef, -80)}
+      onClick={scrollPastHero}
       onMouseEnter={() => setIsScrollExploreHovered(true)}
       onMouseLeave={() => setIsScrollExploreHovered(false)}
     >
@@ -274,36 +342,43 @@ useEffect(() => {
           />
         </Flex>
       </MotionBox>
-    </Box>
+    </MotionBox>
 
-    <Flex gap={{ base: 4, md: 5 }} justify="center" align="center" pt={{ base: 6, md: 9, lg: 10 }}>
-      {socialLinks.map((link) => (
-        <Link
-          key={link.name}
-          href={link.url}
-          isExternal
-          _hover={{ opacity: 0.8 }}
-          transition="opacity 0.2s ease"
-        >
-          <Icon as={link.icon} boxSize={{ base: 6, md: 7 }} _hover={{ color: "rgba(186, 132, 255, 0.95)", scale: 1.2, transition: "all 0.2s ease" }} color={"brand.dark.text"} />
-        </Link>
-      ))}
-    </Flex>
-  </Flex>
+    <MotionBox
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
+    >
+      <Flex gap={{ base: 4, md: 5 }} justify="center" align="center" pt={{ base: 6, md: 9, lg: 10 }}>
+        {socialLinks.map((link) => (
+          <Link
+            key={link.name}
+            href={link.url}
+            isExternal
+            _hover={{ opacity: 0.8 }}
+            transition="opacity 0.2s ease"
+          >
+            <Icon as={link.icon} boxSize={{ base: 6, md: 7 }} _hover={{ color: "rgba(186, 132, 255, 0.95)", scale: 1.2, transition: "all 0.2s ease" }} color={"brand.dark.text"} />
+          </Link>
+        ))}
+      </Flex>
+    </MotionBox>
+  </MotionFlex>
+  </Box>
 </Box>
 
 
  {/* <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} /> */}
 
   <Flex
-  // ref={aboutSectionRef}
   ref={homeRef}
   direction="column"
-  // mb={10}
+  position="relative"
+  zIndex={2}
   marginInline="auto"
   gap={2}
   width="100vw"
-  // pt={{ base: '22vh', lg: '25vh' }}
+  mt={{ base: "-14vh", md: "-18vh", lg: "-20vh" }}
   py={8}
   px={{ sm: 8, lg: 8 }}
   bgSize="cover"
