@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { palette } from "../../theme/theme";
+import Logo from '../../assets/logo/Logo';
+import mlogo from '../../assets/images/m-logo.png';
 
 const NAV_LINKS = [
   { id: "home", label: "Home" },
@@ -8,10 +10,28 @@ const NAV_LINKS = [
   { id: "resume", label: "Resume" },
 ];
 
+ 
+
 // Floating pill navbar. Initials are derived from profile.name.
 export default function Navbar({ profile, onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+ const isMobile = windowWidth < 992; 
+  const size = isMobile 
+    ? Math.min(windowWidth * 0.28, 128) 
+    : Math.min(Math.max(windowWidth * 0.12, 120), 180);
+  const width = size;
+  const height = size;
 
   const initials = profile.name
     .split(" ")
@@ -68,8 +88,8 @@ export default function Navbar({ profile, onNavigate }) {
           as="button"
           onClick={() => onNavigate("home")}
           position="relative"
-          w={9}
-          h={9}
+          w={10}
+          h={10}
           borderRadius="full"
           p="2px"
           cursor="pointer"
@@ -96,6 +116,8 @@ export default function Navbar({ profile, onNavigate }) {
             >
               {initials}
             </Text>
+             {/* <Logo height={height} width={width}/> */}
+             {/* <img src={mlogo} alt="Logo" style={{ width: `${width}px`, height: `${height}px`,  }} /> */}
           </Flex>
         </Box>
 
@@ -124,10 +146,13 @@ export default function Navbar({ profile, onNavigate }) {
 
         <Box w="1px" h={5} bg="portfolio.stroke" mx={1} display={{ base: "none", sm: "block" }} />
 
-        {/* Say hi */}
+        {/* Say hi — scrolls to the contact form */}
         <Box
-          as="a"
-          href={`mailto:${profile.email}`}
+          as="button"
+          onClick={() => onNavigate("contact-form")}
+          border="none"
+          bg="transparent"
+          p={0}
           position="relative"
           display="inline-flex"
           borderRadius="full"

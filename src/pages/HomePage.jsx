@@ -20,7 +20,8 @@ import ContactFooter from "../components/redesign/ContactFooter";
 gsap.registerPlugin(ScrollTrigger);
 
 const HLS_STREAM_URL =
-  "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+  // "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+  "https://stream.mux.com/01yW6GoUz01OTXk5w1Rt1MHkJWlCGIwj46SUONJZ4DJUE.m3u8";
 const RESUME_URL = "/Moysiadis_George.pdf";
 
 // ---- Existing data objects (source of truth) ----
@@ -117,7 +118,7 @@ const LEGACY_SCROLL_MAP = {
   top: "home",
   readme: "home",
   projects: "work",
-  contact: "contact",
+  contact: "contact-form",
 };
 
 export default function HomePage() {
@@ -162,8 +163,10 @@ export default function HomePage() {
   const scrollToSection = useCallback((id) => {
     const target = document.getElementById(id);
     if (!target) return;
+    // Leave headroom for the floating navbar on inner targets like the form.
+    const offset = id === "contact-form" ? -90 : 0;
     if (lenisRef.current) {
-      lenisRef.current.scrollTo(target, { offset: 0, duration: 1.4 });
+      lenisRef.current.scrollTo(target, { offset, duration: 1.4 });
     } else {
       target.scrollIntoView({ behavior: "smooth" });
     }
@@ -191,6 +194,7 @@ export default function HomePage() {
         streamUrl={HLS_STREAM_URL}
         ready={!isLoading}
         onSeeWorks={() => scrollToSection("work")}
+        onReachOut={() => scrollToSection("contact-form")}
       />
 
       <SelectedWorks

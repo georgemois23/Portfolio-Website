@@ -8,7 +8,7 @@ import { palette } from "../../theme/theme";
 
 // Full-viewport hero: HLS video background, GSAP entrance, cycling role line.
 // All copy comes from the profile object.
-export default function Hero({ profile, streamUrl, ready, onSeeWorks }) {
+export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut }) {
   const rootRef = useRef(null);
   const nameRef = useRef(null);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -70,7 +70,7 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks }) {
       <Box position="absolute" inset={0}>
         <HlsVideo
           src={streamUrl}
-          style={{ transform: "translate(-50%, -50%)" }}
+          style={{ transform: "translate(-50%, -50%)",  }}
         />
         <Box position="absolute" inset={0} bg="blackAlpha.300" />
         <Box
@@ -168,7 +168,7 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks }) {
             <RingButton variant="solid" onClick={onSeeWorks}>
               See Works
             </RingButton>
-            <RingButton variant="outline" href={`mailto:${profile.email}`}>
+            <RingButton variant="outline" onClick={onReachOut}>
               Reach out…
             </RingButton>
           </Flex>

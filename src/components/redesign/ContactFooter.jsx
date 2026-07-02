@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import gsap from "gsap";
 import HlsVideo from "./HlsVideo";
 import RingButton from "./RingButton";
+import Form from "../Form";
 import { palette } from "../../theme/theme";
 
 const MARQUEE_PHRASE = "BUILDING THE FUTURE • ";
@@ -95,6 +96,65 @@ export default function ContactFooter({ profile, streamUrl }) {
           <RingButton variant="solid" href={`mailto:${profile.email}`}>
             {profile.email} <Box as="span" aria-hidden="true">↗</Box>
           </RingButton>
+
+          {/* Contact form (existing EmailJS form, restyled to the redesign theme) */}
+          <Flex align="center" gap={4} mt={{ base: 12, md: 16 }} mb={8} w="100%" maxW="640px">
+            <Box flex="1" h="1px" bg="portfolio.stroke" />
+            <Text
+              fontSize="xs"
+              color="portfolio.muted"
+              textTransform="uppercase"
+              letterSpacing="0.25em"
+              whiteSpace="nowrap"
+            >
+              or send a message
+            </Text>
+            <Box flex="1" h="1px" bg="portfolio.stroke" />
+          </Flex>
+          <Box
+            id="contact-form"
+            w="100%"
+            maxW="640px"
+            bg="portfolio.surface/60"
+            backdropFilter="blur(16px)"
+            border="1px solid"
+            borderColor="portfolio.stroke"
+            borderRadius="3xl"
+            p={{ base: 6, md: 10 }}
+            textAlign="left"
+            display="flex"
+            justifyContent="center"
+            css={{
+              "& label": {
+                color: `${palette.text} !important`,
+                fontSize: "0.75rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+              },
+              "& input, & textarea": {
+                background: "transparent !important",
+                borderColor: `${palette.stroke} !important`,
+                color: `${palette.text} !important`,
+                borderRadius: "12px",
+              },
+              "& input:focus-visible, & textarea:focus-visible": {
+                borderColor: `${palette.accentFrom} !important`,
+                boxShadow: `0 0 8px ${palette.accentGlow} !important`,
+              },
+              "& button[type='submit']": {
+                background: `${palette.text} !important`,
+                color: `${palette.background} !important`,
+                border: "none !important",
+                borderRadius: "9999px",
+                transition: "transform 0.3s ease, opacity 0.3s ease",
+              },
+              "& button[type='submit']:hover:not(:disabled)": {
+                transform: "scale(1.02)",
+              },
+            }}
+          >
+            <Form />
+          </Box>
         </Flex>
 
         {/* Footer bar */}
@@ -128,8 +188,8 @@ export default function ContactFooter({ profile, streamUrl }) {
             ))}
           </Flex>
 
-          <Flex align="center" gap={2.5}>
-            <Box position="relative" w={2} h={2} flexShrink={0}>
+          <Flex align="center"   gap={2.5}>
+            <Box position="relative" w={1} h={1} flexShrink={0}>
               <Box
                 position="absolute"
                 inset={0}
