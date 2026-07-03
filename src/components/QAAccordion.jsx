@@ -1,7 +1,7 @@
 import { Accordion, Box, Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { LuArrowUpRight } from "react-icons/lu";
 
-const qaItems = [
+export const qaItems = [
   {
     value: "services",
     question: "What services do you provide?",

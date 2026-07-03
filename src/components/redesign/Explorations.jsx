@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Grid, Text } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import RingButton from "./RingButton";
+import { LiveProjectButton, headingGradientCss } from "./SelectedWorks";
+import { palette } from "../../theme/theme";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const MotionBox = motion.create(Box);
+
+// D7E2EA at low alpha for card borders, matching the section dividers.
+const hairline = `${palette.showcaseBorder}33`;
 
 // Scroll-driven parallax gallery. Center content is pinned while two image
 // columns drift at different speeds. Images come from the projects data.
@@ -73,8 +77,8 @@ export default function Explorations({ items, viewAllUrl }) {
         ref={sectionRef}
         as="section"
         position="relative"
-        minH="220vh"
-        bg="portfolio.bg"
+        minH={{ base: "160vh", md: "180vh" }}
+        style={{ backgroundColor: palette.showcaseBg }}
         overflow="hidden"
       >
         {/* Pinned center content */}
@@ -89,33 +93,34 @@ export default function Explorations({ items, viewAllUrl }) {
           textAlign="center"
           px={6}
         >
-          <Flex align="center" gap={3} mb={5}>
-            <Box w="2rem" h="1px" bg="portfolio.stroke" />
-            <Text fontSize="xs" color="portfolio.muted" textTransform="uppercase" letterSpacing="0.3em">
+          <Flex align="center" gap={4} mb={3}>
+            <Box w="2rem" h="1px" style={{ backgroundColor: hairline }} />
+            <Text
+              fontSize={{ base: "xs", md: "sm" }}
+              color="portfolio.muted"
+              textTransform="uppercase"
+              letterSpacing="0.25em"
+            >
               Explorations
             </Text>
-            <Box w="2rem" h="1px" bg="portfolio.stroke" />
+            <Box w="2rem" h="1px" style={{ backgroundColor: hairline }} />
           </Flex>
-          <Heading
+          <Text
             as="h2"
-            fontSize={{ base: "4xl", md: "5xl" }}
-            fontWeight="400"
-            color="portfolio.text"
-            letterSpacing="-0.02em"
+            fontFamily="kanit"
+            fontWeight="900"
+            textTransform="uppercase"
+            lineHeight="none"
+            letterSpacing="tight"
+            fontSize="clamp(2.6rem, 8vw, 6.5rem)"
+            css={headingGradientCss}
           >
-            Visual{" "}
-            <Text as="span" fontFamily="display" fontStyle="italic">
-              playground
-            </Text>
-          </Heading>
+            Playground
+          </Text>
           <Text mt={4} mb={8} fontSize={{ base: "sm", md: "md" }} color="portfolio.muted" maxW="sm">
             Snapshots from things I've designed and shipped.
           </Text>
-          {viewAllUrl && (
-            <RingButton variant="ghost" size="sm" href={viewAllUrl} target="_blank">
-              See more <Box as="span" aria-hidden="true">↗</Box>
-            </RingButton>
-          )}
+          {viewAllUrl && <LiveProjectButton href={viewAllUrl} label="See More ↗" />}
         </Flex>
 
         {/* Parallax columns */}
@@ -145,10 +150,9 @@ export default function Explorations({ items, viewAllUrl }) {
                     pointerEvents="auto"
                     cursor="pointer"
                     border="1px solid"
-                    borderColor="portfolio.stroke"
-                    borderRadius="2xl"
+                    borderRadius={{ base: "24px", md: "32px" }}
                     overflow="hidden"
-                    bg="portfolio.surface"
+                    style={{ borderColor: hairline, backgroundColor: palette.showcaseBg }}
                     w="100%"
                     maxW="320px"
                     aspectRatio="1"
@@ -205,11 +209,20 @@ export default function Explorations({ items, viewAllUrl }) {
                 src={lightbox.image}
                 alt={lightbox.title}
                 w="100%"
-                borderRadius="2xl"
+                borderRadius={{ base: "24px", md: "32px" }}
                 border="1px solid"
-                borderColor="portfolio.stroke"
+                style={{ borderColor: hairline }}
               />
-              <Text mt={4} textAlign="center" fontSize="sm" color="portfolio.muted">
+              <Text
+                mt={4}
+                textAlign="center"
+                fontFamily="kanit"
+                fontWeight="500"
+                textTransform="uppercase"
+                letterSpacing="0.1em"
+                fontSize="sm"
+                color="portfolio.muted"
+              >
                 {lightbox.title}
               </Text>
             </MotionBox>

@@ -12,14 +12,29 @@ export const palette = {
   accent: "#f5f5f5",
   accentFrom: "#89AACC",
   accentTo: "#4E85BF",
-  accentGradient: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)",
+  // Original brand purple, kept as a supporting shade — gradient tails,
+  // ambient glows, selection — never the lead color.
+  purple: "#916de8",
+  purpleGlow: "rgba(145, 109, 232, 0.35)",
+  accentGradient: "linear-gradient(90deg, #89AACC 0%, #4E85BF 55%, #916de8 100%)",
   accentGlow: "rgba(137, 170, 204, 0.35)",
   success: "#4ade80",
+  // Projects showcase (sticky card stack) tokens
+  showcaseBg: "#0C0C0C",
+  showcaseBorder: "#D7E2EA",
+  showcaseHeadingGradient: "linear-gradient(180deg, #646973 0%, #BBCCD7 100%)",
+};
+
+// Build an rgba() string from a palette hex value.
+export const hexToRgba = (hex, alpha) => {
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 export const fonts = {
   body: "'Inter', sans-serif",
   display: "'Instrument Serif', serif",
+  kanit: "'Kanit', sans-serif",
 };
 
 const config = defineConfig({
@@ -58,6 +73,7 @@ const config = defineConfig({
       fonts: {
         body: { value: fonts.body },
         display: { value: fonts.display },
+        kanit: { value: fonts.kanit },
       },
       colors: {
         portfolio: {

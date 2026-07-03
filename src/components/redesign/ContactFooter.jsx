@@ -1,16 +1,17 @@
 import { useEffect, useRef } from "react";
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import gsap from "gsap";
-import HlsVideo from "./HlsVideo";
 import RingButton from "./RingButton";
 import Form from "../Form";
-import { palette } from "../../theme/theme";
+import { palette, hexToRgba } from "../../theme/theme";
 
 const MARQUEE_PHRASE = "BUILDING THE FUTURE • ";
 
-// Contact + footer: flipped HLS video, GSAP marquee, email CTA, socials.
+// Contact + footer: dot grid + drifting glows (same ambience as the hero),
+// GSAP marquee, email CTA, contact form, socials.
 // Email, socials, and availability all come from the profile object.
-export default function ContactFooter({ profile, streamUrl }) {
+export default function ContactFooter({ profile }) {
+  const rootRef = useRef(null);
   const marqueeRef = useRef(null);
 
   useEffect(() => {
@@ -21,35 +22,79 @@ export default function ContactFooter({ profile, streamUrl }) {
         ease: "none",
         repeat: -1,
       });
-    });
+      gsap.to(".footer-orb-1", {
+        x: 60,
+        y: 50,
+        duration: 13,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+      gsap.to(".footer-orb-2", {
+        x: -70,
+        y: -40,
+        duration: 16,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+    }, rootRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <Box
+      ref={rootRef}
       as="footer"
       id="contact"
       position="relative"
-      bg="portfolio.bg"
+      style={{ backgroundColor: palette.showcaseBg }}
       pt={{ base: 16, md: 20 }}
       pb={{ base: 8, md: 12 }}
       overflow="hidden"
     >
-      {/* Flipped background video */}
-      <Box position="absolute" inset={0} transform="scaleY(-1)">
-        <HlsVideo src={streamUrl} style={{ transform: "translate(-50%, -50%)" }} />
+      {/* Background: dot grid + drifting glows, matching the hero */}
+      <Box position="absolute" inset={0} zIndex={0} pointerEvents="none">
+        <Box
+          position="absolute"
+          inset={0}
+          style={{
+            backgroundImage: `radial-gradient(circle, ${palette.showcaseBorder}14 1px, transparent 1px)`,
+            backgroundSize: "28px 28px",
+            maskImage: "radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 100%)",
+          }}
+        />
+        <Box
+          className="footer-orb-1"
+          position="absolute"
+          top="-15%"
+          right="-10%"
+          w={{ base: "70vw", md: "45vw" }}
+          h={{ base: "70vw", md: "45vw" }}
+          maxW="720px"
+          maxH="720px"
+          borderRadius="full"
+          style={{
+            background: `radial-gradient(circle, ${hexToRgba(palette.accentTo, 0.16)} 0%, transparent 65%)`,
+          }}
+        />
+        <Box
+          className="footer-orb-2"
+          position="absolute"
+          bottom="-20%"
+          left="-12%"
+          w={{ base: "75vw", md: "50vw" }}
+          h={{ base: "75vw", md: "50vw" }}
+          maxW="820px"
+          maxH="820px"
+          borderRadius="full"
+          style={{
+            background: `radial-gradient(circle, ${hexToRgba(palette.purple, 0.12)} 0%, transparent 65%)`,
+          }}
+        />
       </Box>
-      <Box position="absolute" inset={0} bg="blackAlpha.600" />
-      <Box
-        position="absolute"
-        top={0}
-        left={0}
-        right={0}
-        h="10rem"
-        bgGradient="to-b"
-        gradientFrom="portfolio.bg"
-        gradientTo="transparent"
-      />
 
       <Box position="relative" zIndex={10}>
         {/* Marquee */}

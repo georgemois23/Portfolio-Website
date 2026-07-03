@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import gsap from "gsap";
-import SplitType from "split-type";
-import HlsVideo from "./HlsVideo";
-import RingButton from "./RingButton";
-import { palette } from "../../theme/theme";
+import { LiveProjectButton, headingGradientCss } from "./SelectedWorks";
+import { palette, hexToRgba } from "../../theme/theme";
 
-// Full-viewport hero: HLS video background, GSAP entrance, cycling role line.
+// Editorial hero: dark surface with a dot grid and drifting accent glows,
+// giant Kanit gradient headline, GSAP entrance, cycling role line.
 // All copy comes from the profile object.
-export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut }) {
+export default function Hero({ profile, ready, onSeeWorks, onReachOut }) {
   const rootRef = useRef(null);
-  const nameRef = useRef(null);
   const [roleIndex, setRoleIndex] = useState(0);
+
+  // The big headline lines come from the existing intro data (profile.eyebrow).
+  const titleLines = profile.eyebrow.split(" ");
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -20,18 +21,40 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
     return () => clearInterval(id);
   }, [profile.roles.length]);
 
+  // Slow ambient drift for the background glows.
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(".hero-orb-1", {
+        x: 70,
+        y: -50,
+        duration: 12,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+      gsap.to(".hero-orb-2", {
+        x: -60,
+        y: 60,
+        duration: 15,
+        ease: "sine.inOut",
+        yoyo: true,
+        repeat: -1,
+      });
+    }, rootRef);
+    return () => ctx.revert();
+  }, []);
+
   useEffect(() => {
     if (!ready) return;
 
-    let split;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      split = new SplitType(nameRef.current, { types: "chars" });
-      gsap.set(nameRef.current, { opacity: 1 });
-      tl.from(
-        split.chars,
-        { opacity: 0, y: 50, duration: 1.2, stagger: 0.035 },
+      // Per-line mask reveal — gradient-clipped text stays intact
+      // (character splitting breaks background-clip: text).
+      tl.to(
+        ".hero-line",
+        { y: 0, duration: 1.1, stagger: 0.14 },
         0.1
       );
 
@@ -44,14 +67,11 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
           duration: 1,
           stagger: 0.1,
         },
-        0.3
+        0.45
       );
     }, rootRef);
 
-    return () => {
-      ctx.revert();
-      if (split) split.revert();
-    };
+    return () => ctx.revert();
   }, [ready]);
 
   const [beforeRole, afterRole = ""] = profile.roleLineTemplate.split("{role}");
@@ -61,79 +81,123 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
       ref={rootRef}
       id="home"
       position="relative"
-      h="100vh"
-      minH="600px"
+      minH="100vh"
       overflow="hidden"
-      bg="portfolio.bg"
+      style={{ backgroundColor: palette.showcaseBg }}
     >
-      {/* Background video */}
-      <Box position="absolute" inset={0}>
-        <HlsVideo
-          src={streamUrl}
-          style={{ transform: "translate(-50%, -50%)",  }}
-        />
-        <Box position="absolute" inset={0} bg="blackAlpha.300" />
+      {/* Background: dot grid, drifting glows, center lift behind the headline */}
+      <Box position="absolute" inset={0} zIndex={0} pointerEvents="none">
         <Box
           position="absolute"
-          bottom={0}
-          left={0}
-          right={0}
-          h="12rem"
-          bgGradient="to-t"
-          gradientFrom="portfolio.bg"
-          gradientTo="transparent"
+          inset={0}
+          style={{
+            backgroundImage: `radial-gradient(circle, ${palette.showcaseBorder}14 1px, transparent 1px)`,
+            backgroundSize: "28px 28px",
+            maskImage: "radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 100%)",
+          }}
+        />
+        <Box
+          className="hero-orb-1"
+          position="absolute"
+          top="-15%"
+          left="-10%"
+          w={{ base: "70vw", md: "45vw" }}
+          h={{ base: "70vw", md: "45vw" }}
+          maxW="720px"
+          maxH="720px"
+          borderRadius="full"
+          style={{
+            background: `radial-gradient(circle, ${hexToRgba(palette.accentTo, 0.16)} 0%, transparent 65%)`,
+          }}
+        />
+        <Box
+          className="hero-orb-2"
+          position="absolute"
+          bottom="-20%"
+          right="-12%"
+          w={{ base: "75vw", md: "50vw" }}
+          h={{ base: "75vw", md: "50vw" }}
+          maxW="820px"
+          maxH="820px"
+          borderRadius="full"
+          style={{
+            background: `radial-gradient(circle, ${hexToRgba(palette.purple, 0.12)} 0%, transparent 65%)`,
+          }}
+        />
+        <Box
+          position="absolute"
+          top="38%"
+          left="50%"
+          transform="translate(-50%, -50%)"
+          w={{ base: "90vw", md: "60vw" }}
+          h={{ base: "50vw", md: "30vw" }}
+          style={{
+            background: `radial-gradient(ellipse, ${hexToRgba(palette.showcaseBorder, 0.07)} 0%, transparent 70%)`,
+          }}
         />
       </Box>
 
-      {/* Content */}
+      {/* Content — generous padding so it always clears the floating navbar
+          (top) and the scroll indicator (bottom); section grows if needed */}
       <Flex
         position="relative"
         zIndex={10}
-        h="100%"
+        minH="100vh"
         direction="column"
         align="center"
         justify="center"
         textAlign="center"
-        px={6}
+        px={{ base: 4, sm: 6, md: 10 }}
+        pt={{ base: "8rem", md: "9rem" }}
+        pb={{ base: "9rem", md: "10rem" }}
       >
         <Text
           className="blur-in"
           opacity={0}
           transform="translateY(20px)"
           filter="blur(10px)"
-          fontSize="xs"
+          fontSize={{ base: "xs", md: "sm" }}
           color="portfolio.muted"
           textTransform="uppercase"
           letterSpacing="0.3em"
-          mb={8}
+          mb={{ base: 6, md: 8 }}
         >
-          {profile.eyebrow}
+          {profile.name} — {profile.location}
         </Text>
 
-        <Heading
-          ref={nameRef}
-          as="h1"
-          opacity={0}
-          fontSize={{ base: "5xl", sm: "6xl", md: "8xl", lg: "9xl" }}
-          fontFamily="display"
-          fontStyle="italic"
-          fontWeight="400"
-          lineHeight="0.9"
-          letterSpacing="-0.02em"
-          color="portfolio.text"
-          mb={6}
-        >
-          {profile.name}
-        </Heading>
+        <Box w="100%">
+          {titleLines.map((line) => (
+            <Box key={line} overflow="hidden" pb="0.06em" mb="-0.06em">
+              <Text
+                as="span"
+                className="hero-line"
+                display="block"
+                transform="translateY(110%)"
+                fontFamily="kanit"
+                fontWeight="900"
+                textTransform="uppercase"
+                lineHeight="0.95"
+                letterSpacing="tight"
+                fontSize="clamp(3rem, 11.5vw, 9.5rem)"
+                css={headingGradientCss}
+              >
+                {line}
+              </Text>
+            </Box>
+          ))}
+        </Box>
 
         <Text
           className="blur-in"
           opacity={0}
           transform="translateY(20px)"
           filter="blur(10px)"
-          fontSize={{ base: "lg", md: "xl" }}
+          fontSize={{ base: "sm", md: "lg" }}
           color="portfolio.muted"
-          mb={4}
+          mt={{ base: 6, md: 8 }}
+          mb={{ base: 3, md: 4 }}
         >
           {beforeRole.replace("{location}", profile.location)}
           <Text
@@ -141,9 +205,11 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
             key={roleIndex}
             className="animate-role-fade-in"
             display="inline-block"
-            fontFamily="display"
-            fontStyle="italic"
-            color="portfolio.text"
+            fontFamily="kanit"
+            fontWeight="600"
+            textTransform="uppercase"
+            letterSpacing="0.04em"
+            style={{ color: palette.showcaseBorder }}
           >
             {profile.roles[roleIndex]}
           </Text>
@@ -158,19 +224,15 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
           fontSize={{ base: "sm", md: "md" }}
           color="portfolio.muted"
           maxW="md"
-          mb={12}
+          mb={{ base: 9, md: 10 }}
         >
           {profile.description}
         </Text>
 
         <Box className="blur-in" opacity={0} transform="translateY(20px)" filter="blur(10px)">
-          <Flex display="inline-flex" gap={4} wrap="wrap" justify="center">
-            <RingButton variant="solid" onClick={onSeeWorks}>
-              See Works
-            </RingButton>
-            <RingButton variant="outline" onClick={onReachOut}>
-              Reach out…
-            </RingButton>
+          <Flex display="inline-flex" gap={{ base: 3, md: 4 }} wrap="wrap" justify="center">
+            <LiveProjectButton onClick={onSeeWorks} label="See Works" />
+            <LiveProjectButton onClick={onReachOut} label="Reach Out" />
           </Flex>
         </Box>
       </Flex>
@@ -178,7 +240,7 @@ export default function Hero({ profile, streamUrl, ready, onSeeWorks, onReachOut
       {/* Scroll indicator */}
       <Flex
         position="absolute"
-        bottom={8}
+        bottom={{ base: 12, md: 8 }}
         left="50%"
         transform="translateX(-50%)"
         zIndex={10}

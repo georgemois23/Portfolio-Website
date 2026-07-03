@@ -12,6 +12,7 @@ import LoadingScreen from "../components/redesign/LoadingScreen";
 import Navbar from "../components/redesign/Navbar";
 import Hero from "../components/redesign/Hero";
 import SelectedWorks from "../components/redesign/SelectedWorks";
+import QASection from "../components/redesign/QASection";
 import ExperienceSection from "../components/redesign/ExperienceSection";
 import Explorations from "../components/redesign/Explorations";
 import StatsSection from "../components/redesign/StatsSection";
@@ -56,6 +57,7 @@ const projects = timelineDates
     category: (item.skills || []).slice(0, 2).join(" · ") || "Project",
     year: yearOf(item.to) || yearOf(item.from) || "",
     image: item.image,
+    mobileImage: item.mobile_image,
     url: item.url || item.github,
     featured: true,
     span: SPAN_PATTERN[index % SPAN_PATTERN.length],
@@ -191,7 +193,6 @@ export default function HomePage() {
 
       <Hero
         profile={profile}
-        streamUrl={HLS_STREAM_URL}
         ready={!isLoading}
         onSeeWorks={() => scrollToSection("work")}
         onReachOut={() => scrollToSection("contact-form")}
@@ -202,6 +203,8 @@ export default function HomePage() {
         viewAllUrl={githubUrl}
       />
 
+      <QASection />
+
       <ExperienceSection experience={experience} resumeUrl={RESUME_URL} />
 
       <Explorations
@@ -211,7 +214,7 @@ export default function HomePage() {
 
       <StatsSection stats={profile.stats} />
 
-      <ContactFooter profile={profile} streamUrl={HLS_STREAM_URL} />
+      <ContactFooter profile={profile} />
     </Box>
   );
 }
