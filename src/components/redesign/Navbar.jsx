@@ -22,6 +22,9 @@ export default function Navbar({ profile, onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const navRef = useRef(null);
+  const lastYRef = useRef(0);
 
   const handleNavigate = (id) => {
     setMenuOpen(false);
@@ -30,7 +33,18 @@ export default function Navbar({ profile, onNavigate }) {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 100);
+      const y = window.scrollY;
+      setScrolled(y > 100);
+
+      // Hide on scroll down, reappear on scroll up (applied on small screens).
+      const lastY = lastYRef.current;
+      if (y > lastY + 6 && y > 120) {
+        setHidden(true);
+        setMenuOpen(false);
+      } else if (y < lastY - 6) {
+        setHidden(false);
+      }
+      lastYRef.current = y;
 
       const middle = window.innerHeight * 0.5;
       let current = "home";
@@ -45,13 +59,24 @@ export default function Navbar({ profile, onNavigate }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const reversedGradient = `linear-gradient(270deg, ${palette.accentFrom} 0%, ${palette.accentTo} 100%)`;
+  // Close the mobile menu when tapping anywhere outside the navbar.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onPointerDown = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [menuOpen]);
 
   return (
     <Flex
       position="fixed"
       top={0}
       left={0}
+      ref={navRef}
       right={0}
       zIndex={50}
       direction="column"
@@ -59,10 +84,18 @@ export default function Navbar({ profile, onNavigate }) {
       pt={{ base: 4, md: 6 }}
       px={4}
       pointerEvents="none"
+      transform={{
+        base: hidden ? "translateY(-130%)" : "translateY(0)",
+        md: "translateY(0)",
+      }}
+      transition="transform 0.35s ease"
     >
       <Flex
         pointerEvents="auto"
-        display="inline-flex"
+        display={{ base: "flex", md: "inline-flex" }}
+        w={{ base: "100%", md: "auto" }}
+        maxW={{ base: "400px", md: "none" }}
+        justifyContent={{ base: "space-between", md: "flex-start" }}
         alignItems="center"
         borderRadius="full"
         backdropFilter="blur(12px)"
@@ -81,18 +114,17 @@ export default function Navbar({ profile, onNavigate }) {
           position="relative"
           h={10}
           borderRadius="full"
-          p="2px"
           cursor="pointer"
-          border="none"
+          border="2px solid"
+          bg="portfolio.bg"
           transition="transform 0.3s ease"
-          style={{ background: palette.purple }}
-          _hover={{ transform: "scale(1.05)", background: 'red' }}
+          style={{ borderColor: palette.purple }}
+          _hover={{ transform: "scale(1.05)" }}
           aria-label={`${profile.name} — Home`}
         >
           <Flex
             h="100%"
             borderRadius="full"
-            bg="portfolio.bg"
             align="center"
             justify="center"
             px={3}
@@ -213,7 +245,8 @@ export default function Navbar({ profile, onNavigate }) {
             display={{ base: "block", md: "none" }}
             pointerEvents="auto"
             mt={2}
-            w="min(92vw, 300px)"
+            w="100%"
+            maxW="400px"
             borderRadius="24px"
             border="1px solid"
             borderColor="whiteAlpha.100"

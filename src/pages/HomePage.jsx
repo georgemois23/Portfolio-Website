@@ -56,9 +56,15 @@ const projects = timelineDates
       : item.title,
     category: (item.skills || []).slice(0, 2).join(" · ") || "Project",
     year: yearOf(item.to) || yearOf(item.from) || "",
+    from: item.from,
+    to: item.to,
+    description: item.description || item.short_description || "",
+    skills: item.skills || [],
     image: item.image,
     mobileImage: item.mobile_image,
     url: item.url || item.github,
+    liveUrl: item.url,
+    github: item.github,
     featured: true,
     span: SPAN_PATTERN[index % SPAN_PATTERN.length],
   }));
@@ -201,6 +207,7 @@ export default function HomePage() {
       <SelectedWorks
         projects={projects.filter((project) => project.featured)}
         viewAllUrl={githubUrl}
+        lenisRef={lenisRef}
       />
 
       <QASection />

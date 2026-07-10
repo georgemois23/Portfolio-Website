@@ -17,6 +17,32 @@ code {
   --font-display: 'Instrument Serif', serif;
 }
 
+/* ---- Page scrollbar: solid and clearly visible on the dark UI ---- */
+
+html {
+  scrollbar-width: auto;
+  scrollbar-color: #6d6d6d #000000;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6d6d6d;
+  border-radius: 9999px;
+  border: 3px solid #000000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
 /* ---- Redesign keyframes (color-free; colors come from theme.js) ---- */
 
 @keyframes scroll-down {

@@ -22,7 +22,8 @@ export const palette = {
   // Projects showcase (sticky card stack) tokens
   showcaseBg: "#0C0C0C",
   showcaseBorder: "#D7E2EA",
-  showcaseHeadingGradient: "linear-gradient(180deg, #646973 0%, #BBCCD7 100%)",
+  // showcaseHeadingGradient: "linear-gradient(180deg, #646973 0%, #BBCCD7 100%)",
+  showcaseHeadingGradient: "linear-gradient(180deg, #3A1C5C 0%, #8A4FFF 100%)",
 };
 
 // Build an rgba() string from a palette hex value.
