@@ -7,7 +7,7 @@ import opensourceImgSmall from '../assets/images/projects-mock/opensource_MockUp
 import polyvoxImg from '../assets/images/projects-mock/polyvox_MockUp.png';
 import polyvoxImgSmall from '../assets/images/projects-mock/polyvox_MockUp_small.png';
 import oldportfolio from '../assets/images/projects-mock/moysiadis.dev_.png';
-
+import opseatImg from '../assets/images/projects-mock/opseat_MockUp.png';
 import { DownloadButton } from "./DownloadButton";
 import Magnet from "./react-bits/scroll-velocity/Magnet";
 
@@ -25,9 +25,23 @@ const projectImages = {
   polyvox: polyvoxImg,
   polyvoxSmall: polyvoxImgSmall,
   oldportfolio: oldportfolio,
+  opseat: opseatImg,
 };
 
 export const timelineDates = [
+  {
+    from: "Apr 2026",
+    to: "Present",
+    title: "Full-Stack Project: Opseat",
+    short_description: "Building a full-stack web application for food ordering and delivery using React, NestJS",
+    description: "Developing a full-stack web application (opseat.moysiadis.dev) for food ordering and delivery. The project utilizes React for the frontend and NestJS for the backend, with a focus on performance, scalability, and user experience.",
+    type: TimelineType.project,
+    image: projectImages.opseat,
+    url: "https://opseat.moysiadis.dev",
+    github: "https://github.com/georgemois23/opseat",
+    skills: ["React.js", "NestJS","PostgresSql", "TypeScript", "Redis"]
+  }
+  ,
   {
     from: "Sept 2025",
     to: "Dec 2025",
